@@ -1,4 +1,4 @@
-# Gulp сборка для верстки сайтов от [ВебКадеми](https://webcademy.ru)
+
 
 - HTML,
 - SCSS,
