@@ -1,0 +1,45 @@
+.warehouse__rule-form {
+  //display: flex;
+  //flex-direction: column;
+  //align-items: center;
+  width: 70%;
+  margin: 0 auto;
+
+  & fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  //max-width: 432px;
+  & .page__form-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 12px;
+    width: 100%;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    &.center {
+      justify-content: center;
+      margin-right: 5.5rem;
+    }
+
+  }
+
+  label {
+    font: $body-regular-14;
+    color: $primary-text;
+
+  }
+
+  input {
+    @include input-default;
+    max-width: 300px;
+  }
+}

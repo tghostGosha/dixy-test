@@ -1,0 +1,38 @@
+.page__section-modal {
+  position: absolute;
+  //overflow: hidden;
+  top: 0;
+  z-index: 10000;
+  right: 0;
+  transform: translate(10000px, 0);
+  width: 99.5%;
+  height: auto;
+  background-color: $background_grey;
+  transition: transform 0.4s ease-in-out 0s;
+  max-height: 800px;
+  overflow: auto;
+  @include scrollbar;
+
+  &.active {
+    transform: translate(0, 0);
+    //display: block;
+  }
+
+  .modal-header {
+    padding: 5px 20px;
+    margin-bottom: 8px;
+
+  }
+
+  .modal-body {
+    @include white-block;
+    padding: 40px;
+
+    h2 {
+      font: $h-bold-20-lato;
+      margin-bottom: 24px;
+    }
+  }
+
+
+}

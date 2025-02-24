@@ -1,0 +1,86 @@
+.content__list {
+  display: flex;
+  flex-direction: column;
+
+  &-item {
+    display: grid;
+    grid-template-columns: 5% 9% 14% 6% 14% 16% 9% 9% 9% 9%;
+    border-bottom: 1px solid $grey_EF5;
+    justify-content: space-between;
+    color: $primary-text;
+    height: 40px;
+    touch-action: none;
+    user-select: none;
+    min-height: 40px !important;
+    position: relative;
+   .field {
+      padding: 9px 10px 9px 0;
+      display: flex;
+      position: relative;
+      height: inherit;
+      overflow: hidden;
+
+      button {
+        display: flex;
+        align-items: flex-start;
+        height: -webkit-fill-available;
+        text-align: left;
+        overflow: hidden;
+        text-decoration: underline;
+      }
+
+      span {
+        height: -webkit-fill-available;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .dropdown {
+      display: flex;
+      padding-top: 9px;
+      align-items: flex-start;
+      justify-content: center;
+      height: auto;
+      overflow: visible;
+      .dropdown-item {
+        text-decoration: none;
+      }
+    }
+
+    & [data-tippy-root] {
+      padding: 0;
+      height: auto;
+      overflow: visible;
+    }
+
+    & .tippy-content {
+      overflow: visible;
+      height: auto;
+      align-items: flex-start;
+    }
+
+    *[id^='tippy-'] {
+      pointer-events: initial;
+    }
+
+    .tippy-box {
+      display: block;
+      width: 160px;
+      overflow: visible;
+      height: auto;
+    }
+
+    form {
+      padding: 12px 0;
+      display: inline;
+      align-items: center;
+      justify-content: left;
+    }
+
+    svg {
+      fill: $primary-text;
+
+    }
+  }
+}

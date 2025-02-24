@@ -1,0 +1,45 @@
+.header {
+  background-color: $white;
+  padding: 17px 24px;
+  border-bottom: 1px solid $grey_7ED;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
+
+    &-avatar {
+      border-radius: 4px;
+      overflow: hidden;
+      width: 36px;
+      height: 36px;
+      background-color: $grey_4CC;
+    }
+
+    &-name {
+      display: flex;
+      flex-direction: column;
+
+      .name {
+        //font: $body-medium-14;
+      }
+
+      .position {
+        font-size: 12px;
+        line-height: 20px;
+        //font: $body-medium-12;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,28 @@
+.search__form {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+
+  &-field {
+    position: relative;
+
+    svg {
+      position: absolute;
+      top: 11px;
+      left: 14px;
+      fill: $grey_BB2;
+      z-index: 1;
+    }
+  }
+
+  input {
+    @include input-default;
+    padding: 8px 16px 8px 38px;
+    background-color: white;
+    position: relative;
+
+    &:focus-visible {
+      border: 1px solid $orange;
+    }
+  }
+}

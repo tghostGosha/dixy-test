@@ -1,0 +1,90 @@
+@import '../base/colors';
+@import "../base/font-variables";
+
+.primary__button {
+  font: $body-medium-14;
+  border-radius: 4px;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  background-color: $orange;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    fill: $white;
+    margin-right: 6px;
+  }
+
+  &:hover {
+    border: 1px solid $orange;
+    color: $orange;
+    background-color: $white;
+  }
+
+  &:hover svg {
+    fill: $orange;
+  }
+
+}
+
+.transparent__button {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+
+  svg {
+    fill: $primary-text;
+  }
+}
+
+.secondary__button {
+  border-radius: 4px;
+  font: $body-medium-14;
+  padding: 5px 16px;
+  background-color: $white;
+  color: $primary-text;
+  border: 1px solid $grey_FE6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    border: 1px solid $orange;
+    color: $orange;
+  }
+
+  &:hover svg {
+    fill: $orange;
+  }
+
+  svg {
+    fill: $secondary-text;
+    margin-right: 6px;
+  }
+}
+
+.search__button {
+  border-radius: 4px;
+  background-color: $white;
+  border: 1px solid $grey_FE6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 17px;
+
+  svg {
+    fill: $grey_BB2;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border: 1px solid $orange;
+  }
+
+  &:hover svg,
+  &:focus-visible svg {
+    fill: $orange;
+  }
+}

@@ -1,0 +1,55 @@
+.content-section {
+  margin-top: 8px;
+  .tippy-box {
+    width: 200px;
+  }
+  .dropdown .transparent__button {
+    place-self: flex-end;
+    padding: 9px 12px;
+    color: $grey_399;
+  }
+}
+
+.content__block {
+  @include content-block;
+
+
+  &-header {
+    align-items: center;
+    justify-content: space-between;
+    background-color: $grey_7FA;
+    border-bottom: 1px solid $grey_EF5;
+    display: grid;
+    grid-template-columns: 5% 9% 14% 6% 14% 16% 9% 9% 9% 9%;
+    padding: 0 0 0 23px;
+
+    & div {
+      padding: 9px 7px 9px 0;
+      font: $body-medium-14-int;
+      color: $grey_399;
+      min-width: 0;
+      display: flex;
+      position: relative;
+      background: inherit;
+
+      & > span {
+        @include text-ellipsis;
+        background: inherit;
+      }
+    }
+  }
+}
+
+.page__section {
+  width: 86%;
+  padding: 20px 15px;
+  position: relative;
+  overflow-x: hidden;
+  @include scrollbar;
+  &-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+}

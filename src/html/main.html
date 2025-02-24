@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Главная</title>
+	<link rel="stylesheet" href="./css/main.css"/>
+
+	<link rel="icon" type="image/x-icon" href="./img/favicons/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
+</head>
+
+<body>
+@@include('blocks/header.html')
+<main class="main__page">
+	@@include('blocks/sidebar.html')
+	<section class="page__section">
+		<div class="page__section-action">
+			<form action="#" class="search__form" id="search-form">
+				<div class="search__form-field">
+					<svg class="icon icon--search">
+						<use href="./img/svgsprite/sprite.symbol.svg#search"></use>
+					</svg>
+					<label for="search"></label>
+					<input type="text" placeholder="Поиск" name="search" id="search" required>
+				</div>
+				<button class="search__button">
+					<svg class="icon icon--search">
+						<use href="./img/svgsprite/sprite.symbol.svg#search"></use>
+					</svg>
+				</button>
+			</form>
+			<div class="dropdown">
+				<button class="secondary__button" data-download="download">
+					<svg class="icon icon--download">
+						<use href="./img/svgsprite/sprite.symbol.svg#download"></use>
+					</svg>
+					Скачать
+				</button>
+				<ul class="dropdown-menu"  style="display: none;" data-download="template">
+					<li><a class="dropdown-item" href="#">XLSX</a></li>
+					<li><a class="dropdown-item" href="#">CSV</a></li>
+					<li><a class="dropdown-item" href="#">PDF</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<button class="primary__button" data-open="open">
+			<svg class="icon icon--plus">
+				<use href="./img/svgsprite/sprite.symbol.svg#plus"></use>
+			</svg>
+			Создать новое правило
+		</button>
+
+		<div class="content-section">
+			<div class="dropdown">
+				<button class="transparent__button" data-open="sort">
+					Сортировать
+					<svg class="icon icon--sort">
+						<use href="./img/svgsprite/sprite.symbol.svg#sort"></use>
+					</svg>
+				</button>
+				<ul class="dropdown-menu" data-sort="sort" style="display: none;">
+					<li>
+						<button class="dropdown-item">По дате изменения</button>
+					</li>
+					<li>
+						<button class="dropdown-item">По алфавиту</button>
+					</li>
+					<li>
+						<button class="dropdown-item">Вся Россия</button>
+					</li>
+				</ul>
+			</div>
+
+			<div class="content__block">
+
+				<div class="content__block-header">
+					<div></div>
+					<div>
+						<span>ID</span>
+					</div>
+					<div>
+						<span>Название</span>
+					</div>
+					<div>
+						<span>Статус</span>
+					</div>
+					<div>
+						<span>Область</span>
+					</div>
+					<div>
+						<span>Сектор доставки</span>
+					</div>
+					<div>
+						<span>№ склада</span>
+					</div>
+					<div>
+						<span> <span>Стоим. доставки</span></span>
+					</div>
+					<div>
+						<span> <span>Бесп. доставка</span></span>
+					</div>
+					<div>
+						<span>Мин. чек</span>
+					</div>
+				</div>
+				<ul class="content__list">
+					<li class="content__list-item resizable" >
+						<div class="dropdown">
+							<button data-menu="menu-open">
+								<svg class="icon icon--menu">
+									<use href="./img/svgsprite/sprite.symbol.svg#menu"></use>
+								</svg>
+							</button>
+							<ul class="dropdown-menu" data-menu="menu" style="display: none;">
+								<li>
+									<button class="dropdown-item" data-open="open">
+										<svg class="icon icon--edit">
+											<use href="./img/svgsprite/sprite.symbol.svg#edit"></use>
+										</svg>
+										Редактировать
+									</button>
+								</li>
+								<li>
+									<button class="dropdown-item">
+										<svg class="icon icon--delete">
+											<use href="./img/svgsprite/sprite.symbol.svg#delete"></use>
+										</svg>
+										Удалить
+									</button>
+								</li>
+							</ul>
+						</div>
+						<div class="field">
+							<span>772366223</span>
+						</div >
+						<div class="field">
+							<span>Акция доставка по 99р</span>
+						</div>
+						<form action="#">
+							<label class="switch-wrapper">
+								<input type="checkbox" data-switch="switch"/>
+								<span class="switch"></span>
+							</label></form>
+						<div class="field">
+							<span>БРЯНСКАЯ ОБЛАСТЬ</span>
+						</div>
+						<div class="field">
+							<span>Москва Хамовники</span>
+						</div>
+						<div class="field">
+							<span>32024</span>
+						</div>
+						<div class="field">
+							<span>299</span>
+						</div>
+						<div class="field">
+							<span>от 1500</span>
+						</div>
+						<div class="field">
+							<span>1000</span>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+			<div class="page__section-modal" data-modal="modal-page">
+				<div class="modal-header">
+					<button class="transparent__button" data-close="close">
+						<svg class="icon icon--arrow-left">
+							<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
+						</svg>
+						Назад
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2>Новое правило</h2>
+					@@include('blocks/rule-form.html')
+				</div>
+			</div>
+		</div>
+
+	</section>
+</main>
+
+<script src="./js/index.bundle.js"></script>
+</body>
+
+</html>

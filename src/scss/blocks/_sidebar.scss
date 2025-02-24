@@ -1,0 +1,54 @@
+@import "../base/font-variables";
+@import "../base/colors";
+
+.sidebar {
+  position: relative;
+  background-color: $white;
+  padding: 4px;
+  flex: 0 0 14%;
+  height: inherit;
+
+  &__list {
+    position: sticky;
+    top: 74px;
+    display: flex;
+    flex-direction: column;
+
+    & li {
+      outline: none;
+    }
+
+    & li a {
+      padding: 13px 20px;
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
+      color: $secondary-text;
+
+      &.active,
+      &.active svg {
+        color: $orange;
+        stroke: $orange;
+        fill: $orange;
+      }
+
+      svg {
+        fill: $primary-text;
+        stroke: $primary-text;
+        color: $primary-text;
+      }
+
+      &:focus-within,
+      &:hover,
+      &:focus-within svg,
+      &:hover svg {
+        color: $orange;
+        stroke: $orange;
+        fill: $orange;
+      }
+
+
+    }
+
+  }
+}

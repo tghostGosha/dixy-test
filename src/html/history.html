@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>История</title>
+	<link rel="stylesheet" href="./css/main.css"/>
+
+	<link rel="icon" type="image/x-icon" href="./img/favicons/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
+</head>
+
+<body>
+@@include('blocks/header.html', {title:'fsdf'})
+<main class="history__page">
+	@@include('blocks/sidebar.html')
+	<section class="page__section">
+		<div class="page__section-action">
+			<form action="#" class="search__form" id="search-form">
+				<div class="search__form-field">
+					<svg class="icon icon--search">
+						<use href="./img/svgsprite/sprite.symbol.svg#search"></use>
+					</svg>
+					<label for="search"></label>
+					<input type="text" placeholder="Поиск" name="search" id="search">
+				</div>
+				<div class="search__form-field">
+					<label for="date"></label>
+					<input type="date" placeholder="Дата" name="date" id="date">
+				</div>
+				<button class="search__button">
+					<svg class="icon icon--search">
+						<use href="./img/svgsprite/sprite.symbol.svg#search"></use>
+					</svg>
+				</button>
+			</form>
+		</div>
+
+		<div class="content-section">
+			<div class="dropdown">
+				<button class="transparent__button" data-open="sort">
+					Сортировать
+					<svg class="icon icon--sort">
+						<use href="./img/svgsprite/sprite.symbol.svg#sort"></use>
+					</svg>
+				</button>
+				<ul class="dropdown-menu" data-sort="sort" style="display: none;">
+					<li>
+						<button class="dropdown-item">От старых к новым</button>
+					</li>
+					<li>
+						<button class="dropdown-item">От новых к старым</button>
+					</li>
+				</ul>
+			</div>
+
+			<div class="content__block">
+
+				<div class="content__block-header">
+					<div>
+						<span>Дата</span>
+					</div>
+					<div>
+						<span>Автор</span>
+					</div>
+					<div>
+						<span>Операция</span>
+					</div>
+				</div>
+				<ul class="content__list">
+					<li class="content__list-item resizable">
+						<div class="field">
+							<span>24.12.2023 17:02</span>
+						</div>
+						<div class="field">
+							<span>Алиса Авдеева, Менеджер</span>
+						</div>
+						<div class="field">
+							<span>Создано правило доставки (id номер правила). Параметры доставки: перечисление. Создано правило доставки (id номер правила). Параметры доставки: перечисление</span>
+						</div>
+
+					</li>
+					<li class="content__list-item resizable">
+						<div class="field">
+							<span>24.12.2023 17:02</span>
+						</div>
+						<div class="field">
+							<span>Алиса Авдеева, Менеджер</span>
+						</div>
+						<div class="field">
+							<span>Создано правило доставки (id номер правила). Параметры доставки: перечисление. Создано правило доставки (id номер правила). Параметры доставки: перечисление</span>
+						</div>
+
+					</li>
+				</ul>
+				<div class="page__section-modal" data-modal="modal-page">
+					<div class="modal-header">
+						<button class="transparent__button" data-close="close">
+							<svg class="icon icon--arrow-left">
+								<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
+							</svg>
+							Назад
+						</button>
+					</div>
+					<div class="modal-body">
+						<h2>Добавить сектор</h2>
+						@@include('blocks/sector-form.html')
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="page__section-modal" data-modal="modal-page">
+			<div class="modal-header">
+				<button class="transparent__button" data-close="close">
+					<svg class="icon icon--arrow-left">
+						<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
+					</svg>
+					Назад
+				</button>
+			</div>
+			<div class="modal-body">
+				<h2>Новое правило</h2>
+				@@include('blocks/rule-form.html')
+			</div>
+		</div>
+	</section>
+</main>
+
+<script src="./js/index.bundle.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<form class="page__form" action="#" id="warehouse-form">
+	<div class="page__form-field">
+		<label for="id">Номер</label>
+		<input type="text" value="12345" name="id" id="id" disabled>
+	</div>
+	<div class="page__form-field">
+		<label for="rules">Правило доставки</label>
+		<select class="select" id="rules" >
+			<option value=''>Правило доставки</option>
+		</select>
+	</div>
+	<div class="page__form-field">
+		<label for="areaDelivery">Область</label>
+		<input type="text" value="Московская область" name="id" id="areaDelivery" disabled>
+	</div>
+	<div class="page__form-field">
+		<label for="sector">Сектор доставки</label>
+		<select class="select" id="sector" >
+			<option value=''>Выберите сектор доставки</option>
+		</select>
+	</div>
+	<div class="page__form-field">
+		<label>Открытие</label>
+		<span>18:18:00</span>
+	</div>
+	<div class="page__form-field">
+		<label>Закрытие</label>
+		<span>18:18:00</span>
+	</div>
+	<div class="page__form-field">
+		<label>Приоритет</label>
+		<span>1</span>
+	</div>
+	<div class="page__form-field checkbox">
+		<label class="custom-checkbox">
+			<input type="checkbox" value=""  disabled>
+			<span>Доставка</span>
+		</label>
+		<label class="custom-checkbox">
+			<input type="checkbox" value="" checked disabled>
+			<span>Самовывоз</span>
+		</label>
+	</div>
+	<div class="page__form-field">
+		<label for="radius">Радиус</label>
+		<input type="text" placeholder="Enter" name="radius" id="radius" required>
+	</div>
+	<div class="page__form-field">
+		<label for="poligon">Полигон</label>
+		<input type="text" placeholder="Enter" name="poligon" id="poligon" required>
+	</div>
+	<div class="page__form-buttons">
+		<button class="primary__button" >Сохранить</button>
+		<button class="secondary__button" >Отменить</button>
+	</div>
+
+
+</form>

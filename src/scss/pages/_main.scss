@@ -1,0 +1,7 @@
+
+.main__page {
+  @include page-markup;
+  position: relative;
+  //min-height: 1000px;
+  height: 100vh;
+}

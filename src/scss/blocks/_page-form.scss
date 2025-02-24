@@ -1,0 +1,66 @@
+.page__form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  max-width: 432px;
+
+  &-field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
+    & .switch {
+      width: 40px;
+      height: 20px;
+
+      &::after {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    input:checked + .switch:after {
+      left: calc(100% - 18px);
+    }
+
+    &.checkbox {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      column-gap: 16px;
+
+      & .custom-checkbox {
+        width: 100%;
+        max-width: 208px;
+      }
+
+      & .custom-checkbox > span {
+        display: flex;
+        flex-direction: column-reverse;
+        row-gap: 17px;
+      }
+    }
+  }
+
+  label {
+    font: $body-regular-14;
+    color: $primary-text;
+
+  }
+
+  input {
+    @include input-default;
+    max-width: 432px;
+  }
+
+  &-buttons {
+    display: flex;
+    column-gap: 12px;
+    align-items: center;
+    margin-top: 8px;
+
+    & button {
+      padding: 5px 16px;
+    }
+  }
+}

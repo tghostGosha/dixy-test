@@ -1,0 +1,54 @@
+@import './colors.scss';
+@import "./font-variables";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $background_grey;
+  color: var(--text-color);
+  font-family: $font-family-lato;
+  text-wrap: balance;
+  height: 100vh;
+  //overflow-x: hidden;
+  overflow: hidden;
+  @include scrollbar;
+}
+body.active-modal {
+  overflow-y: hidden;
+}
+
+
+img {
+  display: block;
+}
+
+a, button {
+  transition: all 0.2s ease-in;
+}
+
+code {
+  background-color: #e9f1f6;
+  padding: 0.2rem;
+  border-radius: 4px;
+}
+
+pre.code {
+  overflow-x: auto;
+  background-color: #e9f1f6;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+input::placeholder {
+  color: $grey_BB2;
+  font: $body-regular-14;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

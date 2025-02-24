@@ -1,0 +1,74 @@
+@import "../base/colors";
+@import "../base/font-variables";
+@mixin mediaBg() {
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	    @content;
+    }
+}
+
+@mixin tablet () {
+    @media (max-width: 1220px) {
+		@content;
+	}
+}
+
+@mixin mobile () {
+    @media (max-width: 820px) {
+		@content;
+	}
+}
+@mixin white-block {
+	background-color: $white;
+}
+@mixin input-default {
+	width: 100%;
+	max-width: 257px;
+	border-radius: 4px;
+	border: 1px solid $grey_FE6;
+	font: $body-regular-14;
+	color: $primary-text;
+	padding: 9px 16px;
+
+}
+@mixin page-markup {
+	display: flex;
+
+}
+@mixin content-block {
+	background-color: $white;
+	border-radius: 4px;
+	padding: 16px;
+	width: 100%;
+}
+@mixin scrollbar {
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: $grey_7ED; /* цвет дорожки */
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $orange; /* цвет плашки */
+		border-radius: 8px; /* закругления плашки */
+
+	}
+}
+@mixin text-ellipsis {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-align: left;
+	width: -webkit-fill-available;
+	width: -moz-available;
+	height: 19px;
+	&>span:hover {
+		overflow: visible;
+		background: inherit;
+		position: absolute;
+		z-index: 10;
+		//white-space: wrap;
+	}
+}

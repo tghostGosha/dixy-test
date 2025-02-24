@@ -1,0 +1,19 @@
+.warehouse__page {
+  @include page-markup;
+  position: relative;
+  //min-height: 1000px;
+  height: 100vh;
+  overflow-x: hidden;
+
+  .content__block-header,
+  .content__list-item {
+    grid-template-columns: 4% 7.5% 7.5% 7.5% 6% 15% 7.5% 7.5% 5% 7.5% 7.5% 5% 5% 7.5%;
+    padding-left: 0;
+  }
+  .content__list-item {
+    min-height: 40px !important;
+    position: relative;
+  }
+
+
+}

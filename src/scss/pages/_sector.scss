@@ -1,0 +1,17 @@
+.sector__page {
+  @include page-markup;
+  position: relative;
+  height: 100vh;
+
+  .content__block-header,
+  .content__list-item {
+    grid-template-columns: 4% 24% 24% 24% 24% ;
+    padding-left: 0;
+  }
+  .page__section {
+    overflow: hidden;
+  }
+  .page__section-modal {
+    overflow: visible;
+  }
+}

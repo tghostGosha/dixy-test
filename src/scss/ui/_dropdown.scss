@@ -1,0 +1,36 @@
+.dropdown {
+  position: relative;
+
+  &-menu {
+    position: absolute;
+    width: inherit;
+    @include content-block;
+    bottom: -8.2rem;
+  }
+
+}
+
+.tippy-box {
+  list-style: none;
+  width: 109px;
+
+  .tippy-content {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .dropdown-item {
+    width: 100%;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    color: $primary-text;
+    padding: 8px 10px;
+    text-align: left;
+
+    &:hover {
+      background-color: $orange-light;
+    }
+  }
+}
+

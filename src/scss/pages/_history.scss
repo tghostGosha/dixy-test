@@ -1,0 +1,20 @@
+.history__page {
+  @include page-markup;
+  position: relative;
+  //min-height: 1000px;
+  height: 100vh;
+  overflow-x: hidden;
+
+  .content__block-header,
+  .content__list-item {
+    grid-template-columns: 20% 20% 60%;
+    padding-left: 8px;
+
+  }
+  .content__list-item {
+    min-height: 40px !important;
+    position: relative;
+  }
+
+
+}
