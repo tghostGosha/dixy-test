@@ -47,6 +47,7 @@
 		"axios": "^1.7.9",
 		"choices.js": "^11.0.3",
 		"interactjs": "^1.10.27",
+		"just-validate": "^4.3.0",
 		"swiper": "^11.0.6",
 		"tippy.js": "^6.3.7"
 	}

@@ -54,3 +54,20 @@ if(sort) {
 	});
 }
 
+//======Выпадающее меню "выход"====///
+const exit = document.querySelector('[data-exit="template"]');
+if(exit) {
+	tippy('[data-open="profile-exit"]', {
+		content: exit.innerHTML,
+		offset: [20, 10],
+		allowHTML: true,
+		appendTo: 'parent',
+		interactive: true,
+		theme: 'light',
+		placement: 'bottom',
+		arrow: true,
+		trigger: 'click',
+		maxWidth: 160
+
+	});
+}

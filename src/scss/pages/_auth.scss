@@ -23,16 +23,23 @@
       display: flex;
       flex-direction: column;
       row-gap: 16px;
+      position: relative;
 
+      .form-field {
+        position: relative;
+      }
       label {
         font: $body-regular-14;
         color: $primary-text;
         margin-bottom: 8px;
       }
-
-      input {
-        @include input-default;
+      .auth-error {
+        display: none;
+        position: absolute;
+        bottom: 3rem;
+        color: $error;
       }
+
       button {
         margin-top: 32px;
       }

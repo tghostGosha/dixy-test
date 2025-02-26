@@ -21,15 +21,16 @@
 				<div class="auth__page-form">
 					<h1>Войти</h1>
 					<form action="#" id="auth-form">
-						<div>
+						<div class="form-field">
 							<label for="login">Логин</label>
-							<input type="text" placeholder="Ведите логин" name="login" id="login" required>
+							<input type="text" placeholder="Ведите логин" name="login" id="login">
 						</div>
-						<div>
+						<div class="form-field">
 							<label for="password">Пароль</label>
-							<input type="text" placeholder="Ведите пароль" name="password" id="password" required>
+							<input type="text" placeholder="Ведите пароль" name="password" id="password">
 						</div>
-						<button class="primary__button">Войти</button>
+						<div class="auth-error" data-error="auth">Ошибка авторизации</div>
+						<button class="primary__button" type="submit" >Войти</button>
 					</form>
 				</div>
 

@@ -1,0 +1,51 @@
+.success__modal {
+  @include content-block;
+  position: absolute;
+  width: 400px;
+  height: 86px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  right: 0.9rem;
+  top: -0.5rem;
+  z-index: 1;
+  padding: 16px 24px;
+  column-gap: 12px;
+  display: none;
+
+  &.active {
+    display: flex;
+  }
+
+  &-text {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
+    span {
+      font: $h-bold-16-lato;
+    }
+
+    p {
+      color: $primary-text;
+      font: $body-regular-14;
+    }
+  }
+
+  .icon--check {
+    margin-top: 2px;
+    fill: $green;
+    width: 21px;
+    height: 21px;
+  }
+  .modal-close {
+    position: absolute;
+    right: 5px;
+    top: 12px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+
+    svg {
+      fill: $secondary-text;
+    }
+  }
+}

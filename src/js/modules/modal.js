@@ -5,8 +5,8 @@ export const modalOpen = (button, modalWindow) => {
 
     button.forEach((item)=> {
         item.addEventListener('click', ()=> {
+            console.log('click')
             modalWindow.style.display = "block";
-            // bodyElementHTML.style.overflowY= "hidden"
             bodyElementHTML.classList.add('active-modal')
         })
     })
@@ -25,7 +25,6 @@ export const modalOpen = (button, modalWindow) => {
         if (event.target === modalWindow) {
             modalWindow.style.display = "none";
             bodyElementHTML.classList.remove('active-modal')
-
         }
     });
 }

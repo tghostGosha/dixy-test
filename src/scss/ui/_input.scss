@@ -1,0 +1,24 @@
+input {
+  @include input-default;
+}
+
+input.is-invalid {
+  border: 1px solid $error;
+}
+//input.is-valid {
+//  border: 1px solid $green;
+//}
+input::placeholder {
+  color: $grey_BB2;
+  font: $body-regular-14;
+}
+.just-validate-error-label {
+  position: absolute;
+  bottom: -17px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

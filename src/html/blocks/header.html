@@ -2,7 +2,7 @@
 	<div class="header__logo">
 		<img src="./../img/logo.png" alt="logo">
 	</div>
-	<div class="header__profile">
+	<div class="header__profile" data-open="profile-exit">
 		<div class="header__profile-avatar">
 			<img src="" alt="">
 		</div>
@@ -10,5 +10,14 @@
 			<span class="name">Алиса Авдеева</span>
 			<span class="position">Менеджер</span>
 		</div>
+		<div  class="dropdown-menu"  style="display: none;" data-exit="template">
+			<button class="transparent__button" data-open="exit">
+				<svg class="icon icon--exit">
+					<use href="./img/svgsprite/sprite.symbol.svg#exit"></use>
+				</svg>
+				Выйти
+			</button>
+		</div>
 	</div>
+
 </header>

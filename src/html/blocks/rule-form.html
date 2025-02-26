@@ -1,11 +1,11 @@
 <form class="page__form" action="#" id="rule-form">
 	<div class="page__form-field">
 		<label for="id">ID</label>
-		<input type="text" value="12345" name="id" id="id" disabled>
+		<input type="number" value="12345" name="id" id="id" disabled>
 	</div>
 	<div class="page__form-field">
 		<label for="title">Название</label>
-		<input type="text" placeholder="Enter" name="title" id="title" required>
+		<input type="text" placeholder="Enter" name="title" id="title">
 	</div>
 	<div class="page__form-field">
 		<label>Активность</label>
@@ -15,21 +15,20 @@
 		</label>
 	</div>
 	<div class="page__form-field">
-		<label for="area">Область</label>
-		<select class="select" id="area" >
-			<option value=''>Выберите область</option>
+		<label for="areaSelect">Область</label>
+		<select class="select" id="areaSelect" >
 		</select>
 	</div>
+
 	<div class="page__form-field">
-		<label for="sector">Сектор доставки</label>
-		<select class="select" id="sector" >
-			<option value=''>Выберите сектор доставки</option>
+		<label for="sectorSelect">Сектор доставки</label>
+		<select class="select" id="sectorSelect" >
 		</select>
 
 	</div>
 	<div class="page__form-field">
 		<label for="warehouseNumber">Номер склада</label>
-		<input type="text" placeholder="Enter" name="costDelivery" id="warehouseNumber" required>
+		<input type="number" placeholder="Enter" name="costDelivery" id="warehouseNumber" required>
 	</div>
 	<div class="page__form-field">
 		<label for="costDelivery">Стоимость доставки</label>
@@ -44,8 +43,8 @@
 		<input type="number" placeholder="Enter" name="minCost" id="minCost" required>
 	</div>
 	<div class="page__form-buttons">
-		<button class="primary__button" >Сохранить</button>
-		<button class="secondary__button" >Отменить</button>
+		<button class="primary__button" type="submit">Сохранить</button>
+		<button class="secondary__button" data-сancel="cancel" >Отменить</button>
 	</div>
 
 

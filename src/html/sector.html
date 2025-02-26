@@ -16,6 +16,20 @@
 @@include('blocks/header.html')
 <main class="sector__page">
 	@@include('blocks/sidebar.html')
+	<div class="success__modal" data-modal="success">
+		<svg class="icon icon--check">
+			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
+		</svg>
+		<div class="success__modal-text">
+			<span>Успешно</span>
+			<p>Новый сектор создан</p>
+		</div>
+		<div class="modal-close" data-modal="success-close">
+			<svg class="icon icon--close">
+				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+			</svg>
+		</div>
+	</div>
 	<section class="page__section">
 		<div class="page__section-action">
 			<form action="#" class="search__form" id="search-form">
@@ -74,7 +88,6 @@
 					</li>
 				</ul>
 			</div>
-
 			<div class="content__block">
 
 				<div class="content__block-header">
@@ -176,36 +189,24 @@
 
 					</li>
 				</ul>
-				<div class="page__section-modal" data-modal="modal-page">
-					<div class="modal-header">
-						<button class="transparent__button" data-close="close">
-							<svg class="icon icon--arrow-left">
-								<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
-							</svg>
-							Назад
-						</button>
-					</div>
-					<div class="modal-body">
-						<h2>Добавить сектор</h2>
-						@@include('blocks/sector-form.html')
-					</div>
+
+			</div>
+			<div class="page__section-modal" data-modal="modal-page">
+				<div class="modal-header">
+					<button class="transparent__button" data-close="close">
+						<svg class="icon icon--arrow-left">
+							<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
+						</svg>
+						Назад
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2>Добавить сектор</h2>
+					@@include('blocks/sector-form.html')
 				</div>
 			</div>
 		</div>
-		<div class="page__section-modal" data-modal="modal-page">
-			<div class="modal-header">
-				<button class="transparent__button" data-close="close">
-					<svg class="icon icon--arrow-left">
-						<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
-					</svg>
-					Назад
-				</button>
-			</div>
-			<div class="modal-body">
-				<h2>Новое правило</h2>
-				@@include('blocks/rule-form.html')
-			</div>
-		</div>
+
 	</section>
 </main>
 
