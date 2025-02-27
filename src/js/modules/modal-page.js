@@ -11,9 +11,6 @@
                 modal.classList.add('active');
             }
         })
-        // openButton.addEventListener('click', (event)=> {
-        //     modal.classList.add('active');
-        // });
         cancelBtn.addEventListener('click', (e) => {
             e.preventDefault()
             modal.classList.remove('active');

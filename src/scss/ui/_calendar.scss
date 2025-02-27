@@ -9,13 +9,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   left: 5%;
 }
+
 input[type="date"]::selection {
   background: yellow;
   color: black;
 }
-input[type="date"]{
+
+input[type="date"] {
   color: $primary-text;
   font: $body-regular-14;
+  max-height: 40px;
 
   &:focus-visible {
     border: 1px solid $orange;

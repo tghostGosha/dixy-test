@@ -69,3 +69,30 @@ try {
 } catch (e) {
 
 }
+//======модалка удаления сектора====///
+(function () {
+  const modalBackgroundDelete = document.querySelector('[data-modal-sector="delete"]');
+  const bodyElementHTML = document.getElementsByTagName("body")[0];
+  const closeButton = document.querySelector('[data-delete-sector="close"]');
+  const cancelBtn = document.querySelector('[data-delete-sector="cancel"]');
+
+  try {
+    document.addEventListener('click', function (e) {
+      if (e.target.matches('[data-delete-sector="delete"]')) {
+        modalBackgroundDelete.style.display = "block";
+        bodyElementHTML.classList.add('active-modal');
+
+      }
+    })
+    cancelBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      modalBackgroundDelete.style.display = "none";
+
+    });
+    closeButton.addEventListener('click', () => {
+      modalBackgroundDelete.style.display = "none";
+
+    });
+  } catch (e){}
+
+})();

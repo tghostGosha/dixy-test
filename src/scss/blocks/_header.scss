@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     column-gap: 8px;
-
+    cursor: pointer;
 
     &-avatar {
       border-radius: 4px;
@@ -40,6 +40,13 @@
         //font: $body-medium-12;
       }
     }
+
+  }
+  .tippy-box {
+    .transparent__button {
+      padding: 13px 8px;
+    }
+
   }
 }
 

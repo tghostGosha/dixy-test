@@ -3,7 +3,7 @@ import resize from '../modules/rezizeRow';
 import {modalOpen} from "../modules/modal";
 import {tippyOpen} from "../modules/dropdown";
 import {validate} from "../modules/validate";
-
+import dataOpen from '../modules/modal-page';
 //======Вызов Select окон====///
 //=============//======Тестовые массивы- нужно передавать с бэка ====///
 const testArrayRuleSelect = [

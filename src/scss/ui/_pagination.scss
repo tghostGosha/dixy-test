@@ -1,0 +1,44 @@
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 12px;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & li a {
+      padding: 5px 11px;
+      color: $primary-text;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        color: $orange;
+      }
+      svg {
+        fill: $primary-text;
+      }
+    }
+    .icon--pagination {
+      fill: $primary-text;
+    }
+  }
+
+  & form {
+    display: flex;
+    align-items: center;
+    column-gap: 9px;
+
+    input {
+      width: 56px;
+      height: 32px;
+    }
+  }
+}

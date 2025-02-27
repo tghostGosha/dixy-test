@@ -17,13 +17,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="modalBackground" data-modal="exit">
+	<div class="modalBackground action-modal" data-modal="exit">
 		<div class="modalActive">
-			<div class="modalClose">
+			<button class="modalClose" data-exit="close">
 				<svg class="icon icon--close">
 					<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
 				</svg>
-			</div>
+			</button>
 			<div class="modalWindow">
 				<div class="modal-text">
 					<span>Выйти?</span>
@@ -31,9 +31,59 @@
 				</div>
 				<div class="button__wrapper">
 					<button class="secondary__button" data-exit="cancel">
-						OK
+						Отмена
 					</button>
 					<button class="primary__button" data-exit="exit">
+						OK
+					</button>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<div class="modalBackground action-modal" data-modal-rule="delete">
+		<div class="modalActive">
+			<button class="modalClose" data-delete-rule="close">
+				<svg class="icon icon--close">
+					<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+				</svg>
+			</button>
+			<div class="modalWindow">
+				<div class="modal-text">
+					<span>Удалить правило?</span>
+					<p>Правило будет удалено без возможности восстановить</p>
+				</div>
+				<div class="button__wrapper">
+					<button class="secondary__button" data-delete-rule="cancel">
+						Отмена
+					</button>
+					<button class="primary__button" data-delete-rule="exit">
+						OK
+					</button>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<div class="modalBackground action-modal" data-modal-sector="delete">
+		<div class="modalActive">
+			<button class="modalClose" data-delete-sector="close">
+				<svg class="icon icon--close">
+					<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+				</svg>
+			</button>
+			<div class="modalWindow">
+				<div class="modal-text">
+					<span>Удалить сектор?</span>
+					<p>Сектор будет удален без возможности восстановить</p>
+				</div>
+				<div class="button__wrapper">
+					<button class="secondary__button" data-delete-sector="cancel">
+						Отмена
+					</button>
+					<button class="primary__button" data-delete-sector="exit">
 						OK
 					</button>
 				</div>

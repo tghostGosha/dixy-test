@@ -9,35 +9,36 @@ import {validate} from './modules/validate'
 const authForm = document.querySelector('#auth-form')
 const authError = document.querySelector('[data-error="auth"]')
 try {
-    validate(authForm)
-        .addField('#login', [
-            {
-                rule: 'required',
-                errorMessage: 'Обязательное поле'
-            },
-            {
-                rule: 'minLength',
-                value: 3,
-            },
-            {
-                rule: 'maxLength',
-                value: 20,
-            },
-        ])
-        .addField('#password', [
-            {
-                rule: 'required',
-                errorMessage: 'Обязательное поле'
-            },
-            {
-                rule: 'password',
-            },
-        ])
+  validate(authForm)
+    .addField('#login', [
+      {
+        rule: 'required',
+        errorMessage: 'Обязательное поле'
+      },
+      {
+        rule: 'minLength',
+        value: 3,
+      },
+      {
+        rule: 'maxLength',
+        value: 20,
+      },
+    ])
+    .addField('#password', [
+      {
+        rule: 'required',
+        errorMessage: 'Обязательное поле'
+      },
+      {
+        rule: 'password',
+      },
+    ])
 
-        .onSuccess((ev) => {
-            ev.preventDefault();
-        })
-        .onFail((fields) => {
-            authError.style.display = 'block'
-        });
-} catch (e) {}
+    .onSuccess((ev) => {
+      ev.preventDefault();
+    })
+    .onFail((fields) => {
+      authError.style.display = 'block'
+    });
+} catch (e) {
+}

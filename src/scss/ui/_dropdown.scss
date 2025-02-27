@@ -18,6 +18,9 @@
     padding: 0;
     display: flex;
     flex-direction: column;
+    li {
+      width: 100%;
+    }
   }
   .dropdown-item {
     width: 100%;

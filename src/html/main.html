@@ -139,7 +139,7 @@
 									</button>
 								</li>
 								<li>
-									<button class="dropdown-item">
+									<button class="dropdown-item" data-delete-rule="delete">
 										<svg class="icon icon--delete">
 											<use href="./img/svgsprite/sprite.symbol.svg#delete"></use>
 										</svg>
@@ -178,8 +178,9 @@
 							<span>1000</span>
 						</div>
 					</li>
-				</ul>
 
+				</ul>
+				@@include('blocks/pagination.html')
 			</div>
 			<div class="page__section-modal" data-modal="modal-page">
 				<div class="modal-header">
@@ -199,7 +200,7 @@
 
 	</section>
 </main>
-
+@@include('blocks/footer.html')
 <script src="./js/index.bundle.js"></script>
 </body>
 

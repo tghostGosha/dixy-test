@@ -31,7 +31,12 @@ if (menu) {
 		placement: 'right',
 		arrow: true,
 		trigger: 'click',
-		maxWidth: 160
+		maxWidth: 160,
+		onShown(instance) {
+			document.querySelector('[data-tippy-root]').addEventListener('click', event => {
+				instance.hide();
+			})
+		}
 
 	});
 }

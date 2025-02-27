@@ -13,7 +13,10 @@
     user-select: none;
     min-height: 40px !important;
     position: relative;
-   .field {
+
+
+
+    .field {
       padding: 9px 10px 9px 0;
       display: flex;
       position: relative;
@@ -43,6 +46,7 @@
       justify-content: center;
       height: auto;
       overflow: visible;
+
       .dropdown-item {
         text-decoration: none;
       }

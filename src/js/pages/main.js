@@ -167,3 +167,31 @@ try {
 } catch (e) {
 
 }
+
+//======модалка удаления правила====///
+(function () {
+    const modalBackgroundDelete = document.querySelector('[data-modal-rule="delete"]');
+    const bodyElementHTML = document.getElementsByTagName("body")[0];
+    const closeButton = document.querySelector('[data-delete-rule="close"]');
+    const cancelBtn = document.querySelector('[data-delete-rule="cancel"]');
+
+    try {
+        document.addEventListener('click', function (e) {
+            if (e.target.matches('[data-delete-rule="delete"]')) {
+                modalBackgroundDelete.style.display = "block";
+                bodyElementHTML.classList.add('active-modal');
+
+            }
+        })
+        cancelBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            modalBackgroundDelete.style.display = "none";
+
+        });
+        closeButton.addEventListener('click', () => {
+            modalBackgroundDelete.style.display = "none";
+
+        });
+    } catch (e){}
+
+})();
