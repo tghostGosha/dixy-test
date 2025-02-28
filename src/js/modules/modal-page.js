@@ -4,7 +4,6 @@
     const closeButton = document.querySelector('[data-close="close"]')
     const form = document.querySelector( ".page__form")
     const cancelBtn = document.querySelector('[data-сancel="cancel"]')
-
     try {
         document.addEventListener('click', function (e) {
             if (e.target.matches('[data-open="open"]')) {
@@ -15,10 +14,12 @@
             e.preventDefault()
             modal.classList.remove('active');
             form.reset();
+
         });
         closeButton.addEventListener('click', () => {
             modal.classList.remove('active');
             form.reset();
+
         });
     } catch (e) {
     }

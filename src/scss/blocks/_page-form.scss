@@ -48,11 +48,13 @@
 
   }
 
-  input {
+  input,select {
     @include input-default;
     max-width: 432px;
   }
-
+  select {
+    outline: none;
+  }
   &-buttons {
     display: flex;
     column-gap: 12px;

@@ -14,17 +14,25 @@
 			<span class="switch"></span>
 		</label>
 	</div>
-	<div class="page__form-field">
-		<label for="areaSelect">Область</label>
-		<select class="select" id="areaSelect" >
+	<div class="page__form-field" >
+		<label for="areaSelect" ></label>
+		<select name="area" id="areaSelect" data-select="select">
+			<option value="">Выберите область</option>
+			<option value="moscow">Московская область</option>
+			<option value="tverskaya">Тверская область</option>
+			<option value="vladimir">Владимирская область</option>
+			<option value="ivanovo">Ивановская область</option>
 		</select>
 	</div>
-
 	<div class="page__form-field">
-		<label for="sectorSelect">Сектор доставки</label>
-		<select class="select" id="sectorSelect" >
+		<label for="sectorSelect" ></label>
+		<select name="sector" id="sectorSelect">
+			<option value="">Сектор доставки</option>
+			<option value="himki">Химки</option>
+			<option value="center">Центр</option>
+			<option value="mitishi">Мытищи</option>
+			<option value="lubertsy">Люберцы</option>
 		</select>
-
 	</div>
 	<div class="page__form-field">
 		<label for="warehouseNumber">Номер склада</label>

@@ -3,18 +3,34 @@
 		<label for="id">Номер</label>
 		<input type="text" value="12345" name="id" id="id" disabled>
 	</div>
-	<div class="page__form-field">
-		<label for="rulesSelect">Правило доставки</label>
-		<select class="select" id="rulesSelect" >
+	<div class="page__form-field" >
+		<label for="ruleSelect" ></label>
+		<select name="rule" id="ruleSelect" data-select="select" >
+			<option value="">Выберите правило</option>
+			<option value="rule1">Правило 1</option>
+			<option value="rule2">Правило 2</option>
+			<option value="rule3">Правило 3</option>
+			<option value="rule4">Правило 4</option>
+		</select>
+	</div>
+	<div class="page__form-field" >
+		<label for="areaSelect" ></label>
+		<select name="area" id="areaSelect" data-select="select" disabled>
+			<option value="">Выберите область</option>
+			<option value="moscow" selected>Московская область</option>
+			<option value="tverskaya">Тверская область</option>
+			<option value="vladimir">Владимирская область</option>
+			<option value="ivanovo">Ивановская область</option>
 		</select>
 	</div>
 	<div class="page__form-field">
-		<label for="areaDelivery">Область</label>
-		<input type="text" value="Московская область" name="id" id="areaDelivery" disabled>
-	</div>
-	<div class="page__form-field">
-		<label for="sectorSelect">Сектор доставки</label>
-		<select class="select" id="sectorSelect" >
+		<label for="sectorSelect" ></label>
+		<select name="sector" id="sectorSelect">
+			<option value="">Сектор доставки</option>
+			<option value="himki">Химки</option>
+			<option value="center">Центр</option>
+			<option value="mitishi">Мытищи</option>
+			<option value="lubertsy">Люберцы</option>
 		</select>
 	</div>
 	<div class="page__form-field">

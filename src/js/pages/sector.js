@@ -1,27 +1,6 @@
-import {selectChoice} from '../modules/select';
+
 import {validate} from "../modules/validate";
 import {successModal} from "../modules/success-modal";
-
-//======Вызов Select окон====///
-//=============//======Тестовые массивы- нужно передавать с бэка ====///
-const testArrayAreaSelect = [
-  {
-    value: 'moscow', label: 'Московская область', selected: true
-  },
-  {
-    value: 'tverskaya', label: 'Тверская область', selected: false
-  },
-  {
-    value: 'vladimir', label: 'Владимирская область', selected: false
-  },
-  {
-    value: 'ivanovo', label: 'Ивановская область', selected: false
-  }
-]
-
-const areaSelect = document.querySelector('#areaSelect');
-selectChoice(areaSelect, testArrayAreaSelect, 'Выберите область')
-
 
 //======Валидация нового правила====///
 const sectorForm = document.querySelector('#sector-form');
@@ -45,7 +24,12 @@ try {
         errorMessage: 'А-я, 0-9. Мин - 2 символа, Макс - 100 символов'
       },
     ])
-
+    .addField('#areaSelect', [
+      {
+        rule: 'required',
+        errorMessage: 'Обязательное поле'
+      },
+    ])
     .onSuccess((ev) => {
       ev.preventDefault();
       sectorForm.reset()

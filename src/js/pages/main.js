@@ -1,47 +1,8 @@
 import dropdown from '../modules/dropdown';
 import dataOpen from '../modules/modal-page';
-import {selectChoice} from '../modules/select';
 import {modalOpen} from "../modules/modal";
 import {validate} from "../modules/validate";
 import {successModal} from "../modules/success-modal";
-
-
-//======Вызов Select окон====///
-//=============//======Тестовые массивы- нужно передавать с бэка ====///
-const testArrayAreaSelect = [
-    {
-        value: 'moscow', label: 'Московская область', selected: true
-    },
-    {
-        value: 'tverskaya', label: 'Тверская область', selected: false
-    },
-    {
-        value: 'vladimir', label: 'Владимирская область', selected: false
-    },
-    {
-        value: 'ivanovo', label: 'Ивановская область', selected: false
-    }
-]
-const testArraySectorChoices = [
-    {
-        value: 'himki', label: 'Химки', selected: true
-    },
-    {
-        value: 'center', label: 'Центр', selected: false
-    },
-    {
-        value: 'mitishi', label: 'Мытищи', selected: false
-    },
-    {
-        value: 'lubertsy', label: 'Люберцы', selected: false
-    }
-]
-
-const areaSelect = document.querySelector('#areaSelect');
-const sectorSelect = document.querySelector('#sectorSelect');
-selectChoice(areaSelect, testArrayAreaSelect, 'Выберите область')
-selectChoice(sectorSelect, testArraySectorChoices, 'Выберите сектор доставки')
-
 
 //======Валидация нового правила====///
 const ruleForm = document.querySelector('#rule-form');
@@ -65,34 +26,18 @@ try {
                 errorMessage: 'А-я, 0-9. Мин - 2 символа, Макс - 100 символов'
             },
         ])
-        // .addField('#areaSelect', [
-        //     {
-        //         rule: 'required',
-        //         errorMessage: 'Обязательное поле'
-        //     },
-        //     {
-        //         validator: (value) => {
-        //            console.log(value, 'value')
-        //             return value && value.length > 0;
-        //         },
-        //         errorMessage: 'This field is required',
-        //     }
-        // ])
-        // .addField('#sectorSelect', [
-        //
-        //     {
-        //         rule: 'required',
-        //         errorMessage: 'Обязательное поле'
-        //     },
-        //     {
-        //         validator: (value) => {
-        //             console.log(value, 'value')
-        //             return value && value.length > 0;
-        //         },
-        //         errorMessage: 'This field is required',
-        //     }
-        //
-        // ])
+        .addField('#areaSelect', [
+            {
+                rule: 'required',
+                errorMessage: 'Обязательное поле'
+            },
+        ])
+        .addField('#sectorSelect', [
+            {
+                rule: 'required',
+                errorMessage: 'Обязательное поле'
+            },
+        ])
         .addField('#warehouseNumber', [
             {
                 rule: 'required',
