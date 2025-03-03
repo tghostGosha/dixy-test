@@ -28,9 +28,10 @@ try {
         rule: 'required',
         errorMessage: 'Обязательное поле'
       },
+
       {
         validator: (value) => {
-          return value > 0 && value < 100000
+          return value >= 0 && value < 100000
         },
         errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
       },
@@ -43,7 +44,7 @@ try {
       },
       {
         validator: (value) => {
-          return value > 0 && value < 100000
+          return value >= 0 && value < 100000
         },
         errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
       },

@@ -15,13 +15,13 @@ try {
       },
       {
         rule: 'minLength',
-        value: 3,
-        errorMessage: 'А-я, 0-9. Мин - 2 символа, Макс - 100 символов'
+        value: 2,
+        errorMessage: 'А-я, 0-9. Мин - 2 символа'
       },
       {
         rule: 'maxLength',
         value: 100,
-        errorMessage: 'А-я, 0-9. Мин - 2 символа, Макс - 100 символов'
+        errorMessage: 'А-я, 0-9. Макс - 100 символов'
       },
     ])
     .addField('#areaSelect', [

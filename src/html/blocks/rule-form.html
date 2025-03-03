@@ -5,7 +5,7 @@
 	</div>
 	<div class="page__form-field">
 		<label for="title">Название</label>
-		<input type="text" placeholder="Enter" name="title" id="title">
+		<input type="text" class="onlyRus" placeholder="Enter"  name="title" id="title">
 	</div>
 	<div class="page__form-field">
 		<label>Активность</label>
@@ -36,19 +36,19 @@
 	</div>
 	<div class="page__form-field">
 		<label for="warehouseNumber">Номер склада</label>
-		<input type="number" placeholder="Enter" name="costDelivery" id="warehouseNumber" required>
+		<input type="number" class="onlyZero"   placeholder="Enter" name="costDelivery" id="warehouseNumber" required>
 	</div>
 	<div class="page__form-field">
 		<label for="costDelivery">Стоимость доставки</label>
-		<input type="number" placeholder="Enter" name="costDelivery" id="costDelivery" required>
+		<input type="number" class="onlyZero"  placeholder="Enter" name="costDelivery" id="costDelivery" required>
 	</div>
 	<div class="page__form-field">
 		<label for="freeDelivery">Бесплатная доставка от</label>
-		<input type="number" placeholder="Enter" name="freeDelivery" id="freeDelivery" required>
+		<input type="number" value="1000" class="onlyZero" placeholder="Enter" name="freeDelivery" id="freeDelivery" required>
 	</div>
 	<div class="page__form-field">
 		<label for="minCost">Минимальный чек</label>
-		<input type="number" placeholder="Enter" name="minCost" id="minCost" required>
+		<input type="number" value="500" class="onlyZero" placeholder="Enter" name="minCost" id="minCost" required>
 	</div>
 	<div class="page__form-buttons">
 		<button class="primary__button" type="submit">Сохранить</button>
