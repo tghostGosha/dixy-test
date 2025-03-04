@@ -12,6 +12,12 @@
 [data-vc-theme=light] .vc-date[data-vc-date-today] .vc-date__btn {
   color: $orange !important;
 }
+[data-vc-theme=light] .vc-date[data-vc-date-selected] .vc-date__btn {
+  color: white !important;
+}
+[data-vc-date][data-vc-date-today] [data-vc-date-btn] {
+  font-weight: 400 !important;
+}
 #calendar {
   width: 300px;
 }

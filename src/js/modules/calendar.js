@@ -4,6 +4,7 @@ import 'vanilla-calendar-pro/styles/index.css';
 const input = document.querySelector('#calendar')
 const options = {
   displayMonthsCount: 1,
+  selectedTheme: 'light',
   inputMode: true,
   positionToInput: ['bottom', 'center'],
   monthsToSwitch: 1,
