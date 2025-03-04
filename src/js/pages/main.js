@@ -27,11 +27,6 @@ try {
         value: 100,
         errorMessage: 'А-я, 0-9. Макс - 100 символов'
       },
-      {
-        rule: 'customRegexp',
-        value: /[^а-я]/gi,
-        errorMessage: 'А-я'
-      },
     ])
     .addField('#areaSelect', [
       {

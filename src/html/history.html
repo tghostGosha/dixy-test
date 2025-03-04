@@ -13,7 +13,7 @@
 </head>
 
 <body>
-@@include('blocks/header.html', {title:'fsdf'})
+@@include('blocks/header.html')
 <main class="history__page">
 	@@include('blocks/sidebar.html')
 	<section class="page__section">
@@ -26,10 +26,15 @@
 					<label for="search"></label>
 					<input type="text" placeholder="Поиск" name="search" id="search">
 				</div>
-				<div class="search__form-field">
-					<label for="date"></label>
-					<input type="date" placeholder="Дата" name="date" id="date">
+				<div class="search__form-field" >
+					<svg class="icon icon--calendar">
+						<use href="./img/svgsprite/sprite.symbol.svg#calendar"></use>
+					</svg>
+					<label for="calendar"></label>
+					<input type="text" placeholder="Дата" name="date" id="calendar">
+					<div id="date"></div>
 				</div>
+
 				<button class="search__button">
 					<svg class="icon icon--search">
 						<use href="./img/svgsprite/sprite.symbol.svg#search"></use>

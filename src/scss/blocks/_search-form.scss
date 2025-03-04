@@ -20,7 +20,8 @@
     padding: 8px 16px 8px 38px;
     background-color: white;
     position: relative;
-
+    width: 300px;
+    max-width: 300px;
     &:focus-visible {
       border: 1px solid $orange;
     }

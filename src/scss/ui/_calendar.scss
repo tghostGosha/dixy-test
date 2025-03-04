@@ -1,26 +1,17 @@
-input[type="date"]::-webkit-calendar-picker-indicator {
-  color: rgba(0, 0, 0, 0);
-  opacity: 0.3;
-  display: block;
-  //background: url('./img/calendar.png') no-repeat;
-  width: 20px;
-  height: 20px;
-  border-width: thin;
-  position: absolute;
-  left: 5%;
+
+[data-vc=calendar] {
+  position: absolute !important;
+  bottom: -19.2rem;
+  z-index: 2;
+  max-height: 329px;
 }
+[data-vc-theme=light] .vc-date[data-vc-date-selected] .vc-date__btn {
+  background-color: $orange !important;
 
-input[type="date"]::selection {
-  background: yellow;
-  color: black;
 }
-
-input[type="date"] {
-  color: $primary-text;
-  font: $body-regular-14;
-  max-height: 40px;
-
-  &:focus-visible {
-    border: 1px solid $orange;
-  }
+[data-vc-theme=light] .vc-date[data-vc-date-today] .vc-date__btn {
+  color: $orange !important;
+}
+#calendar {
+  width: 300px;
 }

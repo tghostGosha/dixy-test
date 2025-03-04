@@ -47,6 +47,7 @@
 		"axios": "^1.7.9",
 		"interactjs": "^1.10.27",
 		"just-validate": "^4.3.0",
-		"tippy.js": "^6.3.7"
+		"tippy.js": "^6.3.7",
+		"vanilla-calendar-pro": "^3.0.3"
 	}
 }

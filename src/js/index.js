@@ -3,7 +3,9 @@ import main from './pages/main'
 import warehouse from './pages/warehouse'
 import sector from './pages/sector'
 import header from './pages/header'
+import calendar from './modules/calendar'
 import {validate} from './modules/validate'
+
 // dropdown();
 
 const authForm = document.querySelector('#auth-form')
@@ -43,18 +45,33 @@ try {
 }
 //========запрещать после 0 вводить другие числа======
 const zero = document.querySelectorAll(".onlyZero");
-zero.forEach((item) => {
-  item.addEventListener("keyup", function () {
-    if (this.value.startsWith('0')) {
-      this.value = 0
-    }
-  })
-});
+try {
+  zero.forEach((item) => {
+    item.addEventListener("keyup", function () {
+      if (this.value.startsWith('0')) {
+        this.value = 0
+      }
+    })
+  });
+} catch (e) {}
+
 //========разрешать только русские буквы, пробел, точку и тире===========
 const onlyRus = document.querySelectorAll(".onlyRus");
-onlyRus.forEach((item) => {
-  item.addEventListener("keyup", function () {
-    let res = /[^аА-яЯёЁ .-]/g.exec(item.value);
-    item.value = item.value.replace(res, '');
+try {
+  onlyRus.forEach((item) => {
+    item.addEventListener("keyup", function () {
+      let res = /[^аА-яЯёЁ .-]/g.exec(item.value);
+      item.value = item.value.replace(res, '');
+    })
   })
-})
+} catch (e){}
+//========разрешать только русские буквы, цифры, пробел, точку и тире===========
+const searchInput = document.querySelectorAll('#search')
+try {
+  searchInput.forEach((item) => {
+    item.addEventListener("keyup", function () {
+      let res = /[^аА-яЯёЁ0-9 .-]/g.exec(item.value);
+      item.value = item.value.replace(res, '');
+    })
+  })
+} catch (e){}
