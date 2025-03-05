@@ -5,11 +5,12 @@ const input = document.querySelector('#calendar')
 const options = {
   displayMonthsCount: 1,
   selectedTheme: 'light',
+  dateMin: '2000-01-01',
   inputMode: true,
   positionToInput: ['bottom', 'center'],
   monthsToSwitch: 1,
   displayDatesOutside: true,
-  disableDatesPast: true,
+  disableDatesPast: false,
   enableEdgeDatesOnly: true,
   locale: 'ru',
   selectionDatesMode: 'multiple-ranged',
@@ -20,7 +21,7 @@ const options = {
 
 };
 
-if(input) {
+if (input) {
   const calendar = new Calendar('#calendar', options);
   calendar.init()
 }

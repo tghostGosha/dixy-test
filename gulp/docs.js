@@ -120,7 +120,7 @@ gulp.task('sass:docs', function () {
 
 gulp.task('images:docs', function () {
 	return gulp
-		.src(['./src/img/**/*', '!./src/img/svgicons/**/*'])
+		.src(['./src/img/**/*.*', '!./src/img/svgicons/**/*.*'])
 		.pipe(changed('./docs/img/'))
 		.pipe(
 			imagemin([
@@ -131,7 +131,7 @@ gulp.task('images:docs', function () {
 		)
 		.pipe(extReplace('.webp'))
 		.pipe(gulp.dest('./docs/img/'))
-		.pipe(gulp.src('./src/img/**/*'))
+		.pipe(gulp.src('./src/img/**/*.*'))
 		.pipe(changed('./docs/img/'))
 		.pipe(
 			imagemin(

@@ -6,8 +6,6 @@ import header from './pages/header'
 import calendar from './modules/calendar'
 import {validate} from './modules/validate'
 
-// dropdown();
-
 const authForm = document.querySelector('#auth-form')
 const authError = document.querySelector('[data-error="auth"]')
 try {
@@ -53,25 +51,28 @@ try {
       }
     })
   });
-} catch (e) {}
+} catch (e) {
+}
 
 //========разрешать только русские буквы, пробел, точку и тире===========
 const onlyRus = document.querySelectorAll(".onlyRus");
 try {
   onlyRus.forEach((item) => {
-    item.addEventListener("keyup", function () {
+    item.addEventListener("keydown", function () {
       let res = /[^аА-яЯёЁ .-]/g.exec(item.value);
       item.value = item.value.replace(res, '');
     })
   })
-} catch (e){}
+} catch (e) {
+}
 //========разрешать только русские буквы, цифры, пробел, точку и тире===========
 const searchInput = document.querySelectorAll('#search')
 try {
   searchInput.forEach((item) => {
-    item.addEventListener("keyup", function () {
+    item.addEventListener("keydown", function () {
       let res = /[^аА-яЯёЁ0-9 .-]/g.exec(item.value);
       item.value = item.value.replace(res, '');
     })
   })
-} catch (e){}
+} catch (e) {
+}
