@@ -8,6 +8,7 @@ import {validate} from './modules/validate'
 
 const authForm = document.querySelector('#auth-form')
 const authError = document.querySelector('[data-error="auth"]')
+
 try {
   validate(authForm)
     .addField('#login', [
@@ -67,6 +68,7 @@ try {
 }
 //========разрешать только русские буквы, цифры, пробел, точку и тире===========
 const searchInput = document.querySelectorAll('#search')
+const searchForm = document.querySelector('#search-form')
 try {
   searchInput.forEach((item) => {
     item.addEventListener("keydown", function () {
@@ -74,5 +76,18 @@ try {
       item.value = item.value.replace(res, '');
     })
   })
+  validate(searchForm)
+    .addField('#search', [
+      {
+        rule: 'maxLength',
+        value: 3,
+        errorMessage: 'Максимальное кол-во символов - 100'
+      },
+    ])
+
+    .onSuccess((ev) => {
+      ev.preventDefault();
+    })
+
 } catch (e) {
 }
