@@ -1,13 +1,13 @@
-import dropdown from './modules/dropdown.js';
-import main from './pages/main'
-import warehouse from './pages/warehouse'
-import sector from './pages/sector'
-import header from './pages/header'
-import calendar from './modules/calendar'
+// import dropdown from './modules/dropdown.js';
+// import main from './pages/main'
+// import warehouse from './pages/warehouse'
+// import sector from './pages/sector'
+// import header from './pages/header'
+// import calendar from './modules/calendar'
 import {validate} from './modules/validate'
+import {sendLogin} from "./axios/login";
 
 const authForm = document.querySelector('#auth-form')
-const authError = document.querySelector('[data-error="auth"]')
 
 try {
   validate(authForm)
@@ -36,12 +36,23 @@ try {
 
     .onSuccess((ev) => {
       ev.preventDefault();
+      serializeForm(authForm)
     })
-    .onFail((fields) => {
-      authError.style.display = 'block'
-    });
+    // .onFail((fields) => {
+    //   authError.style.display = 'block'
+    //   console.log(dataForm)
+    // });
 } catch (e) {
 }
+
+
+
+function serializeForm(formNode) {
+  let data = new FormData(formNode)
+  sendLogin(data)
+  return data
+}
+
 //========запрещать после 0 вводить другие числа======
 const zero = document.querySelectorAll(".onlyZero");
 try {
@@ -54,6 +65,7 @@ try {
   });
 } catch (e) {
 }
+
 
 //========разрешать только русские буквы, пробел, точку и тире===========
 const onlyRus = document.querySelectorAll(".onlyRus");

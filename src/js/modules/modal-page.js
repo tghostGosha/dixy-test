@@ -1,5 +1,4 @@
 (function () {
-    const openButton = document.querySelectorAll('[data-open="open"]')
     const modal = document.querySelector('[data-modal="modal-page"]')
     const closeButton = document.querySelector('[data-close="close"]')
     const form = document.querySelector( ".page__form")
