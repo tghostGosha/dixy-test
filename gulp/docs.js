@@ -7,6 +7,8 @@ const htmlclean = require('gulp-htmlclean');
 const webpHTML = require('gulp-webp-retina-html');
 const typograf = require('gulp-typograf');
 
+//JS
+const concat = require('gulp-concat');
 // SASS
 const sass = require('gulp-sass')(require('sass'));
 const sassGlob = require('gulp-sass-glob');
@@ -203,9 +205,10 @@ gulp.task('files:docs', function () {
 
 gulp.task('js:docs', function () {
 	return gulp
-		.src('./src/js/*.js')
+		.src('./src/js/*.js', '!./src/js/**/*.js')
 		.pipe(changed('./docs/js/'))
 		.pipe(plumber(plumberNotify('JS')))
+		.pipe(concat('all.js'))
 		.pipe(babel())
 		.pipe(webpack(require('./../webpack.config.js')))
 		.pipe(gulp.dest('./docs/js/'));

@@ -1,11 +1,12 @@
-// import dropdown from './modules/dropdown.js';
-// import main from './pages/main'
-// import warehouse from './pages/warehouse'
-// import sector from './pages/sector'
-// import header from './pages/header'
-// import calendar from './modules/calendar'
+import dropdown from './modules/dropdown.js';
+import main from './pages/main'
+import warehouse from './pages/warehouse'
+import sector from './pages/sector'
+import header from './pages/header'
+import calendar from './modules/calendar'
 import {validate} from './modules/validate'
 import {sendLogin} from "./axios/login";
+
 
 const authForm = document.querySelector('#auth-form')
 

@@ -1,8 +1,9 @@
-// import dropdown from '../modules/dropdown';
-// import dataOpen from '../modules/modal-page';
-// import {modalOpen} from "../modules/modal";
+import dropdown from '../modules/dropdown';
+import dataOpen from '../modules/modal-page';
+import {modalOpen} from "../modules/modal";
 import {validate} from "../modules/validate";
 import {successModal} from "../modules/success-modal";
+
 
 //======Валидация нового правила====///
 const ruleForm = document.querySelector('#rule-form');

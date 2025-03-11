@@ -3,7 +3,8 @@ import axios from "axios";
 export const API_BASE_URL = 'http://delivery.dixy.local/api';
 
 const url = `${API_BASE_URL}/auth/login/`;
-const authError = document.querySelector('[data-error="auth"]')
+const authError = document.querySelector('[data-error="auth"]');
+
 export const sendLogin = (data) => {
   axios.post(url, data, {
     headers: {

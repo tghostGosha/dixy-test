@@ -15,7 +15,8 @@ const changed = require('gulp-changed');
 const typograf = require('gulp-typograf');
 const svgsprite = require('gulp-svg-sprite');
 const replace = require('gulp-replace');
-
+//JS
+const concat = require('gulp-concat');
 gulp.task('clean:dev', function (done) {
 	if (fs.existsSync('./build/')) {
 		return gulp
@@ -160,9 +161,11 @@ gulp.task('files:dev', function () {
 
 gulp.task('js:dev', function () {
 	return gulp
-		.src('./src/js/*.js')
+		.src('./src/js/*.js', './src/js/**/*.js')
+		// .src('./src/js/*.js')
 		.pipe(changed('./build/js/'))
 		.pipe(plumber(plumberNotify('JS')))
+		.pipe(concat('all.js'))
 		// .pipe(babel())
 		.pipe(webpack(require('./../webpack.config.js')))
 		.pipe(gulp.dest('./build/js/'));
