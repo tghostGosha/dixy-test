@@ -1,0 +1,83 @@
+.map__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.map-footer-buttons {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.custom-marker {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.marker-content {
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.marker-column {
+  padding: 5px;
+}
+
+
+.marker-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.confirm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Overlay with transparency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  width: 100%;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.confirm-button, .cancel-button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.confirm-button {
+  background-color: #d9534f; /* Red for delete */
+  color: white;
+}
+
+.cancel-button {
+  background-color: #5bc0de; /* Blue for cancel */
+  color: white;
+}
