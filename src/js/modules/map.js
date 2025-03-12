@@ -77,17 +77,19 @@ export const initializeMap = async () => {
 
     console.log(jsonData);
     const customIcon = L.icon({
-        iconUrl: '/src/img/svgicons/map-marker.svg',
+        // iconUrl: './img/svgicons/map-marker.svg',
+        iconUrl: './img/map-marker.svg',
+
         iconSize: [40, 40],
         iconAnchor: [20, 40],
         popupAnchor: [0, -40]
     });
 
     jsonData.warehouses.forEach((w) => {
-        // const marker = L.marker([w.latitude, w.longitude], {
-        //     icon: customIcon
-        // }).addTo(map);
-        const marker = L.marker([w.latitude, w.longitude]).addTo(map);
+        const marker = L.marker([w.latitude, w.longitude], {
+            icon: customIcon
+        }).addTo(map);
+        // const marker = L.marker([w.latitude, w.longitude]).addTo(map);
 
         marker.on('click', () => {
             handleMarkerClick(marker, map, w);
