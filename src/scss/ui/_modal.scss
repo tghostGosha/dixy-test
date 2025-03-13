@@ -42,10 +42,12 @@
 .modalWindow {
   position: relative;
 }
+
 .modalWindow-container {
   max-width: 900px;
   margin: 0 auto;
 }
+
 .action-modal {
   .modalWindow {
     display: flex;

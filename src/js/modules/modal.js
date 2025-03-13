@@ -1,7 +1,6 @@
 import {initializeMap} from "./map";
 
 const openMapModal = (modalWindow, bodyElementHTML) => {
-  console.log('click')
   modalWindow.style.display = "block";
   bodyElementHTML.classList.add('active-modal')
   initializeMap()
