@@ -28,7 +28,11 @@
   }
 
 }
-
+.disabled {
+  pointer-events: none;
+  opacity: 0.6; /* Make the button look disabled */
+  cursor: not-allowed;
+}
 .transparent__button {
   display: flex;
   align-items: center;

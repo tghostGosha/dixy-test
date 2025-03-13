@@ -22,6 +22,7 @@
     position: relative;
     width: 300px;
     max-width: 300px;
+
     &:focus-visible {
       border: 1px solid $orange;
     }

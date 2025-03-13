@@ -1,3 +1,8 @@
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+
+</head>
 <footer>
 	<div class="modalBackground" data-modal="map">
 		<div class="modalActive">
@@ -7,13 +12,47 @@
 				</svg>
 			</div>
 			<div class="modalWindow">
-				<button class="primary__button" data-open="open-poligon">
-					<svg class="icon icon--plus">
+				<div class="modalWindow-container">
+
+					<button class="primary__button disabled" data-create="create-poligon">
+						<svg class="icon icon--plus">
+							<use href="./img/svgsprite/sprite.symbol.svg#plus"></use>
+						</svg>
+						Задать полигон
+					</button>
+					<button>
 						<use href="./img/svgsprite/sprite.symbol.svg#plus"></use>
-					</svg>
-					Задать полигон
-				</button>
-				карта
+					</button>
+					<div
+									data-coordinates-display
+									class="coordinates-display"
+					></div>
+
+					<div class="map__header">
+						<button class="primary__button" id="edit_polygon">
+							<svg class="icon icon--pencil" style="margin-right: 0;">
+								<use href="./img/svgsprite/sprite.symbol.svg#edit_pen"></use>
+							</svg>
+						</button>
+						<button class="primary__button" id="delete_polygon" disabled>
+							<svg class="icon icon--trash" style="margin-right: 0;">
+								<use href="./img/svgsprite/sprite.symbol.svg#trash"></use>
+							</svg>
+						</button>
+					</div>
+
+
+					<div id="map" style="width: 100%;height: 583px;"></div>
+					<div class="map-footer-buttons">
+						<button class="primary__button" data-save="save-polygon">
+							Сохранить
+						</button>
+						<button class="secondary__button" data-save="cancel">
+							Отменить
+						</button>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>

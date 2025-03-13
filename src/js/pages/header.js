@@ -1,4 +1,3 @@
-
 //======Вызов модального окна выход====///
 (function () {
   const modalBackgroundExit = document.querySelector('[data-modal="exit"]');
@@ -22,7 +21,8 @@
       modalBackgroundExit.style.display = "none";
 
     });
-  } catch (e){}
+  } catch (e) {
+  }
 
 })();
 

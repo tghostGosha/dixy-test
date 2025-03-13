@@ -1,4 +1,3 @@
-
 import {validate} from "../modules/validate";
 import {successModal} from "../modules/success-modal";
 
@@ -49,7 +48,7 @@ try {
 //======Закрытие модалки успешной отправки формы====///
 try {
   const modalClose = document.querySelector('[data-modal="success-close"]');
-  successModal(modalClose,success )
+  successModal(modalClose, success)
 } catch (e) {
 
 }
@@ -77,6 +76,7 @@ try {
       modalBackgroundDelete.style.display = "none";
 
     });
-  } catch (e){}
+  } catch (e) {
+  }
 
 })();

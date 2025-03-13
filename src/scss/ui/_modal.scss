@@ -12,8 +12,8 @@
 
 .modalActive {
   position: absolute;
-  width: 832px;
-  height: 592px;
+  width: 1060px;
+  height: 861px;
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
   cursor: default;
@@ -41,6 +41,11 @@
 
 .modalWindow {
   position: relative;
+}
+
+.modalWindow-container {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .action-modal {

@@ -11,10 +11,10 @@ export const sendLogin = (data) => {
       'Content-Type': 'application/json'
     }
   }).then((response) => {
-    console.log(response)
+    // console.log(response)
   }).catch(function (error) {
     authError.style.display = 'block'
-    console.log(error);
+    // console.log(error);
   })
 
 }

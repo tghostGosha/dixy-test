@@ -39,13 +39,12 @@ try {
       ev.preventDefault();
       serializeForm(authForm)
     })
-    // .onFail((fields) => {
-    //   authError.style.display = 'block'
-    //   console.log(dataForm)
-    // });
+  // .onFail((fields) => {
+  //   authError.style.display = 'block'
+  //   console.log(dataForm)
+  // });
 } catch (e) {
 }
-
 
 
 function serializeForm(formNode) {
