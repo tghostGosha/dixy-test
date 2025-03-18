@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
 
-<head>
-	<meta charset="UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Сектор</title>
-	<link rel="stylesheet" href="./css/main.css"/>
+<!--<head>-->
+<!--	<meta charset="UTF-8"/>-->
+<!--	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
+<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+<!--	<title>Сектор</title>-->
+<!--	<link rel="stylesheet" href="./css/main.css"/>-->
 
-	<link rel="icon" type="image/x-icon" href="./img/favicons/favicon.svg">
-	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
-</head>
+<!--	<link rel="icon" type="image/x-icon" href="./img/favicons/favicon.svg">-->
+<!--	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">-->
+<!--</head>-->
 
-<body>
-@@include('blocks/header.html')
+<!--<body>-->
+<!--@@include('../blocks/header.html')-->
 <main class="sector__page">
-	@@include('blocks/sidebar.html')
+	@@include('./blocks/sidebar.html')
+	<div id="main-page"></div>
 	<div class="success__modal" data-modal="success">
 		<svg class="icon icon--check">
 			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
@@ -189,7 +190,7 @@
 
 					</li>
 				</ul>
-				@@include('blocks/pagination.html')
+				@@include('./blocks/pagination.html')
 			</div>
 			<div class="page__section-modal" data-modal="modal-page">
 				<div class="modal-header">
@@ -202,15 +203,15 @@
 				</div>
 				<div class="modal-body">
 					<h2>Добавить сектор</h2>
-					@@include('blocks/sector-form.html')
+					@@include('./blocks/sector-form.html')
 				</div>
 			</div>
 		</div>
 
 	</section>
 </main>
-@@include('blocks/footer.html')
-<script src="./js/index.bundle.js" defer></script>
-</body>
+<!--@@include('../blocks/footer.html')-->
+<!--<script src="./js/index.bundle.js" type="module" defer></script>-->
+<!--</body>-->
 
-</html>
+<!--</html>-->

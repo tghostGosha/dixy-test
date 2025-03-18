@@ -1,9 +1,9 @@
-import dropdown from '../modules/dropdown';
-import dataOpen from '../modules/modal-page';
-import {modalOpen} from "../modules/modal";
 import {validate} from "../modules/validate";
 import {successModal} from "../modules/success-modal";
+import {getRules} from "../axios/rules";
+import {handleLocation} from "../js/utils/route";
 
+handleLocation()
 
 //======Валидация нового правила====///
 const ruleForm = document.querySelector('#rule-form');
@@ -113,7 +113,7 @@ try {
     });
 } catch (e) {
 }
-
+getRules()
 //======Закрытие модалки успешной отправки формы====///
 try {
   const modalClose = document.querySelector('[data-modal="success-close"]');

@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
 
-<head>
-	<meta charset="UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Главная</title>
-	<link rel="stylesheet" href="./css/main.css"/>
+<!--<head>-->
+<!--	<meta charset="UTF-8"/>-->
+<!--	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
+<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+<!--	<title>Главная</title>-->
+<!--	<link rel="stylesheet" href="./css/main.css"/>-->
 
-	<link rel="icon" type="image/x-icon" href="./img/favicons/favicon.svg">
-	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
-</head>
+<!--	&lt;!&ndash;	<link rel="icon" type="image/x-icon" href="./img/favicons/favicon.svg">&ndash;&gt;-->
+<!--	&lt;!&ndash;	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">&ndash;&gt;-->
+<!--</head>-->
 
-<body>
-@@include('blocks/header.html')
+<!--<body>-->
+<!--@@include('../blocks/header.html')-->
 <main class="main__page">
-	@@include('blocks/sidebar.html')
+	@@include('./blocks/sidebar.html')
+
 	<div class="success__modal" data-modal="success">
 		<svg class="icon icon--check">
 			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
@@ -53,7 +54,7 @@
 					</svg>
 					Скачать
 				</button>
-				<ul class="dropdown-menu"  style="display: none;" data-download="template">
+				<ul class="dropdown-menu" style="display: none;" data-download="template">
 					<li><a class="dropdown-item" href="#">XLSX</a></li>
 					<li><a class="dropdown-item" href="#">CSV</a></li>
 					<li><a class="dropdown-item" href="#">PDF</a></li>
@@ -122,7 +123,7 @@
 					</div>
 				</div>
 				<ul class="content__list">
-					<li class="content__list-item resizable" >
+					<li class="content__list-item resizable">
 						<div class="dropdown">
 							<button data-menu="menu-open">
 								<svg class="icon icon--menu">
@@ -150,7 +151,7 @@
 						</div>
 						<div class="field">
 							<span>772366223</span>
-						</div >
+						</div>
 						<div class="field">
 							<span>Акция доставка по 99р</span>
 						</div>
@@ -180,7 +181,7 @@
 					</li>
 
 				</ul>
-				@@include('blocks/pagination.html')
+				@@include('./blocks/pagination.html')
 			</div>
 			<div class="page__section-modal" data-modal="modal-page">
 				<div class="modal-header">
@@ -193,15 +194,15 @@
 				</div>
 				<div class="modal-body">
 					<h2>Новое правило</h2>
-					@@include('blocks/rule-form.html')
+					@@include('./blocks/rule-form.html')
 				</div>
 			</div>
 		</div>
 
 	</section>
 </main>
-@@include('blocks/footer.html')
-<script src="./js/index.bundle.js" defer></script>
-</body>
+<!--@@include('../blocks/footer.html')-->
+<!--<script src="./js/index.bundle.js" type="module" defer></script>-->
+<!--</body>-->
 
-</html>
+<!--</html>-->

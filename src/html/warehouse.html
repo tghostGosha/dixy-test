@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
 
-<head>
-	<meta charset="UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Склады</title>
-	<link rel="stylesheet" href="./css/main.css"/>
+<!--<head>-->
+<!--	<meta charset="UTF-8"/>-->
+<!--	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
+<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+<!--	<title>Склады</title>-->
+<!--	<link rel="stylesheet" href="./css/main.css"/>-->
 
-	<link rel="icon" type="image/x-icon" href="./img/favicons/favicon.svg">
-	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
-</head>
+<!--	<link rel="icon" type="image/x-icon" href="./img/favicons/favicon.svg">-->
+<!--	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">-->
+<!--</head>-->
 
-<body>
-@@include('blocks/header.html')
+<!--<body>-->
+<!--@@include('../blocks/header.html')-->
 <main class="warehouse__page">
-	@@include('blocks/sidebar.html')
-	<section class="page__section">
+	@@include('./blocks/sidebar.html')
+	<section class="page__section" id="main-page">
 		<div class="page__section-action">
 			<form action="#" class="search__form" id="search-form">
 				<div class="search__form-field">
@@ -39,7 +39,7 @@
 					</svg>
 					Скачать
 				</button>
-				<ul class="dropdown-menu"  style="display: none;" data-download="template">
+				<ul class="dropdown-menu" style="display: none;" data-download="template">
 					<li><a class="dropdown-item" href="#">XLSX</a></li>
 					<li><a class="dropdown-item" href="#">CSV</a></li>
 					<li><a class="dropdown-item" href="#">PDF</a></li>
@@ -133,7 +133,7 @@
 							<span>123456</span>
 						</div>
 						<div class="field">
-							<button data-modal="rule-modal" > <span>Акция доставка по 99р</span></button>
+							<button data-modal="rule-modal"><span>Акция доставка по 99р</span></button>
 						</div>
 						<div class="field">
 							<span>БРЯНСКАЯ ОБЛАСТЬ</span>
@@ -163,7 +163,7 @@
 						</div>
 						<div class="field">
 							<label class="custom-checkbox">
-								<input type="checkbox" value=""  disabled>
+								<input type="checkbox" value="" disabled>
 								<span></span>
 							</label>
 						</div>
@@ -202,7 +202,7 @@
 							<span>123456</span>
 						</div>
 						<div class="field">
-							<button data-modal="rule-modal"> <span>Акция доставка по 99р</span></button>
+							<button data-modal="rule-modal"><span>Акция доставка по 99р</span></button>
 						</div>
 						<div class="field">
 							<span>БРЯНСКАЯ ОБЛАСТЬ</span>
@@ -250,7 +250,7 @@
 
 					</li>
 				</ul>
-				@@include('blocks/pagination.html')
+				@@include('./blocks/pagination.html')
 			</div>
 		</div>
 		<div class="page__section-modal" data-modal="modal-page">
@@ -264,13 +264,13 @@
 			</div>
 			<div class="modal-body">
 				<h2>Редактирование склада</h2>
-				@@include('blocks/warehouse-form.html')
+				@@include('./blocks/warehouse-form.html')
 			</div>
 		</div>
 	</section>
 </main>
-@@include('blocks/footer.html')
-<script src="./js/index.bundle.js" defer></script>
-</body>
+<!--@@include('../blocks/footer.html')-->
+<!--<script src="./js/index.bundle.js" type="module" defer></script>-->
+<!--</body>-->
 
-</html>
+<!--</html>-->

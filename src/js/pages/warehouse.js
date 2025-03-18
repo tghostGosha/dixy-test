@@ -1,9 +1,8 @@
-import resize from '../modules/rezizeRow';
 import {modalOpen} from "../modules/modal";
-import {tippyOpen} from "../modules/dropdown";
 import {validate} from "../modules/validate";
-import dataOpen from '../modules/modal-page';
+import {handleLocation} from "../js/utils/route";
 
+handleLocation()
 
 //======Вызов модальных окон====///
 try {

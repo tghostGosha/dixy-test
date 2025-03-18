@@ -1,6 +1,7 @@
 import {validate} from "../modules/validate";
 import {successModal} from "../modules/success-modal";
 
+
 //======Валидация нового правила====///
 const sectorForm = document.querySelector('#sector-form');
 const modal = document.querySelector('[data-modal="modal-page"]');
