@@ -46,6 +46,7 @@
 	"dependencies": {
 		"avif-webp-checker": "^1.0.0",
 		"axios": "^1.7.9",
+		"express": "^4.21.2",
 		"interactjs": "^1.10.27",
 		"just-validate": "^4.3.0",
 		"leaflet": "^1.9.4",

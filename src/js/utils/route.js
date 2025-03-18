@@ -1,7 +1,7 @@
 const routes = {
   404: "/404.html",
-  "/main": "/login.html",
-  "/": "/main.html",
+  "/": "/login.html",
+  "/main": "/main.html",
   "/warehouse": "/warehouse.html",
   "/sector": "/sector.html",
   "/history": "/history.html",

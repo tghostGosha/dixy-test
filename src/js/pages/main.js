@@ -1,10 +1,11 @@
 import {validate} from "../modules/validate";
 import {successModal} from "../modules/success-modal";
 import {getRules} from "../axios/rules";
-import {handleLocation} from "../js/utils/route";
+import {handleLocation} from "../utils/route";
+
 
 handleLocation()
-
+getRules()
 //======Валидация нового правила====///
 const ruleForm = document.querySelector('#rule-form');
 const modal = document.querySelector('[data-modal="modal-page"]');
@@ -113,7 +114,7 @@ try {
     });
 } catch (e) {
 }
-getRules()
+
 //======Закрытие модалки успешной отправки формы====///
 try {
   const modalClose = document.querySelector('[data-modal="success-close"]');

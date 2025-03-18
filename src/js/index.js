@@ -1,55 +1,73 @@
 import {validate} from './modules/validate'
 import {sendLogin} from "./axios/login";
-import {handleLocation} from "../js/utils/route";
+import path from "path";
+import express from "express";
+// const express = require('express');
+// handleLocation()
+const __dirname = path.resolve()
+const app = express();
 
-handleLocation()
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'html', 'login.html'))
+})
 
-// route()
-// router();
-const authForm = document.querySelector('#auth-form')
+document.addEventListener("DOMContentLoaded", () => {
 
-try {
-  validate(authForm)
-    .addField('#login', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-      {
-        rule: 'minLength',
-        value: 12,
-        errorMessage: 'Мин 12 символов, A-z, @, точка'
-      },
-      {
-        rule: 'maxLength',
-        value: 30,
-        errorMessage: 'Макс - 30 символов, A-z, @, точка'
-      },
-    ])
-    .addField('#password', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-    ])
+  const authForm = document.querySelector('#auth-form')
+  // создаем новый экземпляр наблюдателя
+  const observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      console.log(mutation.type);
+    });
+  });
 
-    .onSuccess((ev) => {
-      ev.preventDefault();
-      serializeForm(authForm)
-    })
-  // .onFail((fields) => {
-  //   authError.style.display = 'block'
-  //   console.log(dataForm)
-  // });
-} catch (e) {
-}
+// создаем конфигурации для наблюдателя
+  const config = {attributes: true, childList: true, characterData: true};
 
+// запускаем механизм наблюдения
+  observer.observe(authForm, config);
 
-function serializeForm(formNode) {
-  let data = new FormData(formNode)
-  sendLogin(data)
-  return data
-}
+// позже, если надо, прекращаем наблюдение
+  observer.disconnect();
+  console.log(authForm)
+  try {
+    validate(authForm)
+      .addField('#login', [
+        {
+          rule: 'required',
+          errorMessage: 'Обязательное поле'
+        },
+        {
+          rule: 'minLength',
+          value: 12,
+          errorMessage: 'Мин 12 символов, A-z, @, точка'
+        },
+        {
+          rule: 'maxLength',
+          value: 30,
+          errorMessage: 'Макс - 30 символов, A-z, @, точка'
+        },
+      ])
+      .addField('#password', [
+        {
+          rule: 'required',
+          errorMessage: 'Обязательное поле'
+        },
+      ])
+
+      .onSuccess((ev) => {
+        ev.preventDefault();
+        serializeForm(authForm)
+      })
+    // .onFail((fields) => {
+    //   authError.style.display = 'block'
+    //   console.log(dataForm)
+    // });
+  } catch (e) {
+    console.log(e)
+  }
+});
+
 
 //========запрещать после 0 вводить другие числа======
 const zero = document.querySelectorAll(".onlyZero");
@@ -64,6 +82,11 @@ try {
 } catch (e) {
 }
 
+function serializeForm(formNode) {
+  let data = new FormData(formNode)
+  sendLogin(data)
+  return data
+}
 
 //========разрешать только русские буквы, пробел, точку и тире===========
 const onlyRus = document.querySelectorAll(".onlyRus");

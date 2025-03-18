@@ -1,7 +1,7 @@
 import {API_BASE_URL} from "./login";
 import axios from "axios";
 
-const url = `${API_BASE_URL}/api/rules/`;
+const url = `${API_BASE_URL}/rules/`;
 
 export const getRules = () => {
   axios.get(url, {
@@ -9,7 +9,7 @@ export const getRules = () => {
       'Content-Type': 'application/json'
     }
   }).then((response) => {
-    // console.log(response)
+    console.log(response)
   }).catch(function (error) {
     // console.log(error);
   })
