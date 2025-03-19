@@ -1,5 +1,11 @@
 import {validate} from "../modules/validate";
 import {successModal} from "../modules/success-modal";
+import {downloadSector, getSectors} from "../axios/sectors";
+
+if (window.location.pathname.includes('sector')) {
+  //===Список всех правил===////
+    getSectors()
+}
 
 //======Валидация нового правила====///
 const sectorForm = document.querySelector('#sector-form');
@@ -52,6 +58,16 @@ try {
 } catch (e) {
 
 }
+//======Скачать правила====///
+try {
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('[data-download="format"]')) {
+      const formatDoc = e.target.textContent
+      downloadSector(formatDoc)
+    }
+  })
+} catch(e){}
+
 //======модалка удаления сектора====///
 (function () {
   const modalBackgroundDelete = document.querySelector('[data-modal-sector="delete"]');

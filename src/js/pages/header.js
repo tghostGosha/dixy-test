@@ -1,8 +1,10 @@
 //======Вызов модального окна выход====///
+import {logOut} from "../axios/auth";
+
 (function () {
   const modalBackgroundExit = document.querySelector('[data-modal="exit"]');
   const bodyElementHTML = document.getElementsByTagName("body")[0];
-  const closeButton = document.querySelector('[data-exit="close"]');
+  const confirmBtn = document.querySelector('[data-exit="logout"]');
   const cancelBtn = document.querySelector('[data-exit="cancel"]');
 
   try {
@@ -17,9 +19,9 @@
       modalBackgroundExit.style.display = "none";
 
     });
-    closeButton.addEventListener('click', () => {
+    confirmBtn.addEventListener('click', () => {
       modalBackgroundExit.style.display = "none";
-
+      logOut()
     });
   } catch (e) {
   }

@@ -1,8 +1,8 @@
 import {savePolygon, toggleEditPolygon} from "./map";
 
 (function () {
-  const openButton = document.querySelectorAll('[data-open="open"]')
   const modal = document.querySelector('[data-modal="modal-page"]')
+  const ruleUpdate = document.querySelector('[data-modal="modal-page-update"]')
   const closeButton = document.querySelector('[data-close="close"]')
   const form = document.querySelector(".page__form")
   const cancelBtn = document.querySelector('[data-сancel="cancel"]')

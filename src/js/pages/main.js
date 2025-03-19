@@ -1,8 +1,11 @@
 import dropdown from '../modules/dropdown';
 import dataOpen from '../modules/modal-page';
+import dataUpdate from '../modules/updateRule';
 import {modalOpen} from "../modules/modal";
+
 import {validate} from "../modules/validate";
 import {successModal} from "../modules/success-modal";
+import {createRule, deleteRule, downloadRule, getRules} from "../axios/rules";
 
 
 //======Валидация нового правила====///
@@ -10,7 +13,23 @@ const ruleForm = document.querySelector('#rule-form');
 const modal = document.querySelector('[data-modal="modal-page"]');
 const success = document.querySelector('[data-modal="success"]');
 
+function serializeForm(formNode, request) {
+  let data = new FormData(formNode)
+  request(data)
+  return data
+}
 
+if (window.location.pathname.includes('main')) {
+
+  //===Список всех правил===////
+  try {
+    getRules()
+  } catch (e){}
+
+
+}
+
+//======Валидация нового правила====///
 try {
   validate(ruleForm)
     .addField('#title', [
@@ -101,6 +120,9 @@ try {
 
     .onSuccess((ev) => {
       ev.preventDefault();
+      //===Создание нового правила===////
+      serializeForm(ruleForm, createRule)
+
       ruleForm.reset()
       modal.classList.remove('active');
       success.classList.add('active');
@@ -118,31 +140,47 @@ try {
 try {
   const modalClose = document.querySelector('[data-modal="success-close"]');
   successModal(modalClose, success)
-} catch (e) {
+} catch (e) {}
 
-}
+
+//======Скачать правила====///
+try {
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('[data-download="format"]')) {
+      const formatDoc = e.target.textContent
+      downloadRule(formatDoc)
+    }
+  })
+} catch(e){}
+
 
 //======модалка удаления правила====///
 (function () {
+  const deleteRuleButton = document.querySelector('[data-delete-rule="delete"]')
   const modalBackgroundDelete = document.querySelector('[data-modal-rule="delete"]');
   const bodyElementHTML = document.getElementsByTagName("body")[0];
-  const closeButton = document.querySelector('[data-delete-rule="close"]');
-  const cancelBtn = document.querySelector('[data-delete-rule="cancel"]');
-
+  const closeButton = document.querySelector('[ data-delete-rule="cancel"]');
+  let id
   try {
     document.addEventListener('click', function (e) {
-      if (e.target.matches('[data-delete-rule="delete"]')) {
+      if (e.target.matches('[data-delete="delete"]')) {
         modalBackgroundDelete.style.display = "block";
         bodyElementHTML.classList.add('active-modal');
-
+        const parent = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+        id = parent.getAttribute("id");
       }
     })
-    cancelBtn.addEventListener('click', (e) => {
-      e.preventDefault()
+
+    closeButton.addEventListener('click', (event) => {
+      event.preventDefault()
       modalBackgroundDelete.style.display = "none";
 
     });
-    closeButton.addEventListener('click', () => {
+    deleteRuleButton.addEventListener('click', (event) => {
+      event.preventDefault()
+      console.log(id)
+      deleteRule(id)
+      getRules()
       modalBackgroundDelete.style.display = "none";
 
     });

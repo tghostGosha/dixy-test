@@ -5,7 +5,7 @@ import sector from './pages/sector'
 import header from './pages/header'
 import calendar from './modules/calendar'
 import {validate} from './modules/validate'
-import {sendLogin} from "./axios/login";
+import {sendLogin} from "./axios/auth";
 
 
 const authForm = document.querySelector('#auth-form')
