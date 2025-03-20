@@ -2,12 +2,12 @@ import axios from "axios";
 
 export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
 
-const url = `${API_BASE_URL}/sectors/`;
-
+const url = `${API_BASE_URL}/sectors`;
+const success = document.querySelector('[data-modal="success"]');
 
 //===========Список всех секторов =================
-export const getSectors = () => {
-  axios.get(url, {
+export const getSectors = async () => {
+  return await axios.get(url, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -16,16 +16,15 @@ export const getSectors = () => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    console.log(response)
+    return response.data
   }).catch(function (error) {
-
     console.log(error);
   })
 
 }
 //===========Сектор по id =================
-export const getSectorDetail = (id) => {
-  axios.get(`${url}${id}detail`, {
+export const getSectorDetail = async (id) => {
+  return await axios.get(`${url}/${id}/detail`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -34,9 +33,8 @@ export const getSectorDetail = (id) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    console.log(response)
+    return response.data
   }).catch(function (error) {
-
     console.log(error);
   })
 
@@ -44,7 +42,7 @@ export const getSectorDetail = (id) => {
 
 //===========Создание сектора =================
 export const createSector = (data) => {
-  axios.post(`${url}create/`, data,{
+  axios.post(`${url}/create/`, data,{
     headers: {
       'Content-Type': 'application/json'
     },
@@ -53,17 +51,19 @@ export const createSector = (data) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    console.log(response)
+    success.classList.add('active');
+    setTimeout(() => {
+      success.classList.remove('active');
+    }, 3000)
   }).catch(function (error) {
-
     console.log(error);
   })
 
 }
 
 //===========Редактирование сектора =================
-export const updateSector = (id, data ) => {
-  axios.post(`${url} ${id}update/`, data,{
+export const updateSector = ( data, id ) => {
+  axios.post(`${url}/${id}/update/`, data,{
     headers: {
       'Content-Type': 'application/json'
     },
@@ -72,9 +72,7 @@ export const updateSector = (id, data ) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    console.log(response)
   }).catch(function (error) {
-
     console.log(error);
   })
 
@@ -82,7 +80,7 @@ export const updateSector = (id, data ) => {
 
 //===========Удаление сектора =================
 export const deleteSector = (id) => {
-  axios.post(`${url}${id}delete/`, {
+  axios.post(`${url}/${id}/delete/`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -91,9 +89,7 @@ export const deleteSector = (id) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    console.log(response)
   }).catch(function (error) {
-
     console.log(error);
   })
 
@@ -101,7 +97,7 @@ export const deleteSector = (id) => {
 
 //===========Скачать сектора =================
 export const downloadSector = (format) => {
-  axios.get(`${url}download/${format}`,{
+  axios.get(`${url}/download/${format}`,{
     headers: {
       'Content-Type': 'application/json'
     },

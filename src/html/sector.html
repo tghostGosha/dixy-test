@@ -108,7 +108,7 @@
 
 				</div>
 				<ul class="content__list">
-					<li class="content__list-item resizable">
+					<li class="content__list-item resizable" id="1">
 						<div class="dropdown">
 							<button data-menu="menu-open">
 								<svg class="icon icon--menu">
@@ -117,7 +117,7 @@
 							</button>
 							<ul class="dropdown-menu" data-menu="menu" style="display: none;">
 								<li>
-									<button class="dropdown-item" data-open="open">
+									<button class="dropdown-item" data-update="open-sector">
 										<svg class="icon icon--edit">
 											<use href="./img/svgsprite/sprite.symbol.svg#edit"></use>
 										</svg>
@@ -125,7 +125,7 @@
 									</button>
 								</li>
 								<li>
-									<button class="dropdown-item" data-delete-sector="delete">
+									<button class="dropdown-item" data-delete="delete-sector">
 										<svg class="icon icon--delete">
 											<use href="./img/svgsprite/sprite.symbol.svg#delete"></use>
 										</svg>
@@ -135,7 +135,7 @@
 							</ul>
 						</div>
 						<div class="field">
-							<span>772366223</span>
+							<span>1</span>
 						</div>
 						<div class="field">
 							<span>Классный сектор</span>
@@ -148,7 +148,7 @@
 						</div>
 
 					</li>
-					<li class="content__list-item resizable">
+					<li class="content__list-item resizable" id="2">
 						<div class="dropdown">
 							<button data-menu="menu-open">
 								<svg class="icon icon--menu">
@@ -157,7 +157,7 @@
 							</button>
 							<ul class="dropdown-menu" data-menu="menu" style="display: none;">
 								<li>
-									<button class="dropdown-item" data-open="open">
+									<button class="dropdown-item" data-update="open-sector">
 										<svg class="icon icon--edit">
 											<use href="./img/svgsprite/sprite.symbol.svg#edit"></use>
 										</svg>
@@ -165,7 +165,7 @@
 									</button>
 								</li>
 								<li>
-									<button class="dropdown-item" data-delete-sector="delete">
+									<button class="dropdown-item" data-delete="delete-sector">
 										<svg class="icon icon--delete">
 											<use href="./img/svgsprite/sprite.symbol.svg#delete"></use>
 										</svg>
@@ -175,7 +175,7 @@
 							</ul>
 						</div>
 						<div class="field">
-							<span>772366223</span>
+							<span>2</span>
 						</div>
 						<div class="field">
 							<span>Классный сектор</span>
@@ -203,6 +203,20 @@
 				<div class="modal-body">
 					<h2>Добавить сектор</h2>
 					@@include('blocks/sector-form.html')
+				</div>
+			</div>
+			<div class="page__section-modal" data-modal="update-sector">
+				<div class="modal-header">
+					<button class="transparent__button" data-close="close">
+						<svg class="icon icon--arrow-left">
+							<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
+						</svg>
+						Назад
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2>Редактировать сектор</h2>
+					@@include('blocks/sector-update-form.html')
 				</div>
 			</div>
 		</div>

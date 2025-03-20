@@ -3,7 +3,25 @@ import {modalOpen} from "../modules/modal";
 import {tippyOpen} from "../modules/dropdown";
 import {validate} from "../modules/validate";
 import dataOpen from '../modules/modal-page';
+import {downloadStore, getStores} from "../axios/warehouse";
 
+if (window.location.pathname.includes('warehouse')) {
+
+  //===Список всех правил===////
+  try {
+    getStores()
+  } catch (e){}
+
+//======Скачать правила====///
+  try {
+    document.addEventListener('click', function (e) {
+      if (e.target.matches('[data-download="format"]')) {
+        const formatDoc = e.target.textContent
+        downloadStore(formatDoc)
+      }
+    })
+  } catch(e){}
+}
 
 //======Вызов модальных окон====///
 try {

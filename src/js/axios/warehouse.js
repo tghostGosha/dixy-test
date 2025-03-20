@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
-const success = document.querySelector('[data-modal="success"]');
-const url = `${API_BASE_URL}/rules/`;
+
+const url = `${API_BASE_URL}/stores/`;
 
 //===========Список всех правила =================
-export const getRules = async () => {
+export const getStores = async () => {
   return await axios.get(url, {
     headers: {
       'Content-Type': 'application/json'
@@ -40,27 +40,6 @@ export const getRuleDetail = async (id) => {
 
 }
 
-//===========Создание правила =================
-export const createRule = (data) => {
-  axios.post(`${url}create/`, data,{
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
-    }
-  }).then((response) => {
-    success.classList.add('active');
-    setTimeout(() => {
-      success.classList.remove('active');
-    }, 3000)
-  }).catch(function (error) {
-
-    console.log(error);
-  })
-
-}
 
 //===========Редактирование правила =================
 export const updateRule = (data, id ) => {
@@ -81,27 +60,8 @@ export const updateRule = (data, id ) => {
 
 }
 
-//===========Удаление правила =================
-export const deleteRule = (id) => {
-  axios.post(`${url}${id}delete/`, {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
-    }
-  }).then((response) => {
-
-  }).catch(function (error) {
-
-    console.log(error);
-  })
-
-}
-
-//===========Скачать правила =================
-export const downloadRule = (format) => {
+//===========Скачать склады =================
+export const downloadStore = (format) => {
   axios.get(`${url}download/${format}`,{
     headers: {
       'Content-Type': 'application/json'

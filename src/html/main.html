@@ -53,10 +53,16 @@
 					</svg>
 					Скачать
 				</button>
-				<ul class="dropdown-menu"  style="display: none;" data-download="template">
-					<li><button class="dropdown-item" data-download="format">XLSX</button></li>
-					<li><button class="dropdown-item" data-download="format">CSV</button></li>
-					<li><button class="dropdown-item" data-download="format">PDF</button></li>
+				<ul class="dropdown-menu" style="display: none;" data-download="template">
+					<li>
+						<button class="dropdown-item" data-download="format">XLSX</button>
+					</li>
+					<li>
+						<button class="dropdown-item" data-download="format">CSV</button>
+					</li>
+					<li>
+						<button class="dropdown-item" data-download="format">PDF</button>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -122,7 +128,7 @@
 					</div>
 				</div>
 				<ul class="content__list">
-					<li class="content__list-item resizable" id="772366223" >
+					<li class="content__list-item resizable" id="772366223">
 						<div class="dropdown">
 							<button data-menu="menu-open">
 								<svg class="icon icon--menu">
@@ -150,15 +156,16 @@
 						</div>
 						<div class="field">
 							<span>772366223</span>
-						</div >
+						</div>
 						<div class="field">
 							<span>Акция доставка по 99р</span>
 						</div>
-						<form action="#">
+						<div class="field-checkbox">
 							<label class="switch-wrapper">
-								<input type="checkbox" data-switch="switch"/>
+								<input type="checkbox" data-switch="switch" checked/>
 								<span class="switch"></span>
-							</label></form>
+							</label>
+						</div>
 						<div class="field">
 							<span>БРЯНСКАЯ ОБЛАСТЬ</span>
 						</div>
@@ -196,7 +203,7 @@
 					@@include('blocks/rule-form.html')
 				</div>
 			</div>
-			<div class="page__section-modal" data-modal="modal-page-update">
+			<div class="page__section-modal" data-modal="update-rule">
 				<div class="modal-header">
 					<button class="transparent__button" data-close="close">
 						<svg class="icon icon--arrow-left">
@@ -207,7 +214,7 @@
 				</div>
 				<div class="modal-body">
 					<h2>Редактировать правило</h2>
-					@@include('blocks/rule-form.html')
+					@@include('blocks/rule-update-form.html')
 				</div>
 			</div>
 		</div>

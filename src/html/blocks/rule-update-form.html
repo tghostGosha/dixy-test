@@ -1,0 +1,64 @@
+<form class="page__form" id="ruleUpdateForm">
+<!--  <div class="page__form-field">-->
+<!--    <label for="id">ID</label>-->
+<!--    <input type="number" value="12345" name="id" id="id" disabled>-->
+<!--  </div>-->
+  <div class="page__form-field hide">
+    <label>
+      <input name="id" id="id">
+    </label>
+  </div>
+  <div class="page__form-field">
+    <label for="title">Название</label>
+    <input type="text" class="onlyRus" placeholder="Enter"  name="title" id="title">
+  </div>
+  <div class="page__form-field">
+    <label>Активность</label>
+    <label class="switch-wrapper">
+      <input type="checkbox" data-switch="switch"  checked/>
+      <span class="switch"></span>
+    </label>
+  </div>
+  <div class="page__form-field" >
+    <label for="areaSelect" ></label>
+    <select name="area" id="areaSelect" data-select="select">
+      <option value="">Выберите область</option>
+      <option value="moscow">Московская область</option>
+      <option value="tverskaya">Тверская область</option>
+      <option value="vladimir">Владимирская область</option>
+      <option value="ivanovo">Ивановская область</option>
+    </select>
+  </div>
+  <div class="page__form-field">
+    <label for="sectorSelect" ></label>
+    <select name="sector" id="sectorSelect">
+      <option value="">Сектор доставки</option>
+      <option value="himki">Химки</option>
+      <option value="center">Центр</option>
+      <option value="mitishi">Мытищи</option>
+      <option value="lubertsy">Люберцы</option>
+    </select>
+  </div>
+  <div class="page__form-field">
+    <label for="warehouseNumber">Номер склада</label>
+    <input type="number"  placeholder="Enter" name="costDelivery" id="warehouseNumber" required>
+  </div>
+  <div class="page__form-field">
+    <label for="costDelivery">Стоимость доставки</label>
+    <input type="number" class="onlyZero"  placeholder="Enter" name="costDelivery" id="costDelivery" required>
+  </div>
+  <div class="page__form-field">
+    <label for="freeDelivery">Бесплатная доставка от</label>
+    <input type="number" value="1000" class="onlyZero" placeholder="Enter" name="freeDelivery" id="freeDelivery" required>
+  </div>
+  <div class="page__form-field">
+    <label for="minCost">Минимальный чек</label>
+    <input type="number" value="500" class="onlyZero" placeholder="Enter" name="minCost" id="minCost" required>
+  </div>
+  <div class="page__form-buttons">
+    <button class="primary__button" type="submit">Сохранить</button>
+    <button class="secondary__button" data-сancel="cancel" >Отменить</button>
+  </div>
+
+
+</form>
