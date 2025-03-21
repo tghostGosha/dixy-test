@@ -23,7 +23,7 @@ export const getRules = async () => {
 }
 //===========Список всех правила =================
 export const getRuleDetail = async (id) => {
-  return await axios.get(`${url}${id}detail`, {
+  return await axios.get(`${url}${id}/detail`, {
     headers: {
       'Content-Type': 'application/json'
     },

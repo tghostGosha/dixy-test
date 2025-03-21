@@ -11,7 +11,7 @@ const closeMapModal = (modalWindow, bodyElementHTML) => {
   bodyElementHTML.classList.remove('active-modal')
 };
 
-export const modalOpen = (button, modalWindow) => {
+export const modalOpenMap = (button, modalWindow) => {
   // привязываем необходимые элементы
   const modalClose = document.querySelectorAll(".modalClose");
   const bodyElementHTML = document.getElementsByTagName("body")[0];
@@ -22,21 +22,6 @@ export const modalOpen = (button, modalWindow) => {
     })
   })
 
-  // button.forEach((item) => {
-  //   item.addEventListener('click', () => {
-  //     console.log('click')
-  //     modalWindow.style.display = "block";
-  //     bodyElementHTML.classList.add('active-modal')
-  //   })
-  // })
-
-// нажатие на крестик закрытия модального окна
-//   modalClose.forEach((item) => {
-//     item.addEventListener("click", function () {
-//       modalWindow.style.display = "none";
-//       bodyElementHTML.classList.remove('active-modal')
-//     });
-//   })
   modalClose.forEach((item) => {
     item.addEventListener("click", function () {
       closeMapModal(modalWindow, bodyElementHTML);
@@ -51,3 +36,5 @@ export const modalOpen = (button, modalWindow) => {
     }
   });
 }
+
+

@@ -117,7 +117,7 @@
 					</div>
 				</div>
 				<ul class="content__list">
-					<li class="content__list-item resizable">
+					<li class="content__list-item resizable" id="123456">
 						<div class="dropdown">
 							<button data-menu="menu-open">
 								<svg class="icon icon--menu">
@@ -126,7 +126,7 @@
 							</button>
 							<ul class="dropdown-menu" data-menu="menu" style="display: none;">
 								<li>
-									<button class="dropdown-item" data-open="open">
+									<button class="dropdown-item" data-update="open-warehouse">
 										<svg class="icon icon--edit">
 											<use href="./img/svgsprite/sprite.symbol.svg#edit"></use>
 										</svg>
@@ -139,7 +139,7 @@
 							<span>123456</span>
 						</div>
 						<div class="field">
-							<button data-modal="rule-modal" > <span>Акция доставка по 99р</span></button>
+							<button data-modal="rule-modal"><span data-id="1">Акция доставка по 99р</span></button>
 						</div>
 						<div class="field">
 							<span>БРЯНСКАЯ ОБЛАСТЬ</span>
@@ -186,7 +186,7 @@
 
 						</div>
 					</li>
-					<li class="content__list-item resizable">
+					<li class="content__list-item resizable" id="123">
 						<div class="dropdown">
 							<button data-menu="menu-open">
 								<svg class="icon icon--menu">
@@ -195,7 +195,7 @@
 							</button>
 							<ul class="dropdown-menu" data-menu="menu" style="display: none;">
 								<li>
-									<button class="dropdown-item" data-open="open">
+									<button class="dropdown-item" data-update="open-warehouse">
 										<svg class="icon icon--edit">
 											<use href="./img/svgsprite/sprite.symbol.svg#edit"></use>
 										</svg>
@@ -205,10 +205,10 @@
 							</ul>
 						</div>
 						<div class="field">
-							<span>123456</span>
+							<span>123</span>
 						</div>
 						<div class="field">
-							<button data-modal="rule-modal"> <span>Акция доставка по 99р</span></button>
+							<button data-modal="rule-modal"> <span data-id="1">Акция доставка по 99р</span></button>
 						</div>
 						<div class="field">
 							<span>БРЯНСКАЯ ОБЛАСТЬ</span>
@@ -259,9 +259,9 @@
 				@@include('blocks/pagination.html')
 			</div>
 		</div>
-		<div class="page__section-modal" data-modal="modal-page">
+		<div class="page__section-modal" data-modal="update-warehouse">
 			<div class="modal-header">
-				<button class="transparent__button" data-close="close">
+				<button class="transparent__button" data-close="update-warehouse">
 					<svg class="icon icon--arrow-left">
 						<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
 					</svg>

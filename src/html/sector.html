@@ -191,7 +191,7 @@
 				</ul>
 				@@include('blocks/pagination.html')
 			</div>
-			<div class="page__section-modal" data-modal="modal-page">
+			<div class="page__section-modal" data-modal="modal-page"  data-create="sector">
 				<div class="modal-header">
 					<button class="transparent__button" data-close="close">
 						<svg class="icon icon--arrow-left">
@@ -205,9 +205,9 @@
 					@@include('blocks/sector-form.html')
 				</div>
 			</div>
-			<div class="page__section-modal" data-modal="update-sector">
+			<div class="page__section-modal" data-modal="modal-page" data-update="sector">
 				<div class="modal-header">
-					<button class="transparent__button" data-close="close">
+					<button class="transparent__button" data-close="update-sector">
 						<svg class="icon icon--arrow-left">
 							<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
 						</svg>

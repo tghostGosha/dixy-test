@@ -1,12 +1,8 @@
 import {validate} from "../modules/validate";
-import {serializeForm} from "./serializeForm";
-
-
-const modal = document.querySelector('[data-modal="modal-page"]');
-
+import {serializeForm} from "../helpers/serializeForm";
 
 //======Валидация сектора====///
-export const SectorValidation = (form, request) => {
+export const SectorValidation = (form, request, modal) => {
   validate(form)
     .addField('#title', [
       {

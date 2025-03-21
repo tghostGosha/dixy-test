@@ -1,14 +1,12 @@
 import {validate} from "../modules/validate";
-import {serializeForm} from "./serializeForm";
-
-
+import {serializeForm} from "../helpers/serializeForm";
 
 const modal = document.querySelector('[data-modal="modal-page"]');
 
 //======Валидация нового правила====///
 export const RuleValidation = (form, request) => {
   validate(form)
-    .addField('#title', [
+    .addField('[data-id="title"]', [
       {
         rule: 'required',
         errorMessage: 'Обязательное поле'
@@ -24,50 +22,43 @@ export const RuleValidation = (form, request) => {
         errorMessage: 'А-я, 0-9. Макс - 100 символов'
       },
     ])
-    .addField('#areaSelect', [
+    .addField('[data-id="areaSelect"]', [
       {
         rule: 'required',
         errorMessage: 'Обязательное поле'
       },
     ])
-    .addField('#sectorSelect', [
+    .addField('[data-id="sectorSelect"]', [
       {
         rule: 'required',
         errorMessage: 'Обязательное поле'
       },
     ])
-    .addField('#warehouseNumber', [
+    .addField('[data-id="warehouseNumberArray"]', [
       {
         rule: 'required',
         errorMessage: 'Обязательное поле'
       },
       {
-        rule: 'number',
-        errorMessage: '0-9, спецсимволы запрещены'
+        rule: 'minLength',
+        value: 0,
+        errorMessage: '0-9, разрешены запятая и пробел, Мин- 0'
       },
       {
-        validator: (value) => {
-          return value >= 0 && value < 100000
-        },
-        errorMessage: '0-9, спецсимволы запрещены. Мин- 0, Макс -100 000'
+        rule: 'maxLength',
+        value: 100000,
+        errorMessage: '0-9, разрешены запятая и пробел, Макс -100 000'
       },
+      // {
+      //   validator: (value) => {
+      //     return value >= 0 && value < 100000
+      //   },
+      //   errorMessage: '0-9, спецсимволы запрещены. Мин- 0, Макс -100 000'
+      // },
 
 
     ])
-    .addField('#costDelivery', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-      {
-        validator: (value) => {
-          return value >= 0 && value < 100000
-        },
-        errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
-      },
-
-    ])
-    .addField('#freeDelivery', [
+    .addField('[data-id="costDelivery"]', [
       {
         rule: 'required',
         errorMessage: 'Обязательное поле'
@@ -80,7 +71,20 @@ export const RuleValidation = (form, request) => {
       },
 
     ])
-    .addField('#minCost', [
+    .addField('[data-id="freeDelivery"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Обязательное поле'
+      },
+      {
+        validator: (value) => {
+          return value >= 0 && value < 100000
+        },
+        errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
+      },
+
+    ])
+    .addField('[data-id="minCost"]', [
       {
         rule: 'required',
         errorMessage: 'Обязательное поле'

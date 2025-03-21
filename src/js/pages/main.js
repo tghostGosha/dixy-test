@@ -14,7 +14,6 @@ const ruleForm = document.querySelector('#rule-form');
 const ruleUpdateForm = document.querySelector('#ruleUpdateForm');
 const success = document.querySelector('[data-modal="success"]');
 
-
 if (window.location.pathname.includes('main')) {
 
   //===Список всех правил===////
@@ -37,7 +36,7 @@ if (window.location.pathname.includes('main')) {
 if (ruleForm) {
   RuleValidation(ruleForm, createRule)
 }
-//======Редактирование правила====///
+//====== Валидация Редактирование правила====///
 if (ruleUpdateForm) {
   RuleValidation(ruleUpdateForm, updateRule)
 }
@@ -47,10 +46,6 @@ try {
   const modalClose = document.querySelector('[data-modal="success-close"]');
   successModal(modalClose, success)
 } catch (e) {}
-
-
-
-
 
 //======модалка удаления правила====///
 (function () {

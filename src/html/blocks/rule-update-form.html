@@ -9,19 +9,19 @@
     </label>
   </div>
   <div class="page__form-field">
-    <label for="title">Название</label>
-    <input type="text" class="onlyRus" placeholder="Enter"  name="title" id="title">
+    <label for="updateTitle">Название</label>
+    <input type="text" class="onlyRus" placeholder="Enter" data-id="title"  name="title" id="updateTitle">
   </div>
   <div class="page__form-field">
     <label>Активность</label>
     <label class="switch-wrapper">
-      <input type="checkbox" data-switch="switch"  checked/>
+      <input type="checkbox" data-switch="switch" id="updateActive"  checked/>
       <span class="switch"></span>
     </label>
   </div>
   <div class="page__form-field" >
-    <label for="areaSelect" ></label>
-    <select name="area" id="areaSelect" data-select="select">
+    <label for="updateAreaSelect" ></label>
+    <select name="area" id="updateAreaSelect" data-id="areaSelect">
       <option value="">Выберите область</option>
       <option value="moscow">Московская область</option>
       <option value="tverskaya">Тверская область</option>
@@ -30,8 +30,8 @@
     </select>
   </div>
   <div class="page__form-field">
-    <label for="sectorSelect" ></label>
-    <select name="sector" id="sectorSelect">
+    <label for="updateSectorSelect" ></label>
+    <select name="sector" id="updateSectorSelect" data-id="sectorSelect">
       <option value="">Сектор доставки</option>
       <option value="himki">Химки</option>
       <option value="center">Центр</option>
@@ -40,24 +40,24 @@
     </select>
   </div>
   <div class="page__form-field">
-    <label for="warehouseNumber">Номер склада</label>
-    <input type="number"  placeholder="Enter" name="costDelivery" id="warehouseNumber" required>
+    <label for="updateWarehouseNumber">Номер склада</label>
+    <textarea  placeholder="Enter" name="warehouseNumberArray" data-id="warehouseNumberArray" id="updateWarehouseNumber" ></textarea>
   </div>
   <div class="page__form-field">
-    <label for="costDelivery">Стоимость доставки</label>
-    <input type="number" class="onlyZero"  placeholder="Enter" name="costDelivery" id="costDelivery" required>
+    <label for="updateCostDelivery">Стоимость доставки</label>
+    <input type="number" class="onlyZero"  placeholder="Enter" data-id="costDelivery" name="costDelivery" id="updateCostDelivery" >
   </div>
   <div class="page__form-field">
-    <label for="freeDelivery">Бесплатная доставка от</label>
-    <input type="number" value="1000" class="onlyZero" placeholder="Enter" name="freeDelivery" id="freeDelivery" required>
+    <label for="updateFreeDelivery">Бесплатная доставка от</label>
+    <input type="number" value="1000" class="onlyZero" placeholder="Enter" data-id="freeDelivery" name="freeDelivery" id="updateFreeDelivery" >
   </div>
   <div class="page__form-field">
-    <label for="minCost">Минимальный чек</label>
-    <input type="number" value="500" class="onlyZero" placeholder="Enter" name="minCost" id="minCost" required>
+    <label for="updateMinCost">Минимальный чек</label>
+    <input type="number" value="500" class="onlyZero" placeholder="Enter" data-id="minCost" name="minCost" id="updateMinCost" >
   </div>
   <div class="page__form-buttons">
     <button class="primary__button" type="submit">Сохранить</button>
-    <button class="secondary__button" data-сancel="cancel" >Отменить</button>
+    <button class="secondary__button" data-сancel="update-rule" >Отменить</button>
   </div>
 
 

@@ -1,11 +1,12 @@
 import {getSectorDetail} from "../axios/sectors";
+import {closeModal} from "../helpers/closeModal";
 
 
 (function () {
-  const sectorUpdate = document.querySelector('[data-modal="update-sector"]');
-  const closeButton = document.querySelectorAll('[data-close="close"]');
+  const sectorUpdate = document.querySelector('[data-update="sector"]');
+  const closeButton = document.querySelector('[data-close="update-sector"]');
   const sectorUpdateForm = document.querySelector("#sectorUpdateForm");
-  const cancelBtn = document.querySelectorAll('[data-сancel="cancel"]');
+  const cancelBtn = document.querySelector('[data-сancel="update-sector"]');
   const sectorName = document.querySelector('#title');
   const sectorArea = document.querySelector('#areaSelect');
   let sectorId = document.querySelector('#id');
@@ -18,33 +19,20 @@ import {getSectorDetail} from "../axios/sectors";
         sectorId.value = id
         e.preventDefault()
         getSectorDetail(id).then((response) => {
-            sectorName.value = response.name
-            sectorArea.value = response.area
-
+            if (response) {
+              sectorName.value = response.name
+              sectorArea.value = response.area
+            }
           }
         )
-
         sectorUpdate.classList.add('active');
-        console.log(sectorId.value)
       }
     })
-    cancelBtn.forEach(item => {
-      item.addEventListener('click', (event) => {
-        event.preventDefault()
-        sectorUpdate.classList.remove('active');
-        sectorUpdateForm.reset();
-      });
-    })
-    closeButton.forEach(item => {
-      item.addEventListener('click', (event) => {
-        event.preventDefault()
-        sectorUpdate.classList.remove('active');
-        sectorUpdateForm.reset();
-      });
-    })
-
+    closeModal(cancelBtn,sectorUpdate,sectorUpdateForm )
+    closeModal(closeButton,sectorUpdate,sectorUpdateForm )
 
   } catch (e) {
   }
 })();
+
 

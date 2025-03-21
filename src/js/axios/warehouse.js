@@ -22,8 +22,8 @@ export const getStores = async () => {
 
 }
 //===========Список всех правила =================
-export const getRuleDetail = async (id) => {
-  return await axios.get(`${url}${id}detail`, {
+export const getStoreDetail = async (id) => {
+  return await axios.get(`${url}${id}/detail`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -42,7 +42,7 @@ export const getRuleDetail = async (id) => {
 
 
 //===========Редактирование правила =================
-export const updateRule = (data, id ) => {
+export const updateStore = (data, id ) => {
   axios.post(`${url}${id}/update/`, data,{
     headers: {
       'Content-Type': 'application/json'

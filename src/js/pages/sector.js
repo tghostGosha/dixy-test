@@ -24,15 +24,16 @@ if (window.location.pathname.includes('sector')) {
 const sectorForm = document.querySelector('#sector-form');
 const success = document.querySelector('[data-modal="success"]')
 const sectorUpdateForm = document.querySelector('#sectorUpdateForm');
-
+const modalCreate = document.querySelector('[data-create="sector"]');
+const modalUpdate = document.querySelector('[data-update="sector"]');
 
 //======Валидация нового сектора====///
 if (sectorForm) {
-  SectorValidation(sectorForm, createSector)
+  SectorValidation(sectorForm, createSector, modalCreate)
 }
 //======Валидация редактирования сектора====///
 if (sectorUpdateForm) {
-  SectorValidation(sectorUpdateForm, updateSector)
+  SectorValidation(sectorUpdateForm, updateSector, modalUpdate)
 }
 
 

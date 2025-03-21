@@ -1,8 +1,8 @@
 import {savePolygon, toggleEditPolygon} from "./map";
+import {closeModal} from "../helpers/closeModal";
 
 (function () {
   const modal = document.querySelector('[data-modal="modal-page"]')
-  const ruleUpdate = document.querySelector('[data-modal="modal-page-update"]')
   const closeButton = document.querySelector('[data-close="close"]')
   const form = document.querySelector(".page__form")
   const cancelBtn = document.querySelector('[data-сancel="cancel"]')
@@ -15,15 +15,9 @@ import {savePolygon, toggleEditPolygon} from "./map";
         modal.classList.add('active');
       }
     })
-    cancelBtn.addEventListener('click', (e) => {
-      e.preventDefault()
-      modal.classList.remove('active');
-      form.reset();
-    });
-    closeButton.addEventListener('click', () => {
-      modal.classList.remove('active');
-      form.reset();
-    });
+    closeModal(cancelBtn,modal,form )
+    closeModal(closeButton,modal,form )
+
     editButton.addEventListener('click', toggleEditPolygon)
     saveButton.addEventListener('click', savePolygon)
   } catch (e) {
