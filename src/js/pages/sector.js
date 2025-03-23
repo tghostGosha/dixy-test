@@ -1,4 +1,4 @@
-import {closeSuccessModal, successModal} from "../helpers/success-modal";
+import {closeSuccessModal} from "../helpers/success-modal";
 import {createSector, deleteSector, downloadSector, getSectors, updateSector} from "../axios/sectors";
 import dataUpdate from '../modules/updateSector';
 import {SectorValidation} from "../utils/sectorValidation";

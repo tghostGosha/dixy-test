@@ -3,8 +3,7 @@ import dataOpen from '../modules/modal-page';
 import dataUpdate from '../modules/updateRule';
 import {modalOpen} from "../modules/modal";
 
-import {validate} from "../modules/validate";
-import {closeSuccessModal, successModal} from "../helpers/success-modal";
+import {closeSuccessModal} from "../helpers/success-modal";
 import {createRule, deleteRule, downloadRule, getRules, updateRule} from "../axios/rules";
 import {RuleValidation} from "../utils/ruleValidation";
 
