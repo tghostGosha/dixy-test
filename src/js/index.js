@@ -7,6 +7,7 @@ import calendar from './modules/calendar'
 import {validate} from './modules/validate'
 import {sendLogin} from "./axios/auth";
 
+export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
 
 const authForm = document.querySelector('#auth-form')
 

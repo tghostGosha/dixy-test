@@ -1,9 +1,11 @@
 import axios from "axios";
+import {API_BASE_URL} from "../index";
+import {openSuccessModal} from "../helpers/success-modal";
 
-export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
-const success = document.querySelector('[data-modal="success"]');
 const url = `${API_BASE_URL}/rules/`;
-
+const successEditRule = document.querySelector('[data-success="edit-rule"]')
+const successAddRule = document.querySelector('[data-success="add-rule"]');
+const successDeleteRule = document.querySelector('[data-success="delete-rule"]');
 //===========Список всех правила =================
 export const getRules = async () => {
   return await axios.get(url, {
@@ -42,7 +44,7 @@ export const getRuleDetail = async (id) => {
 
 //===========Создание правила =================
 export const createRule = (data) => {
-  axios.post(`${url}create/`, data,{
+  axios.post(`${url}create/`, data, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -51,10 +53,7 @@ export const createRule = (data) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    success.classList.add('active');
-    setTimeout(() => {
-      success.classList.remove('active');
-    }, 3000)
+    openSuccessModal(successAddRule)
   }).catch(function (error) {
 
     console.log(error);
@@ -63,8 +62,8 @@ export const createRule = (data) => {
 }
 
 //===========Редактирование правила =================
-export const updateRule = (data, id ) => {
-  axios.post(`${url}${id}/update/`, data,{
+export const updateRule = (data, id) => {
+  axios.post(`${url}${id}/update/`, data, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -73,7 +72,7 @@ export const updateRule = (data, id ) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    console.log(response)
+    openSuccessModal(successEditRule)
   }).catch(function (error) {
 
     console.log(error);
@@ -92,7 +91,7 @@ export const deleteRule = (id) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-
+    openSuccessModal(successDeleteRule)
   }).catch(function (error) {
 
     console.log(error);
@@ -102,7 +101,7 @@ export const deleteRule = (id) => {
 
 //===========Скачать правила =================
 export const downloadRule = (format) => {
-  axios.get(`${url}download/${format}`,{
+  axios.get(`${url}download/${format}`, {
     headers: {
       'Content-Type': 'application/json'
     },

@@ -16,7 +16,7 @@
 @@include('blocks/header.html')
 <main class="main__page">
 	@@include('blocks/sidebar.html')
-	<div class="success__modal" data-modal="success">
+	<div class="success__modal" data-success="add-rule">
 		<svg class="icon icon--check">
 			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
 		</svg>
@@ -25,6 +25,34 @@
 			<p>Новое правило доставки создано</p>
 		</div>
 		<div class="modal-close" data-modal="success-close">
+			<svg class="icon icon--close">
+				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+			</svg>
+		</div>
+	</div>
+	<div class="success__modal" data-success="edit-rule">
+		<svg class="icon icon--check">
+			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
+		</svg>
+		<div class="success__modal-text">
+			<span>Успешно</span>
+			<p>Правило изменено</p>
+		</div>
+		<div class="modal-close" data-success="close">
+			<svg class="icon icon--close">
+				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+			</svg>
+		</div>
+	</div>
+	<div class="success__modal" data-success="delete-rule">
+		<svg class="icon icon--check">
+			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
+		</svg>
+		<div class="success__modal-text">
+			<span>Успешно</span>
+			<p>Правило удалено</p>
+		</div>
+		<div class="modal-close" data-success="close">
 			<svg class="icon icon--close">
 				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
 			</svg>

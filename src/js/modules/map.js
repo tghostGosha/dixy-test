@@ -1,12 +1,14 @@
 import L from 'leaflet';
 import jsonData from '/DixyGeo.json';
 import 'leaflet-editable';
+import {getStoreDetail, getStoresMap, updateStore} from "../axios/warehouse";
 
 let currentPolygon = null;
 let currentWarehouse = null;
 let isEditing = false;
 let originalPolygonCoordinates = [];
 let map;
+let warehouseID;
 const polygonColor = '#47BDFD'
 const createPolygonButton = document.querySelector('[data-create="create-poligon"]');
 
@@ -22,17 +24,14 @@ const cancelEditPolygon = () => {
 cancelButton.addEventListener('click', cancelEditPolygon);
 
 
-export const savePolygon = async () => {
+export const savePolygon = async (id) => {
 
   if (!currentPolygon) {
-    // console.error('No polygon to save.');
     return;
   }
   try {
     const polygonCoordinates = getCurrentPolygonCoordinates(); // Get the coordinates of the current polygon
-    // const response = await axios.patch('/api/polygon', {
-    //     coordinates: polygonCoordinates
-    // });
+    updateStore({polygon: polygonCoordinates}, id)
     // console.log('Polygon data saved successfully:', response.data);
     toggleEditPolygon()
   } catch (error) {
@@ -52,15 +51,17 @@ export const toggleEditPolygon = () => {
   }
   isEditing = !isEditing;
 }
+//======Редактирование полигона====///
+const editButton = document.querySelector('[data-edit="polygon"]');
+const saveButton = document.querySelector('[data-save="save-polygon"]');
+
+editButton.addEventListener('click', toggleEditPolygon)
+saveButton.addEventListener('click', () => savePolygon(warehouseID))
 
 export const initializeMap = async () => {
-  try {
-    // const response = await fetch('https://delivery.dixy.ru/sklad/id');
-    // const jsonData2 = await response.json();
-  } catch (err) {
 
-  }
-  map = L.map('map', {
+  const dataStores = await getStoresMap()
+  map = new L.Map('map', {
     editable: true,
   }).setView([55.7558, 37.6173], 12);
   L.tileLayer(
@@ -69,6 +70,7 @@ export const initializeMap = async () => {
       attribution: '© OpenStreetMap Contributors',
     })
     .addTo(map);
+
   const attributionControl = document.querySelector('.leaflet-control-attribution');
 
   if (attributionControl) {
@@ -77,47 +79,40 @@ export const initializeMap = async () => {
 
 
   const customIcon = L.icon({
-    // iconUrl: './img/svgicons/map-marker.svg',
     iconUrl: './img/map-marker.svg',
-
     iconSize: [40, 40],
     iconAnchor: [20, 40],
-    popupAnchor: [0, -40]
+    popupAnchor: [0, -40],
   });
-
-  jsonData.warehouses.forEach((w) => {
+  dataStores.forEach((w) => {
     const marker = L.marker([w.latitude, w.longitude], {
-      icon: customIcon
+      icon: customIcon,
+      warehouseId: w.id
     }).addTo(map);
-    // const marker = L.marker([w.latitude, w.longitude]).addTo(map);
 
     marker.on('click', () => {
       handleMarkerClick(marker, map, w);
     });
-
-
-    // const marker = L.marker([w.latitude, w.longitude], {
-    //     icon: L.divIcon({
-    //         className: 'custom-marker',
-    //         html: `
-    //     <div class="marker-content">
-    //         <div class="marker-column left">
-    //             <div class="marker-name">${w.name}</div>
-    //         </div>
-    //         <div class="marker-column right">
-    //             <div class="marker-name">${w.name}</div>
-    //         </div>
-    //     </div>
-    // `,
-    //         iconSize: [200, 80],    // Adjust size as needed
-    //         iconAnchor: [100, 80],  // Center bottom point as anchor
-    //         popupAnchor: [0, -80]   // Popup position above the marker
-    //     })
-    // }).addTo(map);
-    // marker.on('click', () => {
-    //     handleMarkerClick(marker, map, w);
-    // });
   })
+  // jsonData.warehouses.forEach((w) => {
+  //   const marker = L.marker([w.latitude, w.longitude], {
+  //     icon: customIcon,
+  //     warehouseId: w.id
+  //   }).addTo(map);
+  //
+  //   marker.on('click', () => {
+  //     handleMarkerClick(marker, map, w);
+  //   });
+  // })
+
+}
+export const unInitializeMap = () => {
+  map.remove()
+  deletePolygonButton.disabled=true
+  if (currentPolygon) {
+    currentPolygon.remove();
+    currentPolygon = undefined;
+  }
 }
 const createWarehousePolygon = () => {
 
@@ -152,14 +147,22 @@ createPolygonButton.addEventListener('click', createWarehousePolygon);
 
 const showPolygonDeletionConfirmation = () => {
   const confirmModal = document.createElement('div');
-  confirmModal.classList.add('confirm-modal');
+  confirmModal.classList.add('confirm-modal', 'action-modal');
+
   confirmModal.innerHTML = `
-        <div class="modal-content">
-            <p>Вы уверены, что хотите удалить полигон?</p>
-            <button id="confirm_delete" class="confirm-button">Да</button>
-            <button id="cancel_delete" class="cancel-button">Нет</button>
+    <div class="modalActive">
+      <div class="modalWindow" >
+        <div class="modal-text">
+          <h4>Удалить полигон?</h4>
+          <p>Вы уверены, что хотите удалить полигон?</p>
         </div>
-    `;
+        <div class="button__wrapper">
+          <button id="cancel_delete" class="secondary__button">Отмена</button>
+          <button id="confirm_delete" class="primary__button">OK</button>
+        </div>
+      </div>
+    </div>
+  `;
 
   document.body.appendChild(confirmModal);
 
@@ -167,6 +170,9 @@ const showPolygonDeletionConfirmation = () => {
     if (currentPolygon) {
       currentPolygon.remove();
       currentPolygon = null;
+
+      // удаление полигона
+      updateStore({polygon: currentPolygon}, warehouseID)
     }
     alert('Полигон успешно удалён');
     document.body.removeChild(confirmModal);
@@ -174,16 +180,21 @@ const showPolygonDeletionConfirmation = () => {
   document.getElementById('cancel_delete').addEventListener('click', function () {
     document.body.removeChild(confirmModal);
   });
+  confirmModal.addEventListener("click", function (event) {
+    if (event.target === confirmModal) {
+      confirmModal.style.display = "none";
+    }
+  });
 };
+
 const deletePolygonButton = document.getElementById('delete_polygon')
+
 const updateDeleteButtonState = () => {
-  if (currentPolygon) {
-    deletePolygonButton.disabled = false; // Enable the delete button
-  } else {
-    deletePolygonButton.disabled = true; // Disable the delete button
-  }
+  deletePolygonButton.disabled = !currentPolygon && false;
 };
+
 deletePolygonButton.addEventListener('click', () => showPolygonDeletionConfirmation());
+
 const handleNodeAdd = e => {
   const coordinatesCount = currentPolygon.getLatLngs()[0].length;
   if (coordinatesCount > 100) {
@@ -191,12 +202,18 @@ const handleNodeAdd = e => {
     currentPolygon.editor.reset();
   }
 };
-const handleMarkerClick = (marker, map, warehouse) => {
+
+const handleMarkerClick = async (marker, map, warehouse) => {
+
   if (currentPolygon) {
     map.removeLayer(currentPolygon);
     currentPolygon = null;
   }
-  currentWarehouse = warehouse;
+  //===========Подключить к api=========
+  currentWarehouse = await getStoreDetail(warehouse.id);
+  warehouseID = currentWarehouse.id
+  // warehouseID = warehouse.id
+  // currentWarehouse = warehouse;
   if (warehouse.polygon && warehouse.polygon.length > 0) {
     currentPolygon = addPolygonToMap(warehouse, map);
     currentPolygon.on('editable:vertex:new', e => handleNodeAdd(e));
@@ -226,8 +243,11 @@ const addPolygonToMap = (warehouse, map) => {
     color: polygonColor,
     fillOpacity: 0.3
   }).addTo(map);
+  // console.log(addedPolygon)
+  // console.log(polygonCoordinates)
   return addedPolygon;
 };
+
 const getCurrentPolygonCoordinates = () => {
   const coordinates = currentPolygon.getLatLngs()[0].map(latLng => ({
     lat: latLng.lat,

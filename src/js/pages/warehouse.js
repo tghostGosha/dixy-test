@@ -6,13 +6,15 @@ import {downloadStore, getStores, updateStore} from "../axios/warehouse";
 import {warehouseValidation} from "../utils/warehouseValidation";
 import {updateWarehouse} from '../modules/updateWarehouse';
 import {modalWarehouseRule} from "../modules/modalWarehouseRule";
+import {closeSuccessModal} from "../helpers/success-modal";
 
 if (window.location.pathname.includes('warehouse')) {
   updateWarehouse()
   //===Список всех правил===////
   try {
-    getStores()
-  } catch (e){}
+    const storesData = await getStores()
+  } catch (e) {
+  }
 
 //======Скачать правила====///
   try {
@@ -22,21 +24,30 @@ if (window.location.pathname.includes('warehouse')) {
         downloadStore(formatDoc)
       }
     })
-  } catch(e){}
+  } catch (e) {
+  }
 }
+
+
 
 //======Вызов модальных окон====///
 const modalMap = document.querySelectorAll('[data-modal="map-modal"]');
 const modalRule = document.querySelectorAll('[data-modal="rule-modal"]');
 const modalBackgroundMap = document.querySelector('[data-modal="map"]');
 const modalBackgroundRule = document.querySelector('[data-modal="rule"]');
-try {
+const successAdd = document.querySelector('[data-success="add-polygon"]');
+const successClose =document.querySelector('[data-success="close"]')
 
+
+try {
   modalOpenMap(modalMap, modalBackgroundMap)
   modalWarehouseRule(modalRule, modalBackgroundRule)
-} catch (e) {
+} catch (e) {}
 
-}
+//======Закрытие "успешных" модальных окон====///
+try {
+  closeSuccessModal(successClose,successAdd);
+} catch (e) {}
 
 const warehouseForm = document.querySelector('#warehouseUpdateForm');
 

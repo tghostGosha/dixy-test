@@ -1,12 +1,11 @@
 import axios from "axios";
-
-export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
+import {API_BASE_URL} from "../index";
 
 const url = `${API_BASE_URL}/areas/`;
 
 
-export const getAreas = () => {
-  axios.get(url, {
+export const getAreas = async () => {
+  return await axios.get(url, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -15,9 +14,8 @@ export const getAreas = () => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    console.log(response)
+    return response.data
   }).catch(function (error) {
-
     console.log(error);
   })
 

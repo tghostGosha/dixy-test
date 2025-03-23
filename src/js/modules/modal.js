@@ -1,4 +1,4 @@
-import {initializeMap} from "./map";
+import {initializeMap, unInitializeMap} from "./map";
 
 const openMapModal = (modalWindow, bodyElementHTML) => {
   modalWindow.style.display = "block";
@@ -24,6 +24,7 @@ export const modalOpenMap = (button, modalWindow) => {
 
   modalClose.forEach((item) => {
     item.addEventListener("click", function () {
+      unInitializeMap()
       closeMapModal(modalWindow, bodyElementHTML);
     });
   })
@@ -31,6 +32,7 @@ export const modalOpenMap = (button, modalWindow) => {
 // закрытие модального окна на зону вне окна, т.е. на фон
   modalWindow.addEventListener("click", function (event) {
     if (event.target === modalWindow) {
+      unInitializeMap()
       modalWindow.style.display = "none";
       bodyElementHTML.classList.remove('active-modal')
     }

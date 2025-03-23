@@ -4,9 +4,10 @@ import dataUpdate from '../modules/updateRule';
 import {modalOpen} from "../modules/modal";
 
 import {validate} from "../modules/validate";
-import {successModal} from "../modules/success-modal";
+import {closeSuccessModal, successModal} from "../helpers/success-modal";
 import {createRule, deleteRule, downloadRule, getRules, updateRule} from "../axios/rules";
 import {RuleValidation} from "../utils/ruleValidation";
+
 
 
 //======Валидация нового правила====///
@@ -18,7 +19,8 @@ if (window.location.pathname.includes('main')) {
 
   //===Список всех правил===////
   try {
-    getRules()
+    const dataRules = await getRules()
+
   } catch (e){}
 
 //======Скачать правила====///
@@ -42,13 +44,20 @@ if (ruleUpdateForm) {
 }
 
 //======Закрытие модалки успешной отправки формы====///
+const successEditRule = document.querySelector('[data-success="edit-rule"]')
+const successAddRule = document.querySelector('[data-success="add-rule"]');
+const successDeleteRule = document.querySelector('[data-success="delete-rule"]');
+const successClose =document.querySelectorAll('[data-success="close"]')
+
 try {
-  const modalClose = document.querySelector('[data-modal="success-close"]');
-  successModal(modalClose, success)
+  closeSuccessModal(successClose, successEditRule)
+  closeSuccessModal(successClose,successAddRule);
+  closeSuccessModal(successClose,successDeleteRule);
 } catch (e) {}
 
+
 //======модалка удаления правила====///
-(function () {
+( function () {
   const deleteRuleButton = document.querySelector('[data-delete-rule="delete"]')
   const modalBackgroundDelete = document.querySelector('[data-modal-rule="delete"]');
   const bodyElementHTML = document.getElementsByTagName("body")[0];
@@ -69,10 +78,10 @@ try {
       modalBackgroundDelete.style.display = "none";
 
     });
-    deleteRuleButton.addEventListener('click', (event) => {
+    deleteRuleButton.addEventListener('click', async (event) => {
       event.preventDefault()
       deleteRule(id)
-      getRules()
+      await getRules()
       modalBackgroundDelete.style.display = "none";
 
     });

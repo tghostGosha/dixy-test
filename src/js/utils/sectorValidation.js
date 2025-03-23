@@ -1,5 +1,6 @@
 import {validate} from "../modules/validate";
 import {serializeForm} from "../helpers/serializeForm";
+import {openSuccessModal} from "../helpers/success-modal";
 
 //======Валидация сектора====///
 export const SectorValidation = (form, request, modal) => {
@@ -31,7 +32,6 @@ export const SectorValidation = (form, request, modal) => {
       serializeForm(form, request)
       form.reset()
       modal.classList.remove('active');
-
     })
     .onFail((fields) => {
 

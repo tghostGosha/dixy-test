@@ -1,10 +1,12 @@
 import axios from "axios";
-
-export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
+import {API_BASE_URL} from "../index";
+import {openSuccessModal} from "../helpers/success-modal";
 
 const url = `${API_BASE_URL}/stores/`;
 
-//===========Список всех правила =================
+const successAddSector = document.querySelector('[data-success="add-polygon"]');
+
+//===========Список всех складов =================
 export const getStores = async () => {
   return await axios.get(url, {
     headers: {
@@ -21,7 +23,7 @@ export const getStores = async () => {
   })
 
 }
-//===========Список всех правила =================
+//===========Список всех складов =================
 export const getStoreDetail = async (id) => {
   return await axios.get(`${url}${id}/detail`, {
     headers: {
@@ -41,7 +43,7 @@ export const getStoreDetail = async (id) => {
 }
 
 
-//===========Редактирование правила =================
+//===========Редактирование склада =================
 export const updateStore = (data, id ) => {
   axios.post(`${url}${id}/update/`, data,{
     headers: {
@@ -52,14 +54,30 @@ export const updateStore = (data, id ) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    console.log(response)
+    openSuccessModal(successAddSector)
   }).catch(function (error) {
 
     console.log(error);
   })
 
 }
+//===========Список всех правила =================
+export const getStoresMap = async () => {
+  return await axios.get(`${url}map/`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    auth: {
+      username: 'bitrix',
+      password: '2zwjc1h6yakt9wuo'
+    }
+  }).then((response) => {
+    return response.data
+  }).catch(function (error) {
+    console.log(error);
+  })
 
+}
 //===========Скачать склады =================
 export const downloadStore = (format) => {
   axios.get(`${url}download/${format}`,{
@@ -81,7 +99,6 @@ export const downloadStore = (format) => {
     document.body.removeChild(link);
     URL.revokeObjectURL(href);
   }).catch(function (error) {
-
     console.log(error);
   })
 

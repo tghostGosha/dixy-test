@@ -16,6 +16,20 @@
 @@include('blocks/header.html')
 <main class="warehouse__page">
 	@@include('blocks/sidebar.html')
+	<div class="success__modal" data-success="add-polygon">
+		<svg class="icon icon--check">
+			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
+		</svg>
+		<div class="success__modal-text">
+			<span>Успешно</span>
+			<p>Полигон задан</p>
+		</div>
+		<div class="modal-close" data-modal="success-close">
+			<svg class="icon icon--close">
+				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+			</svg>
+		</div>
+	</div>
 	<section class="page__section">
 		<div class="page__section-action">
 			<form action="#" class="search__form" id="search-form">

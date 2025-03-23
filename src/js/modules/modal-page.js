@@ -6,7 +6,7 @@ import {closeModal} from "../helpers/closeModal";
   const closeButton = document.querySelector('[data-close="close"]')
   const form = document.querySelector(".page__form")
   const cancelBtn = document.querySelector('[data-сancel="cancel"]')
-  const editButton = document.getElementById('edit_polygon');
+  const editButton = document.querySelector('[data-edit="polygon"]');
   const saveButton = document.querySelector('[data-save="save-polygon"]');
 
   try {
@@ -15,8 +15,8 @@ import {closeModal} from "../helpers/closeModal";
         modal.classList.add('active');
       }
     })
-    closeModal(cancelBtn,modal,form )
-    closeModal(closeButton,modal,form )
+    closeModal(cancelBtn, modal, form)
+    closeModal(closeButton, modal, form)
 
     editButton.addEventListener('click', toggleEditPolygon)
     saveButton.addEventListener('click', savePolygon)

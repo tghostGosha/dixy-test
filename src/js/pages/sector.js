@@ -1,4 +1,4 @@
-import {successModal} from "../modules/success-modal";
+import {closeSuccessModal, successModal} from "../helpers/success-modal";
 import {createSector, deleteSector, downloadSector, getSectors, updateSector} from "../axios/sectors";
 import dataUpdate from '../modules/updateSector';
 import {SectorValidation} from "../utils/sectorValidation";
@@ -7,7 +7,7 @@ import {SectorValidation} from "../utils/sectorValidation";
 if (window.location.pathname.includes('sector')) {
   //===Список всех секторов===////
 
-    getSectors()
+    const sectorsData  = await getSectors()
 
   //======Скачать сектора====///
   try {
@@ -22,27 +22,30 @@ if (window.location.pathname.includes('sector')) {
 
 
 const sectorForm = document.querySelector('#sector-form');
-const success = document.querySelector('[data-modal="success"]')
 const sectorUpdateForm = document.querySelector('#sectorUpdateForm');
 const modalCreate = document.querySelector('[data-create="sector"]');
 const modalUpdate = document.querySelector('[data-update="sector"]');
+const successEdit = document.querySelector('[data-success="edit-sector"]')
+const successAdd = document.querySelector('[data-success="add-sector"]');
+const successClose =document.querySelectorAll('[data-success="close"]')
+const successDelete =document.querySelector('[data-success="delete-sector"]');
+
 
 //======Валидация нового сектора====///
 if (sectorForm) {
-  SectorValidation(sectorForm, createSector, modalCreate)
+  SectorValidation(sectorForm, createSector, modalCreate);
 }
 //======Валидация редактирования сектора====///
 if (sectorUpdateForm) {
-  SectorValidation(sectorUpdateForm, updateSector, modalUpdate)
+  SectorValidation(sectorUpdateForm, updateSector, modalUpdate);
 }
 
-
+//======Закрытие "успешных" модальных окон====///
 try {
-  const modalClose = document.querySelector('[data-modal="success-close"]');
-  successModal(modalClose, success)
-} catch (e) {
-
-}
+  closeSuccessModal(successClose, successEdit)
+  closeSuccessModal(successClose,successAdd);
+  closeSuccessModal(successClose,successDelete);
+} catch (e) {}
 
 
 
@@ -67,10 +70,10 @@ try {
       modalBackgroundDelete.style.display = "none";
 
     });
-    confirmBtn.addEventListener('click', (event) => {
+    confirmBtn.addEventListener('click', async (event) => {
       event.preventDefault()
       deleteSector(id)
-      getSectors()
+      await getSectors()
       modalBackgroundDelete.style.display = "none";
 
     });

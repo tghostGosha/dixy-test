@@ -16,7 +16,7 @@
 @@include('blocks/header.html')
 <main class="sector__page">
 	@@include('blocks/sidebar.html')
-	<div class="success__modal" data-modal="success">
+	<div class="success__modal" data-success="add-sector">
 		<svg class="icon icon--check">
 			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
 		</svg>
@@ -24,12 +24,41 @@
 			<span>Успешно</span>
 			<p>Новый сектор создан</p>
 		</div>
-		<div class="modal-close" data-modal="success-close">
+		<div class="modal-close" data-success="close">
 			<svg class="icon icon--close">
 				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
 			</svg>
 		</div>
 	</div>
+	<div class="success__modal" data-success="edit-sector">
+		<svg class="icon icon--check">
+			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
+		</svg>
+		<div class="success__modal-text">
+			<span>Успешно</span>
+			<p>Сектор изменен</p>
+		</div>
+		<div class="modal-close" data-success="close">
+			<svg class="icon icon--close">
+				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+			</svg>
+		</div>
+	</div>
+	<div class="success__modal" data-success="delete-sector">
+		<svg class="icon icon--check">
+			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
+		</svg>
+		<div class="success__modal-text">
+			<span>Успешно</span>
+			<p>Сектор удален</p>
+		</div>
+		<div class="modal-close" data-success="close">
+			<svg class="icon icon--close">
+				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+			</svg>
+		</div>
+	</div>
+
 	<section class="page__section">
 		<div class="page__section-action">
 			<form action="#" class="search__form" id="search-form">

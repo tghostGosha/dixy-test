@@ -1,9 +1,11 @@
 import axios from "axios";
-
-export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
+import {openSuccessModal} from "../helpers/success-modal";
+import {API_BASE_URL} from "../index";
 
 const url = `${API_BASE_URL}/sectors`;
-const success = document.querySelector('[data-modal="success"]');
+const successEdit = document.querySelector('[data-success="edit-sector"]')
+const successAdd = document.querySelector('[data-success="add-sector"]');
+const successDelete =document.querySelector('[data-success="delete-sector"]');
 
 //===========Список всех секторов =================
 export const getSectors = async () => {
@@ -51,10 +53,7 @@ export const createSector = (data) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    success.classList.add('active');
-    setTimeout(() => {
-      success.classList.remove('active');
-    }, 3000)
+    openSuccessModal(successAdd)
   }).catch(function (error) {
     console.log(error);
   })
@@ -72,6 +71,7 @@ export const updateSector = ( data, id ) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
+    openSuccessModal(successEdit)
   }).catch(function (error) {
     console.log(error);
   })
@@ -89,6 +89,7 @@ export const deleteSector = (id) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
+    openSuccessModal(successDelete)
   }).catch(function (error) {
     console.log(error);
   })
