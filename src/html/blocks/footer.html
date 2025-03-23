@@ -5,7 +5,7 @@
 </head>
 <footer>
 	<div class="modalBackground" data-modal="map">
-		<div class="modalActive">
+		<div class="modalActive map-modal">
 			<div class="modalClose">
 				<svg class="icon icon--close">
 					<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
@@ -29,7 +29,7 @@
 					></div>
 
 					<div class="map__header">
-						<button class="primary__button" id="edit_polygon">
+						<button class="primary__button" id="edit_polygon" data-edit="polygon">
 							<svg class="icon icon--pencil" style="margin-right: 0;">
 								<use href="./img/svgsprite/sprite.symbol.svg#edit_pen"></use>
 							</svg>
@@ -72,7 +72,7 @@
 					<button class="secondary__button" data-exit="cancel">
 						Отмена
 					</button>
-					<button class="primary__button" data-exit="exit">
+					<button class="primary__button" data-exit="logout">
 						OK
 					</button>
 				</div>
@@ -97,7 +97,7 @@
 					<button class="secondary__button" data-delete-rule="cancel">
 						Отмена
 					</button>
-					<button class="primary__button" data-delete-rule="exit">
+					<button class="primary__button" data-delete-rule="delete">
 						OK
 					</button>
 				</div>
@@ -122,7 +122,7 @@
 					<button class="secondary__button" data-delete-sector="cancel">
 						Отмена
 					</button>
-					<button class="primary__button" data-delete-sector="exit">
+					<button class="primary__button" data-delete-sector="delete">
 						OK
 					</button>
 				</div>

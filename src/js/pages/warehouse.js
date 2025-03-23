@@ -1,74 +1,57 @@
 import resize from '../modules/rezizeRow';
-import {modalOpen} from "../modules/modal";
-import {tippyOpen} from "../modules/dropdown";
-import {validate} from "../modules/validate";
+import {modalOpenMap} from "../modules/modal";
+// import {tippyOpen} from "../modules/dropdown";
 import dataOpen from '../modules/modal-page';
+import {downloadStore, getStores, updateStore} from "../axios/warehouse";
+import {warehouseValidation} from "../utils/warehouseValidation";
+import {updateWarehouse} from '../modules/updateWarehouse';
+import {modalWarehouseRule} from "../modules/modalWarehouseRule";
+import {closeSuccessModal} from "../helpers/success-modal";
+
+if (window.location.pathname.includes('warehouse')) {
+  updateWarehouse()
+  //===Список всех правил===////
+  try {
+    const storesData = await getStores()
+  } catch (e) {
+  }
+
+//======Скачать правила====///
+  try {
+    document.addEventListener('click', function (e) {
+      if (e.target.matches('[data-download="format"]')) {
+        const formatDoc = e.target.textContent
+        downloadStore(formatDoc)
+      }
+    })
+  } catch (e) {
+  }
+}
+
 
 
 //======Вызов модальных окон====///
+const modalMap = document.querySelectorAll('[data-modal="map-modal"]');
+const modalRule = document.querySelectorAll('[data-modal="rule-modal"]');
+const modalBackgroundMap = document.querySelector('[data-modal="map"]');
+const modalBackgroundRule = document.querySelector('[data-modal="rule"]');
+const successAdd = document.querySelector('[data-success="add-polygon"]');
+const successClose =document.querySelector('[data-success="close"]')
+
+
 try {
-  const modalMap = document.querySelectorAll('[data-modal="map-modal"]');
-  const modalRule = document.querySelectorAll('[data-modal="rule-modal"]');
-  const modalBackgroundMap = document.querySelector('[data-modal="map"]');
-  const modalBackgroundRule = document.querySelector('[data-modal="rule"]');
-  modalOpen(modalMap, modalBackgroundMap)
-  modalOpen(modalRule, modalBackgroundRule)
-} catch (e) {
+  modalOpenMap(modalMap, modalBackgroundMap)
+  modalWarehouseRule(modalRule, modalBackgroundRule)
+} catch (e) {}
 
-}
-
-//======Валидация нового правила====///
-const warehouseForm = document.querySelector('#warehouse-form');
-const modal = document.querySelector('[data-modal="modal-page"]')
+//======Закрытие "успешных" модальных окон====///
 try {
-  validate(warehouseForm)
+  closeSuccessModal(successClose,successAdd);
+} catch (e) {}
 
-    .addField('#poligon', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
+const warehouseForm = document.querySelector('#warehouseUpdateForm');
 
-      {
-        validator: (value) => {
-          return value >= 0 && value < 100000
-        },
-        errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
-      },
-
-    ])
-    .addField('#radius', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-      {
-        validator: (value) => {
-          return value >= 0 && value < 100000
-        },
-        errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
-      },
-
-    ])
-    .addField('#ruleSelect', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-    ])
-    .addField('#sectorSelect', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-    ])
-    .onSuccess((ev) => {
-      ev.preventDefault();
-      warehouseForm.reset()
-      modal.classList.remove('active');
-    })
-    .onFail((fields) => {
-
-    });
-} catch (e) {
+//====== Валидация Редактирование склада====///
+if (warehouseForm) {
+  warehouseValidation(warehouseForm, updateStore)
 }

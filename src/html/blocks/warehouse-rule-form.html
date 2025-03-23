@@ -1,43 +1,43 @@
-<form class="warehouse__rule-form">
+<form class="warehouse__rule-form" id="warehouseRuleForm">
 	<fieldset disabled>
 		<div class="page__form-field">
-			<label for="id">ID</label>
-			<input type="text" value="12345" name="id" id="id">
+			<label for="ruleId">ID</label>
+			<input type="text" value="12345" name="ruleId" id="ruleId" readonly>
 		</div>
 		<div class="page__form-field">
 			<label for="title">Название</label>
-			<input type="text" placeholder="Enter" name="title" id="title">
+			<input type="text" value="" name="title" id="title" readonly>
 		</div>
 		<div class="page__form-field center">
 			<label>Активность</label>
 			<label class="switch-wrapper">
-				<input type="checkbox" data-switch="switch" checked/>
+				<input type="checkbox" data-switch="switch" id="activeSwitch" checked readonly/>
 				<span class="switch"></span>
 			</label>
 		</div>
 		<div class="page__form-field">
 			<label for="ruleArea">Область</label>
-			<input type="text" value="Область" name="ruleArea" id="ruleArea">
+			<input type="text" value="Область" name="ruleArea" id="ruleArea" readonly>
 		</div>
 		<div class="page__form-field">
 			<label for="sector">Сектор доставки</label>
-			<input type="text" value="Сектор" name="sector" id="sector">
+			<input type="text" value="Сектор" name="sector" id="sector" readonly>
 		</div>
 		<div class="page__form-field">
 			<label for="warehouseNumber">Номер склада</label>
-			<input type="text" placeholder="Enter" name="costDelivery" id="warehouseNumber">
+			<input type="text"  value="" name="costDelivery" id="warehouseNumber" readonly>
 		</div>
 		<div class="page__form-field">
 			<label for="costDelivery">Стоимость доставки</label>
-			<input type="number" placeholder="Enter" name="costDelivery" id="costDelivery">
+			<input type="number" value="" name="costDelivery" id="costDelivery" readonly>
 		</div>
 		<div class="page__form-field">
 			<label for="freeDelivery">Бесплатная доставка от</label>
-			<input type="number" placeholder="Enter" name="freeDelivery" id="freeDelivery">
+			<input type="number" value=""  name="freeDelivery" id="freeDelivery" readonly>
 		</div>
 		<div class="page__form-field">
 			<label for="minCost">Минимальный чек</label>
-			<input type="number" placeholder="Enter" name="minCost" id="minCost">
+			<input type="number" value="" name="minCost" id="minCost" readonly>
 		</div>
 	</fieldset>
 </form>

@@ -5,8 +5,9 @@ import sector from './pages/sector'
 import header from './pages/header'
 import calendar from './modules/calendar'
 import {validate} from './modules/validate'
-import {sendLogin} from "./axios/login";
+import {sendLogin} from "./axios/auth";
 
+export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
 
 const authForm = document.querySelector('#auth-form')
 
@@ -53,6 +54,7 @@ function serializeForm(formNode) {
   return data
 }
 
+
 //========запрещать после 0 вводить другие числа======
 const zero = document.querySelectorAll(".onlyZero");
 try {
@@ -66,6 +68,18 @@ try {
 } catch (e) {
 }
 
+//========разрешать только цифры, пробел и запятую===========
+const warehouseArray = document.querySelectorAll('[data-id="warehouseNumberArray"]')
+
+try {
+  warehouseArray.forEach((item)=> {
+    item.addEventListener('keydown', function () {
+      let res = /[^0-9 ,\b]+$/g.exec(item.value);
+      item.value = item.value.replace(res, '');
+    })
+  })
+} catch (e) {
+}
 
 //========разрешать только русские буквы, пробел, точку и тире===========
 const onlyRus = document.querySelectorAll(".onlyRus");

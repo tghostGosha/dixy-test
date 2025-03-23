@@ -3,6 +3,7 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -10,7 +11,9 @@ body {
   color: var(--text-color);
   font-family: $font-family-lato;
   text-wrap: balance;
-  height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   //overflow-x: hidden;
   overflow: hidden;
   @include scrollbar;
@@ -27,7 +30,12 @@ img {
 a, button {
   transition: all 0.2s ease-in;
 }
-
+.hide {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+}
 code {
   background-color: #e9f1f6;
   padding: 0.2rem;

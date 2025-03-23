@@ -1,11 +1,11 @@
-<form class="page__form" action="#" id="warehouse-form">
+<form class="page__form" id="warehouseUpdateForm">
 	<div class="page__form-field">
 		<label for="id">Номер</label>
-		<input type="text" value="12345" name="id" id="id" disabled>
+		<input type="text" name="id" value="12345"  id="id" readonly>
 	</div>
 	<div class="page__form-field" >
 		<label for="ruleSelect" >Правило</label>
-		<select name="rule" id="ruleSelect" data-select="select" >
+		<select name="ruleSelect" id="ruleSelect" data-select="select" >
 			<option value="">Выберите правило</option>
 			<option value="rule1">Правило 1</option>
 			<option value="rule2">Правило 2</option>
@@ -15,17 +15,11 @@
 	</div>
 	<div class="page__form-field" >
 		<label for="areaSelect" >Область</label>
-		<select name="area" id="areaSelect" data-select="select" disabled>
-			<option value="">Выберите область</option>
-			<option value="moscow" selected>Московская область</option>
-			<option value="tverskaya">Тверская область</option>
-			<option value="vladimir">Владимирская область</option>
-			<option value="ivanovo">Ивановская область</option>
-		</select>
+		<input type="text" value="" name="areaSelect" id="areaSelect" readonly>
 	</div>
 	<div class="page__form-field">
 		<label for="sectorSelect" >Сектор</label>
-		<select name="sector" id="sectorSelect">
+		<select name="sectorSelect" id="sectorSelect">
 			<option value="">Сектор доставки</option>
 			<option value="himki">Химки</option>
 			<option value="center">Центр</option>
@@ -35,37 +29,37 @@
 	</div>
 	<div class="page__form-field">
 		<label>Открытие</label>
-		<span>18:18:00</span>
+		<span>09:00</span>
 	</div>
 	<div class="page__form-field">
 		<label>Закрытие</label>
-		<span>18:18:00</span>
+		<span>23:00</span>
 	</div>
 	<div class="page__form-field">
 		<label>Приоритет</label>
-		<span>1</span>
+		<span id="priority">1</span>
 	</div>
 	<div class="page__form-field checkbox">
 		<label class="custom-checkbox">
-			<input type="checkbox" value=""  disabled>
+			<input type="checkbox" value="" id="delivery" name="delivery" readonly>
 			<span>Доставка</span>
 		</label>
 		<label class="custom-checkbox">
-			<input type="checkbox" value="" checked disabled>
+			<input type="checkbox" value="" id="pickup" checked readonly>
 			<span>Самовывоз</span>
 		</label>
 	</div>
 	<div class="page__form-field">
 		<label for="radius">Радиус</label>
-		<input type="number" placeholder="Enter" name="radius" id="radius" required>
+		<input type="number" placeholder="Enter" name="radius" id="radius">
 	</div>
 	<div class="page__form-field">
 		<label for="poligon">Полигон</label>
-		<input type="text" placeholder="Enter" name="poligon" id="poligon" required>
+		<input type="text" placeholder="Enter" name="poligon" id="poligon">
 	</div>
 	<div class="page__form-buttons">
 		<button class="primary__button" type="submit" >Сохранить</button>
-		<button class="secondary__button" data-сancel="cancel" >Отменить</button>
+		<button class="secondary__button" data-сancel="update-warehouse" >Отменить</button>
 	</div>
 
 

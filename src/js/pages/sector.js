@@ -1,70 +1,68 @@
-import {validate} from "../modules/validate";
-import {successModal} from "../modules/success-modal";
+import {closeSuccessModal, successModal} from "../helpers/success-modal";
+import {createSector, deleteSector, downloadSector, getSectors, updateSector} from "../axios/sectors";
+import dataUpdate from '../modules/updateSector';
+import {SectorValidation} from "../utils/sectorValidation";
 
-//======Валидация нового правила====///
-const sectorForm = document.querySelector('#sector-form');
-const modal = document.querySelector('[data-modal="modal-page"]');
-const success = document.querySelector('[data-modal="success"]')
-try {
-  validate(sectorForm)
-    .addField('#title', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-      {
-        rule: 'minLength',
-        value: 2,
-        errorMessage: 'А-я, 0-9. Мин - 2 символа'
-      },
-      {
-        rule: 'maxLength',
-        value: 100,
-        errorMessage: 'А-я, 0-9. Макс - 100 символов'
-      },
-    ])
-    .addField('#areaSelect', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-    ])
-    .onSuccess((ev) => {
-      ev.preventDefault();
-      sectorForm.reset()
-      modal.classList.remove('active');
-      success.classList.add('active');
-      setTimeout(() => {
-        success.classList.remove('active');
-      }, 3000)
+
+if (window.location.pathname.includes('sector')) {
+  //===Список всех секторов===////
+
+    const sectorsData  = await getSectors()
+
+  //======Скачать сектора====///
+  try {
+    document.addEventListener('click', function (e) {
+      if (e.target.matches('[data-download="format"]')) {
+        const formatDoc = e.target.textContent
+        downloadSector(formatDoc)
+      }
     })
-    .onFail((fields) => {
-
-    });
-} catch (e) {
-
+  } catch(e){}
 }
 
-//======Закрытие модалки успешной отправки формы====///
+
+const sectorForm = document.querySelector('#sector-form');
+const sectorUpdateForm = document.querySelector('#sectorUpdateForm');
+const modalCreate = document.querySelector('[data-create="sector"]');
+const modalUpdate = document.querySelector('[data-update="sector"]');
+const successEdit = document.querySelector('[data-success="edit-sector"]')
+const successAdd = document.querySelector('[data-success="add-sector"]');
+const successClose =document.querySelectorAll('[data-success="close"]')
+const successDelete =document.querySelector('[data-success="delete-sector"]');
+
+
+//======Валидация нового сектора====///
+if (sectorForm) {
+  SectorValidation(sectorForm, createSector, modalCreate);
+}
+//======Валидация редактирования сектора====///
+if (sectorUpdateForm) {
+  SectorValidation(sectorUpdateForm, updateSector, modalUpdate);
+}
+
+//======Закрытие "успешных" модальных окон====///
 try {
-  const modalClose = document.querySelector('[data-modal="success-close"]');
-  successModal(modalClose, success)
-} catch (e) {
+  closeSuccessModal(successClose, successEdit)
+  closeSuccessModal(successClose,successAdd);
+  closeSuccessModal(successClose,successDelete);
+} catch (e) {}
 
-}
+
+
 //======модалка удаления сектора====///
 (function () {
   const modalBackgroundDelete = document.querySelector('[data-modal-sector="delete"]');
   const bodyElementHTML = document.getElementsByTagName("body")[0];
-  const closeButton = document.querySelector('[data-delete-sector="close"]');
   const cancelBtn = document.querySelector('[data-delete-sector="cancel"]');
-
+  const confirmBtn = document.querySelector('[data-delete-sector="delete"]')
+  let id
   try {
     document.addEventListener('click', function (e) {
-      if (e.target.matches('[data-delete-sector="delete"]')) {
+      if (e.target.matches('[data-delete="delete-sector"]')) {
         modalBackgroundDelete.style.display = "block";
         bodyElementHTML.classList.add('active-modal');
-
+        const parent = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+        id = parent.getAttribute("id");
       }
     })
     cancelBtn.addEventListener('click', (e) => {
@@ -72,7 +70,10 @@ try {
       modalBackgroundDelete.style.display = "none";
 
     });
-    closeButton.addEventListener('click', () => {
+    confirmBtn.addEventListener('click', async (event) => {
+      event.preventDefault()
+      deleteSector(id)
+      await getSectors()
       modalBackgroundDelete.style.display = "none";
 
     });

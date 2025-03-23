@@ -49,7 +49,7 @@
 
   }
 
-  input, select {
+  input, select,textarea {
     @include input-default;
     max-width: 432px;
   }

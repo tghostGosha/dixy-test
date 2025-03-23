@@ -16,7 +16,7 @@
 @@include('blocks/header.html')
 <main class="main__page">
 	@@include('blocks/sidebar.html')
-	<div class="success__modal" data-modal="success">
+	<div class="success__modal" data-success="add-rule">
 		<svg class="icon icon--check">
 			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
 		</svg>
@@ -25,6 +25,34 @@
 			<p>Новое правило доставки создано</p>
 		</div>
 		<div class="modal-close" data-modal="success-close">
+			<svg class="icon icon--close">
+				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+			</svg>
+		</div>
+	</div>
+	<div class="success__modal" data-success="edit-rule">
+		<svg class="icon icon--check">
+			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
+		</svg>
+		<div class="success__modal-text">
+			<span>Успешно</span>
+			<p>Правило изменено</p>
+		</div>
+		<div class="modal-close" data-success="close">
+			<svg class="icon icon--close">
+				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
+			</svg>
+		</div>
+	</div>
+	<div class="success__modal" data-success="delete-rule">
+		<svg class="icon icon--check">
+			<use href="./img/svgsprite/sprite.symbol.svg#check"></use>
+		</svg>
+		<div class="success__modal-text">
+			<span>Успешно</span>
+			<p>Правило удалено</p>
+		</div>
+		<div class="modal-close" data-success="close">
 			<svg class="icon icon--close">
 				<use href="./img/svgsprite/sprite.symbol.svg#close"></use>
 			</svg>
@@ -53,10 +81,16 @@
 					</svg>
 					Скачать
 				</button>
-				<ul class="dropdown-menu"  style="display: none;" data-download="template">
-					<li><a class="dropdown-item" href="#">XLSX</a></li>
-					<li><a class="dropdown-item" href="#">CSV</a></li>
-					<li><a class="dropdown-item" href="#">PDF</a></li>
+				<ul class="dropdown-menu" style="display: none;" data-download="template">
+					<li>
+						<button class="dropdown-item" data-download="format">XLSX</button>
+					</li>
+					<li>
+						<button class="dropdown-item" data-download="format">CSV</button>
+					</li>
+					<li>
+						<button class="dropdown-item" data-download="format">PDF</button>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -122,7 +156,7 @@
 					</div>
 				</div>
 				<ul class="content__list">
-					<li class="content__list-item resizable" >
+					<li class="content__list-item resizable" id="772366223">
 						<div class="dropdown">
 							<button data-menu="menu-open">
 								<svg class="icon icon--menu">
@@ -131,7 +165,7 @@
 							</button>
 							<ul class="dropdown-menu" data-menu="menu" style="display: none;">
 								<li>
-									<button class="dropdown-item" data-open="open">
+									<button class="dropdown-item" data-update="open">
 										<svg class="icon icon--edit">
 											<use href="./img/svgsprite/sprite.symbol.svg#edit"></use>
 										</svg>
@@ -139,7 +173,7 @@
 									</button>
 								</li>
 								<li>
-									<button class="dropdown-item" data-delete-rule="delete">
+									<button class="dropdown-item" data-delete="delete">
 										<svg class="icon icon--delete">
 											<use href="./img/svgsprite/sprite.symbol.svg#delete"></use>
 										</svg>
@@ -150,15 +184,16 @@
 						</div>
 						<div class="field">
 							<span>772366223</span>
-						</div >
+						</div>
 						<div class="field">
 							<span>Акция доставка по 99р</span>
 						</div>
-						<form action="#">
+						<div class="field-checkbox">
 							<label class="switch-wrapper">
-								<input type="checkbox" data-switch="switch"/>
+								<input type="checkbox" data-switch="switch" checked disabled/>
 								<span class="switch"></span>
-							</label></form>
+							</label>
+						</div>
 						<div class="field">
 							<span>БРЯНСКАЯ ОБЛАСТЬ</span>
 						</div>
@@ -194,6 +229,20 @@
 				<div class="modal-body">
 					<h2>Новое правило</h2>
 					@@include('blocks/rule-form.html')
+				</div>
+			</div>
+			<div class="page__section-modal" data-modal="update-rule">
+				<div class="modal-header">
+					<button class="transparent__button" data-close="update-rule">
+						<svg class="icon icon--arrow-left">
+							<use href="./img/svgsprite/sprite.symbol.svg#arrow-left"></use>
+						</svg>
+						Назад
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2>Редактировать правило</h2>
+					@@include('blocks/rule-update-form.html')
 				</div>
 			</div>
 		</div>
