@@ -1,6 +1,6 @@
 import axios from "axios";
-import {API_BASE_URL} from "../index";
-
+// import {API_BASE_URL} from "../index";
+export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
 const url = `${API_BASE_URL}/auth/`;
 const authError = document.querySelector('[data-error="auth"]');
 

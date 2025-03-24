@@ -1,5 +1,6 @@
 import axios from "axios";
-import {API_BASE_URL} from "../index";
+import {API_BASE_URL} from "./auth";
+
 
 const url = `${API_BASE_URL}/areas/`;
 

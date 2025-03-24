@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_BASE_URL} from "../index";
+import {API_BASE_URL} from "./auth";
 import {openSuccessModal} from "../helpers/success-modal";
 
 const url = `${API_BASE_URL}/rules/`;

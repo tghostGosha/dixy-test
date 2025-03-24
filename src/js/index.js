@@ -1,3 +1,4 @@
+
 import dropdown from './modules/dropdown.js';
 import main from './pages/main'
 import warehouse from './pages/warehouse'
@@ -6,8 +7,6 @@ import header from './pages/header'
 import calendar from './modules/calendar'
 import {validate} from './modules/validate'
 import {sendLogin} from "./axios/auth";
-
-export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
 
 const authForm = document.querySelector('#auth-form')
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {openSuccessModal} from "../helpers/success-modal";
-import {API_BASE_URL} from "../index";
+import {API_BASE_URL} from "./auth";
 
 const url = `${API_BASE_URL}/sectors`;
 const successEdit = document.querySelector('[data-success="edit-sector"]')
