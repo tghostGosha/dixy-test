@@ -2,8 +2,12 @@ import {closeSuccessModal} from "../helpers/success-modal";
 import {createSector, deleteSector, downloadSector, getSectors, updateSector} from "../axios/sectors";
 import dataUpdate from '../modules/updateSector';
 import {SectorValidation} from "../utils/sectorValidation";
+import {searchInput} from "../helpers/search";
 
-
+//======Поиск====///
+const search = document.querySelector('#search')
+const searchButton = document.querySelector('#search-button');
+searchInput(search, searchButton )
 if (window.location.pathname.includes('sector')) {
   //===Список всех секторов===////
 

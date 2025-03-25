@@ -7,6 +7,7 @@ import {warehouseValidation} from "../utils/warehouseValidation";
 import {updateWarehouse} from '../modules/updateWarehouse';
 import {modalWarehouseRule} from "../modules/modalWarehouseRule";
 import {closeSuccessModal} from "../helpers/success-modal";
+import {searchInput} from "../helpers/search";
 
 if (window.location.pathname.includes('warehouse')) {
   updateWarehouse()
@@ -26,6 +27,11 @@ if (window.location.pathname.includes('warehouse')) {
     })
   } catch (e) {
   }
+
+  //======Поиск====///
+  const search = document.querySelector('#search')
+  const searchButton = document.querySelector('#search-button');
+  searchInput(search, searchButton,  )
 }
 
 

@@ -82,7 +82,7 @@ export const updateRule = (data, id) => {
 
 //===========Удаление правила =================
 export const deleteRule = (id) => {
-  axios.post(`${url}${id}delete/`, {
+  axios.post(`${url}${id}/delete/`, {
     headers: {
       'Content-Type': 'application/json'
     },

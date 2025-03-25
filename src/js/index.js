@@ -7,6 +7,9 @@ import header from './pages/header'
 import calendar from './modules/calendar'
 import {validate} from './modules/validate'
 import {sendLogin} from "./axios/auth";
+import {getAreas} from "./axios/areas";
+import {serializeForm} from "./helpers/serializeForm";
+import {getSectors} from "./axios/sectors";
 
 const authForm = document.querySelector('#auth-form')
 
@@ -37,20 +40,14 @@ try {
 
     .onSuccess((ev) => {
       ev.preventDefault();
-      serializeForm(authForm)
+      serializeForm(authForm, sendLogin)
+
     })
   // .onFail((fields) => {
   //   authError.style.display = 'block'
   //   console.log(dataForm)
   // });
 } catch (e) {
-}
-
-
-function serializeForm(formNode) {
-  let data = new FormData(formNode)
-  sendLogin(data)
-  return data
 }
 
 
@@ -79,6 +76,31 @@ try {
   })
 } catch (e) {
 }
+//========заполняем Select Области===========
+const dataAreas = await getAreas()
+const areasSelect = document.querySelectorAll('[data-id="areaSelect"]');
+
+areasSelect.forEach(select => {
+  dataAreas.forEach(function(v){
+    let option = document.createElement("option");
+    option.value = v.id;
+    option.innerHTML = v.name;
+    select.appendChild(option);
+  });
+})
+
+//========заполняем Select Секторов===========
+const dataSectors = await getSectors()
+const sectorsSelect = document.querySelectorAll('[data-id="sectorSelect"]');
+
+sectorsSelect.forEach(select => {
+  dataSectors.forEach(function(v){
+    let option = document.createElement("option");
+    option.value = v.id;
+    option.innerHTML = v.name;
+    select.appendChild(option);
+  });
+})
 
 //========разрешать только русские буквы, пробел, точку и тире===========
 const onlyRus = document.querySelectorAll(".onlyRus");
@@ -93,7 +115,7 @@ try {
 }
 //========разрешать только русские буквы, цифры, пробел, точку и тире===========
 const searchInput = document.querySelectorAll('#search')
-const searchForm = document.querySelector('#search-form')
+const searchForm = document.querySelector('[data-search="search"]')
 try {
   searchInput.forEach((item) => {
     item.addEventListener("keydown", function () {
@@ -104,7 +126,7 @@ try {
   validate(searchForm)
     .addField('#search', [
       {
-        rule: 'maxLength',
+        rule: 'minLength',
         value: 3,
         errorMessage: 'Максимальное кол-во символов - 100'
       },

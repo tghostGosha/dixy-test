@@ -1,18 +1,17 @@
-import dropdown from '../modules/dropdown';
-import dataOpen from '../modules/modal-page';
-import dataUpdate from '../modules/updateRule';
-import {modalOpen} from "../modules/modal";
-
 import {closeSuccessModal} from "../helpers/success-modal";
 import {createRule, deleteRule, downloadRule, getRules, updateRule} from "../axios/rules";
 import {RuleValidation} from "../utils/ruleValidation";
+import {searchInput} from "../helpers/search";
 
+//======Поиск====///
+const search = document.querySelector('#search')
+const searchButton = document.querySelector('#search-button');
+searchInput(search, searchButton )
 
 
 //======Валидация нового правила====///
 const ruleForm = document.querySelector('#rule-form');
 const ruleUpdateForm = document.querySelector('#ruleUpdateForm');
-const success = document.querySelector('[data-modal="success"]');
 
 if (window.location.pathname.includes('main')) {
 

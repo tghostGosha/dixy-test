@@ -16,12 +16,14 @@ import {closeModal} from "../helpers/closeModal";
   const freeDelivery = document.querySelector('#updateFreeDelivery');
   const minCost = document.querySelector('#updateMinCost');
   let ruleId = document.querySelector('#id');
+
   try {
     document.addEventListener('click', function (e) {
       if (e.target.matches('[data-update="open"]')) {
         const parent = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+        console.log(parent)
         let id = parent.getAttribute("id");
-        ruleId.value = id
+        // ruleId.value = id
         e.preventDefault()
         getRuleDetail(id).then((response) => {
           if (response) {
