@@ -11,7 +11,7 @@ searchInput(search, searchButton )
 if (window.location.pathname.includes('sector')) {
   //===Список всех секторов===////
 
-    const sectorsData  = await getSectors()
+    // const sectorsData  = await getSectors()
 
   //======Скачать сектора====///
   try {
@@ -21,7 +21,9 @@ if (window.location.pathname.includes('sector')) {
         downloadSector(formatDoc)
       }
     })
-  } catch(e){}
+  } catch(e){
+    console.log(e)
+  }
 }
 
 

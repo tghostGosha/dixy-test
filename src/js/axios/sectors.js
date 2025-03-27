@@ -13,7 +13,9 @@ export const getSectors = async () => {
     headers: {
       'Content-Type': 'application/json'
     },
+    
     auth: {
+
       username: 'bitrix',
       password: '2zwjc1h6yakt9wuo'
     }

@@ -1,5 +1,4 @@
 import axios from "axios";
-// import {API_BASE_URL} from "../index";
 export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
 const url = `${API_BASE_URL}/auth/`;
 const authError = document.querySelector('[data-error="auth"]');
@@ -16,10 +15,9 @@ export const sendLogin = (data) => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    window.location.href = '/main.html';
+    window.location.href = '/';
   }).catch(function (error) {
     authError.style.display = 'block'
-    // console.log(error);
   })
 
 }
@@ -35,7 +33,7 @@ export const logOut = () => {
       password: '2zwjc1h6yakt9wuo'
     }
   }).then((response) => {
-    window.location.href = '/';
+    window.location.href = '/auth/';
   }).catch(function (error) {
     // console.log(error);
   })
