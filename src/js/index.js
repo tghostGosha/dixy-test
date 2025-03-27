@@ -11,6 +11,8 @@ import {getAreas} from "./axios/areas";
 import {serializeForm} from "./helpers/serializeForm";
 import {getSectors} from "./axios/sectors";
 
+
+
 const authForm = document.querySelector('#auth-form')
 
 try {
@@ -81,7 +83,7 @@ const dataAreas = await getAreas()
 const areasSelect = document.querySelectorAll('[data-id="areaSelect"]');
 
 areasSelect.forEach(select => {
-  dataAreas.forEach(function(v){
+  dataAreas.data.forEach(function(v){
     let option = document.createElement("option");
     option.value = v.id;
     option.innerHTML = v.name;
@@ -94,7 +96,7 @@ const dataSectors = await getSectors()
 const sectorsSelect = document.querySelectorAll('[data-id="sectorSelect"]');
 
 sectorsSelect.forEach(select => {
-  dataSectors.forEach(function(v){
+  dataSectors.data.forEach(function(v){
     let option = document.createElement("option");
     option.value = v.id;
     option.innerHTML = v.name;

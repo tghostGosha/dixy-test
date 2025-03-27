@@ -11,8 +11,8 @@ searchInput(search, searchButton )
 if (window.location.pathname.includes('sector')) {
   //===Список всех секторов===////
 
-    // const sectorsData  = await getSectors()
-
+    const sectorsData  = await getSectors()
+    console.log(sectorsData, 'sectorsData')
   //======Скачать сектора====///
   try {
     document.addEventListener('click', function (e) {

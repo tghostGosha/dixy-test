@@ -61,7 +61,19 @@ export const updateStore = (data, id ) => {
   })
 
 }
-//===========Список всех правила =================
+// export const getPeople = async () => {
+//   return await axios.get(`https://swapi.dev/api/people/`, {
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//   }).then((response) => {
+//     return response.data
+//   }).catch(function (error) {
+//     console.log(error);
+//   })
+//
+// }
+//===========Список всех складов =================
 export const getStoresMap = async () => {
   return await axios.get(`${url}map/`, {
     headers: {

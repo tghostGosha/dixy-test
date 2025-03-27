@@ -1,6 +1,6 @@
 import axios from "axios";
 import {openSuccessModal} from "../helpers/success-modal";
-import {API_BASE_URL} from "./auth";
+import {API_BASE_URL, BASIC_AUTH} from "./auth";
 
 const url = `${API_BASE_URL}/sectors`;
 const successEdit = document.querySelector('[data-success="edit-sector"]')
@@ -9,16 +9,11 @@ const successDelete =document.querySelector('[data-success="delete-sector"]');
 
 //===========Список всех секторов =================
 export const getSectors = async () => {
-  return await axios.get(url, {
+  return await axios.get(`${url}/`, {
     headers: {
-      'Content-Type': 'application/json'
+      'Authorization': 'Basic Auth' + BASIC_AUTH
     },
-    
-    auth: {
 
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
-    }
   }).then((response) => {
     return response.data
   }).catch(function (error) {

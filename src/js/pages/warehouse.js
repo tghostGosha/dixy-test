@@ -2,7 +2,7 @@ import resize from '../modules/rezizeRow';
 import {modalOpenMap} from "../modules/modal";
 // import {tippyOpen} from "../modules/dropdown";
 import dataOpen from '../modules/modal-page';
-import {downloadStore, getStores, updateStore} from "../axios/warehouse";
+import {downloadStore, getPeople, getStores, updateStore} from "../axios/warehouse";
 import {warehouseValidation} from "../utils/warehouseValidation";
 import {updateWarehouse} from '../modules/updateWarehouse';
 import {modalWarehouseRule} from "../modules/modalWarehouseRule";
@@ -33,7 +33,6 @@ if (window.location.pathname.includes('warehouse')) {
   const searchButton = document.querySelector('#search-button');
   searchInput(search, searchButton,  )
 }
-
 
 
 //======Вызов модальных окон====///

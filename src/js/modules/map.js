@@ -58,9 +58,11 @@ const saveButton = document.querySelector('[data-save="save-polygon"]');
 editButton.addEventListener('click', toggleEditPolygon)
 saveButton.addEventListener('click', () => savePolygon(warehouseID))
 
+
 export const initializeMap = async () => {
 
   const dataStores = await getStoresMap()
+  console.log(dataStores)
   map = new L.Map('map', {
     editable: true,
   }).setView([55.7558, 37.6173], 12);
@@ -84,7 +86,9 @@ export const initializeMap = async () => {
     iconAnchor: [20, 40],
     popupAnchor: [0, -40],
   });
-  dataStores.forEach((w) => {
+
+  dataStores.data.forEach((w) => {
+    console.log(w)
     const marker = L.marker([w.latitude, w.longitude], {
       icon: customIcon,
       warehouseId: w.id
@@ -94,6 +98,8 @@ export const initializeMap = async () => {
       handleMarkerClick(marker, map, w);
     });
   })
+
+
   // jsonData.warehouses.forEach((w) => {
   //   const marker = L.marker([w.latitude, w.longitude], {
   //     icon: customIcon,

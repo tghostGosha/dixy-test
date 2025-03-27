@@ -2,6 +2,16 @@ import axios from "axios";
 export const API_BASE_URL = 'https://delivery-test.dixy.ru/api';
 const url = `${API_BASE_URL}/auth/`;
 const authError = document.querySelector('[data-error="auth"]');
+export let BASIC_AUTH
+try {
+  const cookie = getCookie()
+
+
+  if (cookie) {
+    BASIC_AUTH=cookie.BX_USER_ID
+  }
+} catch (e) {}
+
 
 
 //===========Авторизация =================
