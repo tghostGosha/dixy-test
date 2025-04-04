@@ -1,17 +1,22 @@
 import L from 'leaflet';
 import jsonData from '/DixyGeo.json';
 import 'leaflet-editable';
+import 'leaflet/dist/leaflet.css'
 import {getStoreDetail, getStoresMap, updateStore} from "../axios/warehouse";
+import {string} from "i/lib/util";
 
 let currentPolygon = null;
+let currentRadius = null;
 let currentWarehouse = null;
 let isEditing = false;
 let originalPolygonCoordinates = [];
 let map;
 let warehouseID;
+let storeId
 const polygonColor = '#47BDFD'
+const polygonRadiusColor = '#f2f5ba'
 const createPolygonButton = document.querySelector('[data-create="create-poligon"]');
-
+let newPolygon = null;
 
 const mapFooterButtons = document.querySelector('.map-footer-buttons');
 const cancelButton = document.querySelector('[data-save="cancel"]');
@@ -24,30 +29,46 @@ const cancelEditPolygon = () => {
 cancelButton.addEventListener('click', cancelEditPolygon);
 
 
-export const savePolygon = async (id) => {
 
+export const savePolygon = async (id) => {
+  console.log(currentPolygon, 'currentPolygon savePolygon')
   if (!currentPolygon) {
     return;
   }
+  if(newPolygon) {
+    const polygonCoordinates = getCurrentPolygonCoordinates();
+    newPolygon.polygon = JSON.stringify(polygonCoordinates);
+    updateStore(newPolygon, newPolygon.id)
+    toggleEditPolygon()
+    isEditing =false
+    newPolygon= null
+    map.removeLayer(currentRadius);
+  }
   try {
     const polygonCoordinates = getCurrentPolygonCoordinates(); // Get the coordinates of the current polygon
-    updateStore({polygon: polygonCoordinates}, id)
-    // console.log('Polygon data saved successfully:', response.data);
+    currentWarehouse.polygon = JSON.stringify(polygonCoordinates)
+    updateStore(currentWarehouse, id)
     toggleEditPolygon()
+    isEditing =false
+    map.removeLayer(currentRadius);
+
   } catch (error) {
     // console.error('Failed to save polygon data:', error);
   }
 }
 
 export const toggleEditPolygon = () => {
+
   if (!currentPolygon) return;
   if (!isEditing) {
     originalPolygonCoordinates = getCurrentPolygonCoordinates();
     currentPolygon.enableEdit();
     mapFooterButtons.style.display = 'flex';
+
   } else {
     currentPolygon.disableEdit();
     mapFooterButtons.style.display = 'none';
+
   }
   isEditing = !isEditing;
 }
@@ -59,62 +80,76 @@ editButton.addEventListener('click', toggleEditPolygon)
 saveButton.addEventListener('click', () => savePolygon(warehouseID))
 
 
-export const initializeMap = async () => {
+export const initializeMap = async (id) => {
 
   const dataStores = await getStoresMap()
-  console.log(dataStores)
+  storeId = dataStores.data.filter(x => x.id === id);
+  newPolygon=storeId[0]
   map = new L.Map('map', {
     editable: true,
-  }).setView([55.7558, 37.6173], 12);
+    preferCanvas: !L.Browser.svg && !L.Browser.vml
+  }).setView([storeId[0].latitude, storeId[0].longitude], 16);
+
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     {
       attribution: '© OpenStreetMap Contributors',
     })
     .addTo(map);
-
   const attributionControl = document.querySelector('.leaflet-control-attribution');
 
   if (attributionControl) {
     attributionControl.remove();
   }
 
-
   const customIcon = L.icon({
-    iconUrl: './img/map-marker.svg',
+    iconUrl: '/assets/img/map-marker.svg',
     iconSize: [40, 40],
     iconAnchor: [20, 40],
     popupAnchor: [0, -40],
   });
 
+
   dataStores.data.forEach((w) => {
-    console.log(w)
     const marker = L.marker([w.latitude, w.longitude], {
       icon: customIcon,
       warehouseId: w.id
     }).addTo(map);
 
     marker.on('click', () => {
-      handleMarkerClick(marker, map, w);
+      try {
+        handleMarkerClick(marker, map, w);
+      } catch (e) {
+        console.log(e)
+      }
+
     });
   })
 
 
-  // jsonData.warehouses.forEach((w) => {
-  //   const marker = L.marker([w.latitude, w.longitude], {
-  //     icon: customIcon,
-  //     warehouseId: w.id
-  //   }).addTo(map);
-  //
-  //   marker.on('click', () => {
-  //     handleMarkerClick(marker, map, w);
-  //   });
-  // })
+  //===========рисуем радиус у выбранного магазина при инициализации карты
+  if (storeId[0].polygon && storeId[0].polygon.length > 0) {
+    editButton.disabled = false
+    currentPolygon = addPolygonToMap(storeId[0], map);
+    currentPolygon.on('editable:vertex:new', e => handleNodeAdd(e));
+
+  } else if (storeId[0].radius && !storeId[0].polygon) {
+    const center = [storeId[0].latitude, storeId[0].longitude];
+    const radiusInMeters = parseFloat(storeId[0].radius) * 1000; // Convert radius from km to meters
+
+    currentRadius = L.circle(center, {
+      radius: radiusInMeters,
+      color: polygonRadiusColor,
+      weight: 2,
+      fillOpacity: 0.3,
+    }).addTo(map);
+  }
+
 
 }
 export const unInitializeMap = () => {
   map.remove()
-  deletePolygonButton.disabled=true
+  deletePolygonButton.disabled = true
   if (currentPolygon) {
     currentPolygon.remove();
     currentPolygon = undefined;
@@ -144,6 +179,7 @@ const createWarehousePolygon = () => {
     lat: coord[0],
     lon: coord[1],
   }));
+
   currentPolygon.enableEdit();
   currentPolygon.on('editable:vertex:new', e => handleNodeAdd(e));
   toggleEditPolygon()
@@ -174,15 +210,18 @@ const showPolygonDeletionConfirmation = () => {
 
   document.getElementById('confirm_delete').addEventListener('click', function () {
     if (currentPolygon) {
-      currentPolygon.remove();
+      map.removeLayer(currentPolygon);
+      // currentPolygon.remove();
       currentPolygon = null;
-
+      currentRadius =null
+      currentWarehouse.polygon = JSON.stringify(currentPolygon)
       // удаление полигона
-      updateStore({polygon: currentPolygon}, warehouseID)
+      updateStore(currentWarehouse, warehouseID)
+      isEditing =false
     }
-    alert('Полигон успешно удалён');
     document.body.removeChild(confirmModal);
   });
+
   document.getElementById('cancel_delete').addEventListener('click', function () {
     document.body.removeChild(confirmModal);
   });
@@ -215,25 +254,39 @@ const handleMarkerClick = async (marker, map, warehouse) => {
     map.removeLayer(currentPolygon);
     currentPolygon = null;
   }
-  //===========Подключить к api=========
-  currentWarehouse = await getStoreDetail(warehouse.id);
-  warehouseID = currentWarehouse.id
-  // warehouseID = warehouse.id
-  // currentWarehouse = warehouse;
+  if (currentRadius) {
+    map.removeLayer(currentRadius);
+    currentRadius = null;
+  }
+
+  const storeData= await getStoreDetail(warehouse.id)
+  warehouse.polygon=storeData.data.polygon
+  warehouseID = warehouse.id
+  currentWarehouse = warehouse;
+  console.log(warehouse, 'склад')
+  // console.log(warehouse.polygon, 'warehouse')
+  // if (typeof warehouse.polygon === 'string') {
+  //   warehouse.polygon = JSON.parse(warehouse.polygon);
+  //   console.log(warehouse.polygon, 'after parse')
+  //
+  // }
+  // currentRadius = currentWarehouse.radius
   if (warehouse.polygon && warehouse.polygon.length > 0) {
+    editButton.disabled = false
     currentPolygon = addPolygonToMap(warehouse, map);
     currentPolygon.on('editable:vertex:new', e => handleNodeAdd(e));
-  } else if (warehouse.radius) {
+  } else if (warehouse.radius && !warehouse.polygon) {
     const center = [warehouse.latitude, warehouse.longitude];
     const radiusInMeters = parseFloat(warehouse.radius) * 1000; // Convert radius from km to meters
 
-    currentPolygon = L.circle(center, {
+    currentRadius = L.circle(center, {
       radius: radiusInMeters,
-      color: polygonColor,
+      color: polygonRadiusColor,
       weight: 2,
-      fillOpacity: 0.2,
+      fillOpacity: 0.3,
     }).addTo(map);
-
+    createPolygonButton.classList.remove('disabled');
+    editButton.disabled = true
     // console.log(`Circle drawn with radius ${warehouse.radius} km for warehouse:`, warehouse.name);
   } else {
     // console.log(`No polygon or radius specified for warehouse: ${warehouse.name}`);
@@ -249,12 +302,12 @@ const addPolygonToMap = (warehouse, map) => {
     color: polygonColor,
     fillOpacity: 0.3
   }).addTo(map);
-  // console.log(addedPolygon)
-  // console.log(polygonCoordinates)
+
   return addedPolygon;
 };
 
 const getCurrentPolygonCoordinates = () => {
+
   const coordinates = currentPolygon.getLatLngs()[0].map(latLng => ({
     lat: latLng.lat,
     lon: latLng.lng

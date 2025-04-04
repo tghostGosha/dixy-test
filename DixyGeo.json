@@ -38,7 +38,7 @@
           "lon": 37.586890
         }
       ],
-      "radius": "20",
+      "radius": 1,
       "priority": null
     },
     {
@@ -99,7 +99,7 @@
       "region": "МОСКВА",
       "sector": "0",
       "polygon": null,
-      "radius": null,
+      "radius": "1",
       "priority": null
     },
     {

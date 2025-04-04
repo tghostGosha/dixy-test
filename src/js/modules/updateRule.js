@@ -3,7 +3,7 @@ import {closeModal} from "../helpers/closeModal";
 
 
 (function () {
-  const ruleUpdate = document.querySelector('[data-modal="update-rule"]')
+  const ruleUpdate = document.querySelector('[data-update="rule"]')
   const closeButton = document.querySelector('[data-close="update-rule"]')
   const ruleUpdateForm = document.querySelector("#ruleUpdateForm")
   const cancelBtn = document.querySelector('[data-сancel="update-rule"]')
@@ -15,26 +15,25 @@ import {closeModal} from "../helpers/closeModal";
   const costDelivery = document.querySelector('#updateCostDelivery');
   const freeDelivery = document.querySelector('#updateFreeDelivery');
   const minCost = document.querySelector('#updateMinCost');
-  let ruleId = document.querySelector('#id');
+  let ruleId = document.querySelector('#ruleId');
 
   try {
     document.addEventListener('click', function (e) {
       if (e.target.matches('[data-update="open"]')) {
         const parent = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
-        console.log(parent)
         let id = parent.getAttribute("id");
-        // ruleId.value = id
         e.preventDefault()
         getRuleDetail(id).then((response) => {
           if (response) {
-            ruleName.value = response.name
-            ruleArea.value = response.area
-            sector.value = response.sector
-            warehouseNumber.value = response.store
-            costDelivery.value = response.price
-            freeDelivery.value = response.free_delivery_amount
-            minCost.value = response.min_amount
-            ruleActive.checked = response.active
+            ruleId.value = response.data.id
+            ruleName.value = response.data.name
+            ruleArea.value = response.data.area
+            sector.value = response.data.sector
+            warehouseNumber.value = response.data.store
+            costDelivery.value = response.data.price
+            freeDelivery.value = response.data.free_delivery_amount
+            minCost.value = response.data.min_amount
+            ruleActive.checked = response.data.active
           }
         })
         ruleUpdate.classList.add('active');
@@ -45,6 +44,7 @@ import {closeModal} from "../helpers/closeModal";
     closeModal(closeButton, ruleUpdate, ruleUpdateForm)
 
   } catch (e) {
+    // console.log(e)
   }
 })();
 

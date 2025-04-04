@@ -1,8 +1,9 @@
 import {getRuleDetail} from "../axios/rules";
 
+
 export const modalWarehouseRule = (button, modalWindow) => {
   // привязываем необходимые элементы
-  const modalClose = document.querySelectorAll(".modalClose");
+  const modalClose = document.querySelector('[data-close="modal-rule"]');
   const bodyElementHTML = document.getElementsByTagName("body")[0];
   const ruleId = document.querySelector('#ruleId')
   const ruleName = document.querySelector('#title')
@@ -16,17 +17,17 @@ export const modalWarehouseRule = (button, modalWindow) => {
 
   button.forEach((item) => {
     item.addEventListener('click', (e) => {
-      getRuleDetail(e.target.dataset.id).then((resp) => {
-        if (resp) {
-          ruleId.value = response.id
-          ruleName.value = response.name
-          ruleArea.value = response.area
-          sector.value = response.sector
-          warehouseNumber.value = response.store
-          costDelivery.value = response.price
-          freeDelivery.value = response.free_delivery_amount
-          minCost.value = response.min_amount
-          activeSwitch.checked = response.active
+      getRuleDetail(e.target.parentNode.dataset.id).then((response) => {
+        if (response) {
+          ruleId.value = response.data.id
+          ruleName.value = response.data.name
+          ruleArea.value = response.data.area
+          sector.value = response.data.sector
+          warehouseNumber.value = response.data.store
+          costDelivery.value = response.data.price
+          freeDelivery.value = response.data.free_delivery_amount
+          minCost.value = response.data.min_amount
+          activeSwitch.checked = response.data.active
         }
       })
       modalWindow.style.display = "block";
@@ -34,13 +35,14 @@ export const modalWarehouseRule = (button, modalWindow) => {
     })
   })
 
+
   // нажатие на крестик закрытия модального окна
-  modalClose.forEach((item) => {
-    item.addEventListener("click", function () {
+
+    modalClose.addEventListener("click", function () {
       modalWindow.style.display = "none";
       bodyElementHTML.classList.remove('active-modal')
     });
-  })
+
   // закрытие модального окна на зону вне окна, т.е. на фон
   modalWindow.addEventListener("click", function (event) {
     if (event.target === modalWindow) {

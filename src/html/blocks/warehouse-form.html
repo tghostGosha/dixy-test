@@ -5,12 +5,8 @@
 	</div>
 	<div class="page__form-field" >
 		<label for="ruleSelect" >Правило</label>
-		<select name="ruleSelect" id="ruleSelect" data-select="select" >
+		<select name="ruleSelect" id="ruleSelect" data-id="rule-select" >
 			<option value="">Выберите правило</option>
-			<option value="rule1">Правило 1</option>
-			<option value="rule2">Правило 2</option>
-			<option value="rule3">Правило 3</option>
-			<option value="rule4">Правило 4</option>
 		</select>
 	</div>
 	<div class="page__form-field" >
@@ -19,12 +15,8 @@
 	</div>
 	<div class="page__form-field">
 		<label for="sectorSelect" >Сектор</label>
-		<select name="sectorSelect" id="sectorSelect">
+		<select name="sector" id="sectorSelect">
 			<option value="">Сектор доставки</option>
-			<option value="himki">Химки</option>
-			<option value="center">Центр</option>
-			<option value="mitishi">Мытищи</option>
-			<option value="lubertsy">Люберцы</option>
 		</select>
 	</div>
 	<div class="page__form-field">
@@ -32,8 +24,8 @@
 		<span>09:00</span>
 	</div>
 	<div class="page__form-field">
-		<label>Закрытие</label>
-		<span>23:00</span>
+		<label>Время работы</label>
+		<span id="schedule"></span>
 	</div>
 	<div class="page__form-field">
 		<label>Приоритет</label>

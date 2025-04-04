@@ -10,9 +10,13 @@ const successDelete =document.querySelector('[data-success="delete-sector"]');
 //===========Список всех секторов =================
 export const getSectors = async () => {
   return await axios.get(`${url}/`, {
-    headers: {
-      'Authorization': 'Basic Auth' + BASIC_AUTH
-    },
+    // headers: {
+    //   'Authorization': 'Basic Auth' + BASIC_AUTH
+    // },
+    auth: {
+      username: 'bitrix',
+      password: '2zwjc1h6yakt9wuo'
+    }
 
   }).then((response) => {
     return response.data
@@ -23,7 +27,7 @@ export const getSectors = async () => {
 }
 //===========Сектор по id =================
 export const getSectorDetail = async (id) => {
-  return await axios.get(`${url}/${id}/detail`, {
+  return await axios.get(`${url}/${id}/detail/`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -95,7 +99,7 @@ export const deleteSector = (id) => {
 
 //===========Скачать сектора =================
 export const downloadSector = (format) => {
-  axios.get(`${url}/download/${format}`,{
+  axios.get(`${url}/download/${format}/`,{
     headers: {
       'Content-Type': 'application/json'
     },
@@ -108,13 +112,12 @@ export const downloadSector = (format) => {
     const href = URL.createObjectURL(response.data);
     const link = document.createElement('a');
     link.href = href;
-    link.setAttribute('download', 'file.pdf'); //or any other extension
+    link.setAttribute('download', `file.${format}`); //or any other extension
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(href);
   }).catch(function (error) {
-
     console.log(error);
   })
 

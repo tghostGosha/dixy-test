@@ -9,7 +9,7 @@ import {modalWarehouseRule} from "../modules/modalWarehouseRule";
 import {closeSuccessModal} from "../helpers/success-modal";
 import {searchInput} from "../helpers/search";
 
-if (window.location.pathname.includes('warehouse')) {
+if (window.location.pathname.includes('store') || window.location.pathname.includes('warehouse')) {
   updateWarehouse()
   //===Список всех правил===////
   try {

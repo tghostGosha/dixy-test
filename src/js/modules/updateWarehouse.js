@@ -15,7 +15,8 @@ export const updateWarehouse = () => {
   const delivery = document.querySelector('#delivery');
   const pickup = document.querySelector('#pickup');
   const radius = document.querySelector('#radius');
-  const poligon = document.querySelector('#poligon');
+  const polygon = document.querySelector('#poligon');
+  const schedule=document.querySelector('#schedule')
   let elementId = document.querySelector('#id');
 
   try {
@@ -27,15 +28,21 @@ export const updateWarehouse = () => {
         e.preventDefault()
         getStoreDetail(id).then((response) => {
           if (response) {
-            warehouseID.value =response.id
-            ruleName.value = response.rule_name
-            area.value = response.region
-            sector.value = response.sector
-            warehouseNumber.value = response.store
-            delivery.checked = response.delivery
-            pickup.checked = response.pickup
-            radius.value = response.radius
-            poligon.value = response.poligon
+            warehouseID.value =response.data.id
+            // ruleName.value = response.data.name
+            area.value = response.data.region
+            sector.value = response.data.sector
+            warehouseNumber.value = response.data.store
+            delivery.checked = response.data.delivery
+            pickup.checked = response.data.pickup
+            radius.value = response.data.radius
+            if (response.data.polygon) {
+              polygon.value = 'задан'
+            } else  {
+              polygon.value = ' не задан'
+            }
+            // polygon.value = response.data.polygon
+            schedule.textContent = response.data.schedule
           }
         })
         warehouseUpdate.classList.add('active');
@@ -45,6 +52,7 @@ export const updateWarehouse = () => {
     closeModal(closeBtn,warehouseUpdate,warehouseUpdateForm )
 
   } catch (e) {
+    console.log(e)
   }
 }
 

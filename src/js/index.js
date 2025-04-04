@@ -10,6 +10,8 @@ import {sendLogin} from "./axios/auth";
 import {getAreas} from "./axios/areas";
 import {serializeForm} from "./helpers/serializeForm";
 import {getSectors} from "./axios/sectors";
+import {getRules} from "./axios/rules";
+import {onlyRusAndNumber} from "./helpers/onlyRusAndNumber";
 
 
 
@@ -80,30 +82,47 @@ try {
 }
 //========заполняем Select Области===========
 const dataAreas = await getAreas()
-const areasSelect = document.querySelectorAll('[data-id="areaSelect"]');
 
-areasSelect.forEach(select => {
-  dataAreas.data.forEach(function(v){
-    let option = document.createElement("option");
-    option.value = v.id;
-    option.innerHTML = v.name;
-    select.appendChild(option);
-  });
-})
+const areasSelect = document.querySelectorAll('[data-id="areaSelect"]');
+if (dataAreas) {
+  areasSelect.forEach(select => {
+    dataAreas.data.forEach(function(v){
+      let option = document.createElement("option");
+      option.value = v.id;
+      option.innerHTML = v.name;
+      select.appendChild(option);
+    });
+  })
+}
+//========заполняем Select правил===========
+const dataRules = await getRules()
+
+const rulesSelect = document.querySelectorAll('[data-id="rule-select"]');
+if (dataRules) {
+  rulesSelect.forEach(select => {
+    dataRules.data.forEach(function(v){
+      let option = document.createElement("option");
+      option.value = v.id;
+      option.innerHTML = v.name;
+      select.appendChild(option);
+    });
+  })
+}
+
 
 //========заполняем Select Секторов===========
 const dataSectors = await getSectors()
 const sectorsSelect = document.querySelectorAll('[data-id="sectorSelect"]');
-
-sectorsSelect.forEach(select => {
-  dataSectors.data.forEach(function(v){
-    let option = document.createElement("option");
-    option.value = v.id;
-    option.innerHTML = v.name;
-    select.appendChild(option);
-  });
-})
-
+if (dataSectors) {
+  sectorsSelect.forEach(select => {
+    dataSectors.data.forEach(function (v) {
+      let option = document.createElement("option");
+      option.value = v.id;
+      option.innerHTML = v.name;
+      select.appendChild(option);
+    });
+  })
+}
 //========разрешать только русские буквы, пробел, точку и тире===========
 const onlyRus = document.querySelectorAll(".onlyRus");
 try {
@@ -116,13 +135,12 @@ try {
 } catch (e) {
 }
 //========разрешать только русские буквы, цифры, пробел, точку и тире===========
-const searchInput = document.querySelectorAll('#search')
-const searchForm = document.querySelector('[data-search="search"]')
+const searchInput = document.querySelectorAll('#search');
+const searchForm = document.querySelector('[data-search="search"]');
 try {
   searchInput.forEach((item) => {
     item.addEventListener("keydown", function () {
-      let res = /[^аА-яЯёЁ0-9 .-]/g.exec(item.value);
-      item.value = item.value.replace(res, '');
+      onlyRusAndNumber(item)
     })
   })
   validate(searchForm)

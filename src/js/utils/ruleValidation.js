@@ -1,10 +1,17 @@
 import {validate} from "../modules/validate";
 import {serializeForm} from "../helpers/serializeForm";
+import {onlyRusAndNumber} from "../helpers/onlyRusAndNumber";
 
 const modal = document.querySelector('[data-modal="modal-page"]');
+const titleInput = document.querySelectorAll('[data-id="title"]')
 
+titleInput.forEach(item => {
+  item.addEventListener("keydown", function () {
+    onlyRusAndNumber(item)
+  })
+})
 //======Валидация нового правила====///
-export const RuleValidation = (form, request) => {
+export const RuleValidation = (form, request,modal) => {
   validate(form)
     .addField('[data-id="title"]', [
       {
@@ -21,6 +28,12 @@ export const RuleValidation = (form, request) => {
         value: 100,
         errorMessage: 'А-я, 0-9. Макс - 100 символов'
       },
+      // {
+      //   rule: 'customRegexp',
+      //   // value: /[^аА-яЯёЁ0-9 .-]/g,
+      //   value: /[аА-яЯёЁ]/gi,
+      //   errorMessage: 'Только русские буквы'
+      // },
     ])
     .addField('[data-id="areaSelect"]', [
       {

@@ -11,8 +11,7 @@ searchInput(search, searchButton )
 if (window.location.pathname.includes('sector')) {
   //===Список всех секторов===////
 
-    const sectorsData  = await getSectors()
-    console.log(sectorsData, 'sectorsData')
+    // const sectorsData  = await getSectors()
   //======Скачать сектора====///
   try {
     document.addEventListener('click', function (e) {
@@ -26,7 +25,6 @@ if (window.location.pathname.includes('sector')) {
   }
 }
 
-
 const sectorForm = document.querySelector('#sector-form');
 const sectorUpdateForm = document.querySelector('#sectorUpdateForm');
 const modalCreate = document.querySelector('[data-create="sector"]');
@@ -35,7 +33,6 @@ const successEdit = document.querySelector('[data-success="edit-sector"]')
 const successAdd = document.querySelector('[data-success="add-sector"]');
 const successClose =document.querySelectorAll('[data-success="close"]')
 const successDelete =document.querySelector('[data-success="delete-sector"]');
-
 
 //======Валидация нового сектора====///
 if (sectorForm) {

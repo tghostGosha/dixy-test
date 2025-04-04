@@ -1,9 +1,9 @@
 import {initializeMap, unInitializeMap} from "./map";
 
-const openMapModal = (modalWindow, bodyElementHTML) => {
+const openMapModal = (modalWindow, bodyElementHTML, id) => {
   modalWindow.style.display = "block";
   bodyElementHTML.classList.add('active-modal')
-  initializeMap()
+  initializeMap(id)
 };
 
 const closeMapModal = (modalWindow, bodyElementHTML) => {
@@ -17,8 +17,10 @@ export const modalOpenMap = (button, modalWindow) => {
   const bodyElementHTML = document.getElementsByTagName("body")[0];
 
   button.forEach((item) => {
-    item.addEventListener('click', () => {
-      openMapModal(modalWindow, bodyElementHTML);
+    item.addEventListener('click', (event) => {
+      let idStore = event.target.parentNode.dataset.id
+
+      openMapModal(modalWindow, bodyElementHTML, idStore);
     })
   })
 

@@ -7,20 +7,20 @@ const modal = document.querySelector('[data-modal="update-warehouse"]');
 export const warehouseValidation = (form, request) => {
   validate(form)
 
-    .addField('#poligon', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-
-      {
-        validator: (value) => {
-          return value >= 0 && value < 100000
-        },
-        errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
-      },
-
-    ])
+    // .addField('#poligon', [
+    //   {
+    //     rule: 'required',
+    //     errorMessage: 'Обязательное поле'
+    //   },
+    //
+    //   {
+    //     validator: (value) => {
+    //       return value >= 0 && value < 100000
+    //     },
+    //     errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
+    //   },
+    //
+    // ])
     .addField('#radius', [
       {
         rule: 'required',

@@ -2,6 +2,7 @@ import {closeSuccessModal} from "../helpers/success-modal";
 import {createRule, deleteRule, downloadRule, getRules, updateRule} from "../axios/rules";
 import {RuleValidation} from "../utils/ruleValidation";
 import {searchInput} from "../helpers/search";
+import rule from "../modules/updateRule";
 
 //======Поиск====///
 const search = document.querySelector('#search')
@@ -12,16 +13,9 @@ searchInput(search, searchButton )
 //======Валидация нового правила====///
 const ruleForm = document.querySelector('#rule-form');
 const ruleUpdateForm = document.querySelector('#ruleUpdateForm');
-
-if (window.location.pathname.includes('main')) {
-
-  //===Список всех правил===////
-  try {
-    const dataRules = await getRules()
-
-  } catch (e){}
-
-//======Скачать правила====///
+const ruleCreate = document.querySelector('[data-create="rule"]');
+const ruleUpdate = document.querySelector('[data-update="rule"]');
+if (window.location.pathname === '/') {
   try {
     document.addEventListener('click', function (e) {
       if (e.target.matches('[data-download="format"]')) {
@@ -29,16 +23,21 @@ if (window.location.pathname.includes('main')) {
         downloadRule(formatDoc)
       }
     })
-  } catch(e){}
+  } catch(e){
+
+  }
 }
+
+//======Скачать правила====///
 
 //======Валидация нового правила====///
 if (ruleForm) {
-  RuleValidation(ruleForm, createRule)
+  RuleValidation(ruleForm, createRule, ruleCreate )
 }
+
 //====== Валидация Редактирование правила====///
 if (ruleUpdateForm) {
-  RuleValidation(ruleUpdateForm, updateRule)
+  RuleValidation(ruleUpdateForm, updateRule, ruleUpdate)
 }
 
 //======Закрытие модалки успешной отправки формы====///

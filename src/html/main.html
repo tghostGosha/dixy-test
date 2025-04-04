@@ -83,13 +83,13 @@
 				</button>
 				<ul class="dropdown-menu" style="display: none;" data-download="template">
 					<li>
-						<button class="dropdown-item" data-download="format">XLSX</button>
+						<button class="dropdown-item" data-download="format">xlxs</button>
 					</li>
 					<li>
-						<button class="dropdown-item" data-download="format">CSV</button>
+						<button class="dropdown-item" data-download="format">csv</button>
 					</li>
 					<li>
-						<button class="dropdown-item" data-download="format">PDF</button>
+						<button class="dropdown-item" data-download="format">pdf</button>
 					</li>
 				</ul>
 			</div>
@@ -217,7 +217,7 @@
 				</ul>
 				@@include('blocks/pagination.html')
 			</div>
-			<div class="page__section-modal" data-modal="modal-page">
+			<div class="page__section-modal" data-modal="modal-page" data-create="rule">
 				<div class="modal-header">
 					<button class="transparent__button" data-close="close">
 						<svg class="icon icon--arrow-left">
@@ -231,7 +231,7 @@
 					@@include('blocks/rule-form.html')
 				</div>
 			</div>
-			<div class="page__section-modal" data-modal="update-rule">
+			<div class="page__section-modal" data-update="rule">
 				<div class="modal-header">
 					<button class="transparent__button" data-close="update-rule">
 						<svg class="icon icon--arrow-left">

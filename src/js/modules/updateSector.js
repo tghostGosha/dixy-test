@@ -7,8 +7,8 @@ import {closeModal} from "../helpers/closeModal";
   const closeButton = document.querySelector('[data-close="update-sector"]');
   const sectorUpdateForm = document.querySelector("#sectorUpdateForm");
   const cancelBtn = document.querySelector('[data-сancel="update-sector"]');
-  const sectorName = document.querySelector('#title');
-  const sectorArea = document.querySelector('#areaSelect');
+  const sectorName = document.querySelector('[data-update="sector-title"]');
+  const sectorArea = document.querySelector('[data-update="sector-area"]');
   let sectorId = document.querySelector('#id');
 
   try {
@@ -20,8 +20,8 @@ import {closeModal} from "../helpers/closeModal";
         e.preventDefault()
         getSectorDetail(id).then((response) => {
             if (response) {
-              sectorName.value = response.name
-              sectorArea.value = response.area
+              sectorName.value = response.data.name
+              sectorArea.value = response.data.area
             }
           }
         )

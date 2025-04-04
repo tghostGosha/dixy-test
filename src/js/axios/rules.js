@@ -2,13 +2,14 @@ import axios from "axios";
 import {API_BASE_URL} from "./auth";
 import {openSuccessModal} from "../helpers/success-modal";
 
-const url = `${API_BASE_URL}/rules/`;
+const url = `${API_BASE_URL}/rules`;
 const successEditRule = document.querySelector('[data-success="edit-rule"]')
 const successAddRule = document.querySelector('[data-success="add-rule"]');
 const successDeleteRule = document.querySelector('[data-success="delete-rule"]');
+
 //===========Список всех правила =================
 export const getRules = async () => {
-  return await axios.get(url, {
+  return await axios.get(`${url}/`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -25,7 +26,7 @@ export const getRules = async () => {
 }
 //===========Список всех правила =================
 export const getRuleDetail = async (id) => {
-  return await axios.get(`${url}${id}/detail`, {
+  return await axios.get(`${url}/${id}/detail/`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -44,7 +45,7 @@ export const getRuleDetail = async (id) => {
 
 //===========Создание правила =================
 export const createRule = (data) => {
-  axios.post(`${url}create/`, data, {
+  axios.post(`${url}/create/`, data, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -63,7 +64,7 @@ export const createRule = (data) => {
 
 //===========Редактирование правила =================
 export const updateRule = (data, id) => {
-  axios.post(`${url}${id}/update/`, data, {
+  axios.post(`${url}/${id}/update/`, data, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -82,7 +83,7 @@ export const updateRule = (data, id) => {
 
 //===========Удаление правила =================
 export const deleteRule = (id) => {
-  axios.post(`${url}${id}/delete/`, {
+  axios.post(`${url}/${id}/delete/`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -101,7 +102,7 @@ export const deleteRule = (id) => {
 
 //===========Скачать правила =================
 export const downloadRule = (format) => {
-  axios.get(`${url}download/${format}`, {
+  axios.get(`${url}/download/${format}/`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -114,13 +115,12 @@ export const downloadRule = (format) => {
     const href = URL.createObjectURL(response.data);
     const link = document.createElement('a');
     link.href = href;
-    link.setAttribute('download', 'file.pdf'); //or any other extension
+    link.setAttribute('download', `file.${format}`); //or any other extension
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(href);
   }).catch(function (error) {
-
     console.log(error);
   })
 
