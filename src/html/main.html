@@ -60,7 +60,7 @@
 	</div>
 	<section class="page__section">
 		<div class="page__section-action">
-			<form class="search__form" id="search-rule" data-search="search">
+			<div class="search__form" id="search-rule" data-search="search">
 				<div class="search__form-field">
 					<svg class="icon icon--search">
 						<use href="./img/svgsprite/sprite.symbol.svg#search"></use>
@@ -73,7 +73,7 @@
 						<use href="./img/svgsprite/sprite.symbol.svg#search"></use>
 					</svg>
 				</a>
-			</form>
+			</div>
 			<div class="dropdown">
 				<button class="secondary__button" data-download="download">
 					<svg class="icon icon--download">
@@ -88,9 +88,9 @@
 					<li>
 						<button class="dropdown-item" data-download="format">csv</button>
 					</li>
-					<li>
-						<button class="dropdown-item" data-download="format">pdf</button>
-					</li>
+<!--					<li>-->
+<!--						<button class="dropdown-item" data-download="format">pdf</button>-->
+<!--					</li>-->
 				</ul>
 			</div>
 		</div>
@@ -112,13 +112,10 @@
 				</button>
 				<ul class="dropdown-menu" data-sort="sort" style="display: none;">
 					<li>
-						<button class="dropdown-item">По дате изменения</button>
+						<button class="dropdown-item" data-sort="sort" value="UF_DATE_UPDATED">По дате изменения</button>
 					</li>
 					<li>
-						<button class="dropdown-item">По алфавиту</button>
-					</li>
-					<li>
-						<button class="dropdown-item">Вся Россия</button>
+						<button class="dropdown-item" data-sort="sort" value="UF_NAME" >По алфавиту</button>
 					</li>
 				</ul>
 			</div>

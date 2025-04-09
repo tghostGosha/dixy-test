@@ -1,6 +1,6 @@
 import {Calendar} from "vanilla-calendar-pro";
 import 'vanilla-calendar-pro/styles/index.css';
-import { paramsString} from "../helpers/search";
+import {searchDate} from "../helpers/search";
 
 const input = document.querySelector('#calendar')
 
@@ -24,20 +24,8 @@ const options = {
       formatDate.push(date.split('-').reverse().join('-'))
     })
     input.value = formatDate.toString().replace(/,/, ' / ');
-    paramsString.set("date", self.context.inputElement.value);
-    if (window.history.replaceState) {
-      const url = window.location.protocol
-        + "//" + window.location.host
-        + window.location.pathname
-        + "?"
-        + paramsString.toString();
-
-      window.history.replaceState({
-        path: url
-      }, "", url)
-    }
+    searchDate(self.context.inputElement.value)
   },
-
 
 };
 

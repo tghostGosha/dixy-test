@@ -1,5 +1,4 @@
-import {getRuleDetail} from "../axios/rules";
-
+import {getRuleDetail, getRules} from "../axios/rules";
 
 export const modalWarehouseRule = (button, modalWindow) => {
   // привязываем необходимые элементы
@@ -27,7 +26,8 @@ export const modalWarehouseRule = (button, modalWindow) => {
           costDelivery.value = response.data.price
           freeDelivery.value = response.data.free_delivery_amount
           minCost.value = response.data.min_amount
-          activeSwitch.checked = response.data.active
+          console.log(response.data, 'response data rule')
+          activeSwitch.checked = response.data.active === true || response.data.active === '1';
         }
       })
       modalWindow.style.display = "block";

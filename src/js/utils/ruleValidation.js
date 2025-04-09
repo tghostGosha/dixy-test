@@ -6,7 +6,7 @@ const modal = document.querySelector('[data-modal="modal-page"]');
 const titleInput = document.querySelectorAll('[data-id="title"]')
 
 titleInput.forEach(item => {
-  item.addEventListener("keydown", function () {
+  item.addEventListener("input", function () {
     onlyRusAndNumber(item)
   })
 })

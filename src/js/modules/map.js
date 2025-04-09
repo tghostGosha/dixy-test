@@ -1,11 +1,11 @@
 import L from 'leaflet';
-import jsonData from '/DixyGeo.json';
+// import jsonData from '/DixyGeo.json';
 import 'leaflet-editable';
 import 'leaflet/dist/leaflet.css'
 import {getStoreDetail, getStoresMap, updateStore} from "../axios/warehouse";
-import {string} from "i/lib/util";
+// import {string} from "i/lib/util";
 
-let currentPolygon = null;
+let currentPolygon = '';
 let currentRadius = null;
 let currentWarehouse = null;
 let isEditing = false;
@@ -25,35 +25,46 @@ const cancelEditPolygon = () => {
   currentPolygon.disableEdit();
   currentPolygon.setLatLngs(originalPolygonCoordinates);
   toggleEditPolygon();
+
 }
 cancelButton.addEventListener('click', cancelEditPolygon);
 
 
-
 export const savePolygon = async (id) => {
-  console.log(currentPolygon, 'currentPolygon savePolygon')
+
   if (!currentPolygon) {
     return;
   }
-  if(newPolygon) {
-    const polygonCoordinates = getCurrentPolygonCoordinates();
-    newPolygon.polygon = JSON.stringify(polygonCoordinates);
-    updateStore(newPolygon, newPolygon.id)
-    toggleEditPolygon()
-    isEditing =false
-    newPolygon= null
-    map.removeLayer(currentRadius);
-  }
+  // try {
+  //   if(newPolygon) {
+  //
+  //     const polygonCoordinates = getCurrentPolygonCoordinates();
+  //     newPolygon.polygon = JSON.stringify(polygonCoordinates);
+  //     console.log( newPolygon.polygon, 'newPolygon')
+  //     updateStore(newPolygon, newPolygon.id)
+  //     map.removeLayer(currentRadius);
+  //     toggleEditPolygon()
+  //     isEditing =false
+  //     newPolygon= null
+  //
+  //   }
+  // } catch (e) {
+  //   console.log(e)
+  // }
+
   try {
     const polygonCoordinates = getCurrentPolygonCoordinates(); // Get the coordinates of the current polygon
     currentWarehouse.polygon = JSON.stringify(polygonCoordinates)
+    console.log(currentWarehouse.polygon, 'currentPolygon')
     updateStore(currentWarehouse, id)
+    if (currentRadius) {
+      map.removeLayer(currentRadius);
+    }
     toggleEditPolygon()
-    isEditing =false
-    map.removeLayer(currentRadius);
-
+    editButton.disabled = false
+    deletePolygonButton.disabled = false
   } catch (error) {
-    // console.error('Failed to save polygon data:', error);
+
   }
 }
 
@@ -84,7 +95,9 @@ export const initializeMap = async (id) => {
 
   const dataStores = await getStoresMap()
   storeId = dataStores.data.filter(x => x.id === id);
-  newPolygon=storeId[0]
+  // newPolygon=storeId[0]
+  currentWarehouse = storeId[0]
+  warehouseID = currentWarehouse.id
   map = new L.Map('map', {
     editable: true,
     preferCanvas: !L.Browser.svg && !L.Browser.vml
@@ -130,6 +143,7 @@ export const initializeMap = async (id) => {
   //===========рисуем радиус у выбранного магазина при инициализации карты
   if (storeId[0].polygon && storeId[0].polygon.length > 0) {
     editButton.disabled = false
+    deletePolygonButton.disabled = false
     currentPolygon = addPolygonToMap(storeId[0], map);
     currentPolygon.on('editable:vertex:new', e => handleNodeAdd(e));
 
@@ -143,21 +157,23 @@ export const initializeMap = async (id) => {
       weight: 2,
       fillOpacity: 0.3,
     }).addTo(map);
+    createPolygonButton.classList.remove('disabled');
+    editButton.disabled = true
+
   }
 
 
 }
+
 export const unInitializeMap = () => {
   map.remove()
-  deletePolygonButton.disabled = true
-  if (currentPolygon) {
-    currentPolygon.remove();
-    currentPolygon = undefined;
-  }
+  mapFooterButtons.style.display = 'none';
+  isEditing = false
 }
 const createWarehousePolygon = () => {
 
   if (currentWarehouse.polygon && currentWarehouse.polygon.length > 0) {
+
     // console.log('Polygon already exists for the selected warehouse.');
     return
   }
@@ -182,6 +198,12 @@ const createWarehousePolygon = () => {
 
   currentPolygon.enableEdit();
   currentPolygon.on('editable:vertex:new', e => handleNodeAdd(e));
+
+  if (currentRadius) {
+    //==если задаем полигон, то убираем слой радиуса
+    map.removeLayer(currentRadius);
+  }
+  createPolygonButton.classList.add('disabled');
   toggleEditPolygon()
 };
 
@@ -212,12 +234,26 @@ const showPolygonDeletionConfirmation = () => {
     if (currentPolygon) {
       map.removeLayer(currentPolygon);
       // currentPolygon.remove();
-      currentPolygon = null;
-      currentRadius =null
+      currentPolygon = '';
       currentWarehouse.polygon = JSON.stringify(currentPolygon)
       // удаление полигона
       updateStore(currentWarehouse, warehouseID)
-      isEditing =false
+      isEditing = false
+      currentWarehouse.polygon = null
+
+      // при удалении полигона рисуем радиус
+      const center = [currentWarehouse.latitude, currentWarehouse.longitude];
+      const radiusInMeters = parseFloat(currentWarehouse.radius) * 1000; // Convert radius from km to meters
+
+      currentRadius = L.circle(center, {
+        radius: radiusInMeters,
+        color: polygonRadiusColor,
+        weight: 2,
+        fillOpacity: 0.3,
+      }).addTo(map);
+
+      createPolygonButton.classList.remove('disabled');
+      deletePolygonButton.disabled = true
     }
     document.body.removeChild(confirmModal);
   });
@@ -252,25 +288,21 @@ const handleMarkerClick = async (marker, map, warehouse) => {
 
   if (currentPolygon) {
     map.removeLayer(currentPolygon);
-    currentPolygon = null;
+    currentPolygon = '';
   }
   if (currentRadius) {
     map.removeLayer(currentRadius);
     currentRadius = null;
   }
 
-  const storeData= await getStoreDetail(warehouse.id)
-  warehouse.polygon=storeData.data.polygon
+  const storeData = await getStoreDetail(warehouse.id)
+  warehouse.polygon = storeData.data.polygon
   warehouseID = warehouse.id
   currentWarehouse = warehouse;
-  console.log(warehouse, 'склад')
-  // console.log(warehouse.polygon, 'warehouse')
-  // if (typeof warehouse.polygon === 'string') {
-  //   warehouse.polygon = JSON.parse(warehouse.polygon);
-  //   console.log(warehouse.polygon, 'after parse')
-  //
-  // }
-  // currentRadius = currentWarehouse.radius
+  mapFooterButtons.style.display = 'none';
+  isEditing=false
+
+
   if (warehouse.polygon && warehouse.polygon.length > 0) {
     editButton.disabled = false
     currentPolygon = addPolygonToMap(warehouse, map);
@@ -285,6 +317,7 @@ const handleMarkerClick = async (marker, map, warehouse) => {
       weight: 2,
       fillOpacity: 0.3,
     }).addTo(map);
+
     createPolygonButton.classList.remove('disabled');
     editButton.disabled = true
     // console.log(`Circle drawn with radius ${warehouse.radius} km for warehouse:`, warehouse.name);

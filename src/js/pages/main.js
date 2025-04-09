@@ -1,13 +1,18 @@
 import {closeSuccessModal} from "../helpers/success-modal";
 import {createRule, deleteRule, downloadRule, getRules, updateRule} from "../axios/rules";
 import {RuleValidation} from "../utils/ruleValidation";
-import {searchInput} from "../helpers/search";
+import {searchInput, searchPage, sortType} from "../helpers/search";
 import rule from "../modules/updateRule";
+import {downloadFile} from "../axios/downloadFile";
 
 //======Поиск====///
-const search = document.querySelector('#search')
+const search = document.querySelector('#search');
 const searchButton = document.querySelector('#search-button');
-searchInput(search, searchButton )
+const pageValue = document.querySelector('#pageNumber');
+
+searchInput(search, searchButton)
+searchPage(pageValue)
+
 
 
 //======Валидация нового правила====///
@@ -16,19 +21,28 @@ const ruleUpdateForm = document.querySelector('#ruleUpdateForm');
 const ruleCreate = document.querySelector('[data-create="rule"]');
 const ruleUpdate = document.querySelector('[data-update="rule"]');
 if (window.location.pathname === '/') {
+  //======Сортировка======///
   try {
     document.addEventListener('click', function (e) {
-      if (e.target.matches('[data-download="format"]')) {
-        const formatDoc = e.target.textContent
-        downloadRule(formatDoc)
+      if (e.target.matches('[data-sort="sort"]')) {
+        const sortDate = e.target
+        sortType(sortDate)
       }
     })
-  } catch(e){
-
-  }
+  } catch(e){}
+  //======Скачать правила====///
+  try {
+    document.addEventListener('click', async function (e) {
+      if (e.target.matches('[data-download="format"]')) {
+        const formatDoc = e.target.textContent
+        const data = await downloadRule(formatDoc)
+        downloadFile(data.data.path, data.data.name)
+      }
+    })
+  } catch(e){}
 }
 
-//======Скачать правила====///
+
 
 //======Валидация нового правила====///
 if (ruleForm) {

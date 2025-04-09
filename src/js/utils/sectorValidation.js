@@ -1,8 +1,16 @@
 import {validate} from "../modules/validate";
 import {serializeForm} from "../helpers/serializeForm";
 import {openSuccessModal} from "../helpers/success-modal";
+import {onlyRusAndNumber} from "../helpers/onlyRusAndNumber";
 
 //======Валидация сектора====///
+const titleInput = document.querySelectorAll('[data-id="title"]')
+
+titleInput.forEach(item => {
+  item.addEventListener("input", function () {
+    onlyRusAndNumber(item)
+  })
+})
 export const SectorValidation = (form, request, modal) => {
   validate(form)
     .addField('#title', [

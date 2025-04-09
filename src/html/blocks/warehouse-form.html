@@ -5,7 +5,8 @@
 	</div>
 	<div class="page__form-field" >
 		<label for="ruleSelect" >Правило</label>
-		<select name="ruleSelect" id="ruleSelect" data-id="rule-select" >
+<!--		<input type="text" value="" name="ruleSelect" id="ruleSelect" readonly>-->
+		<select name="rule" id="ruleSelect" data-id="rule-select"  disabled>
 			<option value="">Выберите правило</option>
 		</select>
 	</div>
@@ -33,11 +34,11 @@
 	</div>
 	<div class="page__form-field checkbox">
 		<label class="custom-checkbox">
-			<input type="checkbox" value="" id="delivery" name="delivery" readonly>
+			<input type="checkbox" value="" id="delivery" name="delivery" >
 			<span>Доставка</span>
 		</label>
 		<label class="custom-checkbox">
-			<input type="checkbox" value="" id="pickup" checked readonly>
+			<input type="checkbox" value="" id="pickup" name="pickup" readonly>
 			<span>Самовывоз</span>
 		</label>
 	</div>

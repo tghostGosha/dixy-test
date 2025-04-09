@@ -7,22 +7,21 @@ import {warehouseValidation} from "../utils/warehouseValidation";
 import {updateWarehouse} from '../modules/updateWarehouse';
 import {modalWarehouseRule} from "../modules/modalWarehouseRule";
 import {closeSuccessModal} from "../helpers/success-modal";
-import {searchInput} from "../helpers/search";
+import {searchInput, searchPage, sortType} from "../helpers/search";
+import {getSectors} from "../axios/sectors";
+import {getAreas} from "../axios/areas";
+import {downloadFile} from "../axios/downloadFile";
 
 if (window.location.pathname.includes('store') || window.location.pathname.includes('warehouse')) {
   updateWarehouse()
-  //===Список всех правил===////
-  try {
-    const storesData = await getStores()
-  } catch (e) {
-  }
 
-//======Скачать правила====///
+//======Скачать склады====///
   try {
-    document.addEventListener('click', function (e) {
+    document.addEventListener('click', async function (e) {
       if (e.target.matches('[data-download="format"]')) {
         const formatDoc = e.target.textContent
-        downloadStore(formatDoc)
+        const data = await downloadStore(formatDoc)
+        downloadFile(data.data.path, data.data.name)
       }
     })
   } catch (e) {
@@ -31,7 +30,22 @@ if (window.location.pathname.includes('store') || window.location.pathname.inclu
   //======Поиск====///
   const search = document.querySelector('#search')
   const searchButton = document.querySelector('#search-button');
+  const pageValue = document.querySelector('#pageNumber');
+
   searchInput(search, searchButton,  )
+  searchPage(pageValue)
+
+  //======Сортировка======///
+  try {
+    document.addEventListener('click', function (e) {
+      if (e.target.matches('[data-sort="sort"]')) {
+        const sortDate = e.target
+        sortType(sortDate)
+      }
+    })
+  } catch(e){
+
+  }
 }
 
 

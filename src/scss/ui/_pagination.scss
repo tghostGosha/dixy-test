@@ -22,6 +22,9 @@
       &:hover {
         color: $orange;
       }
+      &.active {
+        color: $orange;
+      }
       svg {
         fill: $primary-text;
       }
@@ -31,7 +34,7 @@
     }
   }
 
-  & form {
+  & .search-page {
     display: flex;
     align-items: center;
     column-gap: 9px;

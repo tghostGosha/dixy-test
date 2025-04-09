@@ -11,17 +11,22 @@
 		<div class="page__form-field center">
 			<label>Активность</label>
 			<label class="switch-wrapper">
-				<input type="checkbox" data-switch="switch" id="activeSwitch" checked readonly/>
+				<input type="checkbox" data-switch="switch" id="activeSwitch" name="active" readonly/>
 				<span class="switch"></span>
 			</label>
 		</div>
 		<div class="page__form-field">
 			<label for="ruleArea">Область</label>
-			<input type="text" value="Область" name="ruleArea" id="ruleArea" readonly>
+			<select name="rule" id="ruleArea" data-id="areaSelect"  disabled>
+				<option value="">Выберите правило</option>
+			</select>
+<!--			<input type="text" value="Область" name="ruleArea" id="ruleArea" readonly>-->
 		</div>
 		<div class="page__form-field">
 			<label for="sector">Сектор доставки</label>
-			<input type="text" value="Сектор" name="sector" id="sector" readonly>
+			<select name="sector" id="sector">
+				<option value="">Сектор доставки</option>
+			</select>
 		</div>
 		<div class="page__form-field">
 			<label for="warehouseNumber">Номер склада</label>

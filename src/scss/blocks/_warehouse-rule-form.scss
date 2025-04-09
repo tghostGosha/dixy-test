@@ -38,7 +38,7 @@
 
   }
 
-  input {
+  input, select,textarea {
     @include input-default;
     max-width: 300px;
   }

@@ -3,6 +3,7 @@ import dropdown from './modules/dropdown.js';
 import main from './pages/main'
 import warehouse from './pages/warehouse'
 import sector from './pages/sector'
+import history from './pages/history'
 import header from './pages/header'
 import calendar from './modules/calendar'
 import {validate} from './modules/validate'
@@ -73,61 +74,64 @@ const warehouseArray = document.querySelectorAll('[data-id="warehouseNumberArray
 
 try {
   warehouseArray.forEach((item)=> {
-    item.addEventListener('keydown', function () {
+    item.addEventListener('input', function () {
       let res = /[^0-9 ,\b]+$/g.exec(item.value);
       item.value = item.value.replace(res, '');
     })
   })
 } catch (e) {
 }
-//========заполняем Select Области===========
-const dataAreas = await getAreas()
+if (window.location.pathname === '/' || window.location.pathname.includes('store') || window.location.pathname.includes('sector')) {
+  //========заполняем Select Области===========
+  const dataAreas = await getAreas()
 
-const areasSelect = document.querySelectorAll('[data-id="areaSelect"]');
-if (dataAreas) {
-  areasSelect.forEach(select => {
-    dataAreas.data.forEach(function(v){
-      let option = document.createElement("option");
-      option.value = v.id;
-      option.innerHTML = v.name;
-      select.appendChild(option);
-    });
-  })
-}
+  const areasSelect = document.querySelectorAll('[data-id="areaSelect"]');
+  if (dataAreas) {
+    areasSelect.forEach(select => {
+      dataAreas.data.forEach(function(v){
+        let option = document.createElement("option");
+        option.value = v.id;
+        option.innerHTML = v.name;
+        select.appendChild(option);
+      });
+    })
+  }
 //========заполняем Select правил===========
-const dataRules = await getRules()
+  const dataRules = await getRules()
 
-const rulesSelect = document.querySelectorAll('[data-id="rule-select"]');
-if (dataRules) {
-  rulesSelect.forEach(select => {
-    dataRules.data.forEach(function(v){
-      let option = document.createElement("option");
-      option.value = v.id;
-      option.innerHTML = v.name;
-      select.appendChild(option);
-    });
-  })
-}
+  const rulesSelect = document.querySelectorAll('[data-id="rule-select"]');
+  if (dataRules) {
+    rulesSelect.forEach(select => {
+      dataRules.data.forEach(function(v){
+        let option = document.createElement("option");
+        option.value = v.id;
+        option.innerHTML = v.name;
+        select.appendChild(option);
+      });
+    })
+  }
 
 
 //========заполняем Select Секторов===========
-const dataSectors = await getSectors()
-const sectorsSelect = document.querySelectorAll('[data-id="sectorSelect"]');
-if (dataSectors) {
-  sectorsSelect.forEach(select => {
-    dataSectors.data.forEach(function (v) {
-      let option = document.createElement("option");
-      option.value = v.id;
-      option.innerHTML = v.name;
-      select.appendChild(option);
-    });
-  })
+  const dataSectors = await getSectors()
+  const sectorsSelect = document.querySelectorAll('[data-id="sectorSelect"]');
+  if (dataSectors) {
+    sectorsSelect.forEach(select => {
+      dataSectors.data.forEach(function (v) {
+        let option = document.createElement("option");
+        option.value = v.id;
+        option.innerHTML = v.name;
+        select.appendChild(option);
+      });
+    })
+  }
 }
+
 //========разрешать только русские буквы, пробел, точку и тире===========
 const onlyRus = document.querySelectorAll(".onlyRus");
 try {
   onlyRus.forEach((item) => {
-    item.addEventListener("keydown", function () {
+    item.addEventListener("input", function () {
       let res = /[^аА-яЯёЁ .-]/g.exec(item.value);
       item.value = item.value.replace(res, '');
     })
@@ -139,7 +143,7 @@ const searchInput = document.querySelectorAll('#search');
 const searchForm = document.querySelector('[data-search="search"]');
 try {
   searchInput.forEach((item) => {
-    item.addEventListener("keydown", function () {
+    item.addEventListener("input", function () {
       onlyRusAndNumber(item)
     })
   })

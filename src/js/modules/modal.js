@@ -35,6 +35,7 @@ export const modalOpenMap = (button, modalWindow) => {
   modalWindow.addEventListener("click", function (event) {
     if (event.target === modalWindow) {
       unInitializeMap()
+
       modalWindow.style.display = "none";
       bodyElementHTML.classList.remove('active-modal')
     }

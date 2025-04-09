@@ -24,6 +24,7 @@ import {closeModal} from "../helpers/closeModal";
         let id = parent.getAttribute("id");
         e.preventDefault()
         getRuleDetail(id).then((response) => {
+          console.log(response.data, 'response.data.active')
           if (response) {
             ruleId.value = response.data.id
             ruleName.value = response.data.name
@@ -33,7 +34,12 @@ import {closeModal} from "../helpers/closeModal";
             costDelivery.value = response.data.price
             freeDelivery.value = response.data.free_delivery_amount
             minCost.value = response.data.min_amount
-            ruleActive.checked = response.data.active
+            if (response.data.active === true || response.data.active === '1') {
+              ruleActive.checked = true
+            } else {
+              ruleActive.checked = false
+            }
+
           }
         })
         ruleUpdate.classList.add('active');

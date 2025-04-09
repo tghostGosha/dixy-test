@@ -83,9 +83,13 @@
 					Скачать
 				</button>
 				<ul class="dropdown-menu" style="display: none;" data-download="template">
-					<li><button class="dropdown-item" data-download="format">XLSX</button></li>
-					<li><button class="dropdown-item" data-download="format">CSV</button></li>
-					<li><button class="dropdown-item" data-download="format">PDF</button></li>
+					<li>
+						<button class="dropdown-item" data-download="format">xlxs</button>
+					</li>
+					<li>
+						<button class="dropdown-item" data-download="format">csv</button>
+					</li>
+<!--					<li><button class="dropdown-item" data-download="format">PDF</button></li>-->
 				</ul>
 			</div>
 		</div>
@@ -107,13 +111,10 @@
 				</button>
 				<ul class="dropdown-menu" data-sort="sort" style="display: none;">
 					<li>
-						<button class="dropdown-item">По дате изменения</button>
+						<button class="dropdown-item" data-sort="sort" value="UF_DATE_UPDATED">По дате изменения</button>
 					</li>
 					<li>
-						<button class="dropdown-item">По алфавиту</button>
-					</li>
-					<li>
-						<button class="dropdown-item">Вся Россия</button>
+						<button class="dropdown-item" data-sort="sort" value="UF_NAME" >По алфавиту</button>
 					</li>
 				</ul>
 			</div>

@@ -1,28 +1,46 @@
 import {closeSuccessModal} from "../helpers/success-modal";
-import {createSector, deleteSector, downloadSector, getSectors, updateSector} from "../axios/sectors";
+import {
+  createSector,
+  deleteSector,
+  downloadSector,
+  getSectors,
+  updateSector,
+
+} from "../axios/sectors";
 import dataUpdate from '../modules/updateSector';
 import {SectorValidation} from "../utils/sectorValidation";
-import {searchInput} from "../helpers/search";
+import {searchInput, searchPage, sortType} from "../helpers/search";
+import {downloadFile} from "../axios/downloadFile";
 
 //======Поиск====///
 const search = document.querySelector('#search')
 const searchButton = document.querySelector('#search-button');
-searchInput(search, searchButton )
-if (window.location.pathname.includes('sector')) {
-  //===Список всех секторов===////
+const pageValue = document.querySelector('#pageNumber');
 
-    // const sectorsData  = await getSectors()
-  //======Скачать сектора====///
+searchInput(search, searchButton,  )
+searchPage(pageValue)
+
+if (window.location.pathname.includes('sector')) {
+  //======Сортировка======///
   try {
     document.addEventListener('click', function (e) {
-      if (e.target.matches('[data-download="format"]')) {
-        const formatDoc = e.target.textContent
-        downloadSector(formatDoc)
+      if (e.target.matches('[data-sort="sort"]')) {
+        const sortDate = e.target
+        sortType(sortDate)
       }
     })
-  } catch(e){
-    console.log(e)
-  }
+  } catch(e){}
+
+  //======Скачать сектора====///
+  try {
+    document.addEventListener('click', async function (e) {
+      if (e.target.matches('[data-download="format"]')) {
+        const formatDoc = e.target.textContent
+        const data = await downloadSector(formatDoc)
+        downloadFile(data.data.path, data.data.name)
+      }
+    })
+  } catch(e){}
 }
 
 const sectorForm = document.querySelector('#sector-form');

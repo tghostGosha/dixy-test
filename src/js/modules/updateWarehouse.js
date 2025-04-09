@@ -1,5 +1,7 @@
 import {getStoreDetail} from "../axios/warehouse";
 import {closeModal} from "../helpers/closeModal";
+import {getRules} from "../axios/rules";
+import {getSectors} from "../axios/sectors";
 
 
 export const updateWarehouse = () => {
@@ -20,31 +22,33 @@ export const updateWarehouse = () => {
   let elementId = document.querySelector('#id');
 
   try {
-    document.addEventListener('click', function (e) {
+    document.addEventListener('click',  function (e) {
       if (e.target.matches('[data-update="open-warehouse"]')) {
         const parent = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
         let id = parent.getAttribute("id");
         elementId.value = id
         e.preventDefault()
-        getStoreDetail(id).then((response) => {
-          if (response) {
-            warehouseID.value =response.data.id
-            // ruleName.value = response.data.name
-            area.value = response.data.region
-            sector.value = response.data.sector
-            warehouseNumber.value = response.data.store
-            delivery.checked = response.data.delivery
-            pickup.checked = response.data.pickup
-            radius.value = response.data.radius
-            if (response.data.polygon) {
-              polygon.value = 'задан'
-            } else  {
-              polygon.value = ' не задан'
+         getStoreDetail(id).then((response) => {
+            if (response) {
+              console.log(response.data)
+              warehouseID.value =response.data.id
+              ruleName.value = response.data.rule
+              area.value = response.data.region
+              sector.value = response.data.sector
+              warehouseNumber.value = response.data.store
+              delivery.checked = response.data.delivery === true || response.data.delivery === '1';
+              pickup.checked = response.data.pickup === true || response.data.pickup === '1';
+              radius.value = response.data.radius
+              if (response.data.polygon) {
+                polygon.value = 'задан'
+              } else  {
+                polygon.value = ' не задан'
+              }
+              schedule.textContent = response.data.schedule
             }
-            // polygon.value = response.data.polygon
-            schedule.textContent = response.data.schedule
-          }
-        })
+          })
+
+
         warehouseUpdate.classList.add('active');
       }
     })
