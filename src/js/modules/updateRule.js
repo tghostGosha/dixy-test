@@ -1,5 +1,6 @@
 import {getRuleDetail} from "../axios/rules";
 import {closeModal} from "../helpers/closeModal";
+import {checkDataRules} from "../helpers/checkDataRules";
 
 
 (function () {
@@ -24,12 +25,26 @@ import {closeModal} from "../helpers/closeModal";
         let id = parent.getAttribute("id");
         e.preventDefault()
         getRuleDetail(id).then((response) => {
-          console.log(response.data, 'response.data.active')
+
           if (response) {
             ruleId.value = response.data.id
             ruleName.value = response.data.name
-            ruleArea.value = response.data.area
-            sector.value = response.data.sector
+
+            if (response.data.area) {
+              ruleArea.value = response.data.area
+            } else {
+              ruleArea.value = '0'
+            }
+            if (response.data.sector) {
+              sector.value = response.data.sector
+            } else {
+              sector.value = '0'
+            }
+
+
+            if(!response.data.store) {
+              warehouseNumber.value = ''
+            }
             warehouseNumber.value = response.data.store
             costDelivery.value = response.data.price
             freeDelivery.value = response.data.free_delivery_amount
@@ -39,6 +54,8 @@ import {closeModal} from "../helpers/closeModal";
             } else {
               ruleActive.checked = false
             }
+            checkDataRules(sector, ruleArea, warehouseNumber )
+
 
           }
         })

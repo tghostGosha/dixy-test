@@ -7,7 +7,7 @@ import {warehouseValidation} from "../utils/warehouseValidation";
 import {updateWarehouse} from '../modules/updateWarehouse';
 import {modalWarehouseRule} from "../modules/modalWarehouseRule";
 import {closeSuccessModal} from "../helpers/success-modal";
-import {searchInput, searchPage, sortType} from "../helpers/search";
+import {resetSearch, searchInput, searchPage, sortType} from "../helpers/search";
 import {getSectors} from "../axios/sectors";
 import {getAreas} from "../axios/areas";
 import {downloadFile} from "../axios/downloadFile";
@@ -32,8 +32,14 @@ if (window.location.pathname.includes('store') || window.location.pathname.inclu
   const searchButton = document.querySelector('#search-button');
   const pageValue = document.querySelector('#pageNumber');
 
-  searchInput(search, searchButton,  )
+  searchInput(search, searchButton,)
   searchPage(pageValue)
+
+//======Cброс query параметров поиска====///
+  try {
+    const resetButton = document.querySelector('[data-reset="search"]');
+    resetSearch(resetButton)
+  } catch (e) {}
 
   //======Сортировка======///
   try {
@@ -43,7 +49,7 @@ if (window.location.pathname.includes('store') || window.location.pathname.inclu
         sortType(sortDate)
       }
     })
-  } catch(e){
+  } catch (e) {
 
   }
 }
@@ -55,18 +61,20 @@ const modalRule = document.querySelectorAll('[data-modal="rule-modal"]');
 const modalBackgroundMap = document.querySelector('[data-modal="map"]');
 const modalBackgroundRule = document.querySelector('[data-modal="rule"]');
 const successAdd = document.querySelector('[data-success="add-polygon"]');
-const successClose =document.querySelector('[data-success="close"]')
+const successClose = document.querySelector('[data-success="close"]')
 
 
 try {
   modalOpenMap(modalMap, modalBackgroundMap)
   modalWarehouseRule(modalRule, modalBackgroundRule)
-} catch (e) {}
+} catch (e) {
+}
 
 //======Закрытие "успешных" модальных окон====///
 try {
-  closeSuccessModal(successClose,successAdd);
-} catch (e) {}
+  closeSuccessModal(successClose, successAdd);
+} catch (e) {
+}
 
 const warehouseForm = document.querySelector('#warehouseUpdateForm');
 

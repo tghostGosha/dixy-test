@@ -2,14 +2,6 @@ import axios from "axios";
 export const API_BASE_URL = '/api';
 const url = `${API_BASE_URL}/auth/`;
 const authError = document.querySelector('[data-error="auth"]');
-export let BASIC_AUTH
-
-
-
-let results = document.cookie.split('=');
-BASIC_AUTH=results[1]
-
-
 
 //===========Авторизация =================
 export const sendLogin = (data) => {

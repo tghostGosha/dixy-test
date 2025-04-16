@@ -20,6 +20,7 @@ export const searchInput = (input, button) => {
   if (input) {
     input.addEventListener('input', (event) => {
       url.searchParams.set('q', event.target.value);
+      url.searchParams.delete('page');
       window.history.pushState({}, '', url);
       button.href = window.location.href
     });
@@ -32,8 +33,17 @@ export const searchInput = (input, button) => {
 
     })
   }
+}
+
+export const resetSearch = (button) => {
+  button.addEventListener('click', (e) => {
+    url.searchParams.set('q', '');
+    window.history.pushState({}, '', url);
+    // button.href = window.location.href
+  })
 
 }
+
 export const searchDate = (value) => {
   url.searchParams.set('date', value);
   window.history.pushState({}, '', url);
@@ -41,7 +51,15 @@ export const searchDate = (value) => {
 
 export const sortType = (button) => {
   url.searchParams.set('sort_id', button.value);
-  url.searchParams.set('sort_type', 'DESC');
+  if (button.value === 'UF_UPDATED_AT') {
+    url.searchParams.set('sort_type', 'DESC');
+  }
+  if (button.value === 'UF_AREA') {
+    url.searchParams.set('sort_type', 'ASC');
+  }
+  if (button.value === 'UF_NAME') {
+    url.searchParams.set('sort_type', 'ASC');
+  }
   window.history.pushState({}, '', url);
   window.location.assign(
     `${window.location.href}`
@@ -49,7 +67,7 @@ export const sortType = (button) => {
 }
 
 export const sortTypeHistory = (button) => {
-  url.searchParams.set('sort_id', 'UF_DATE_UPDATED');
+  url.searchParams.set('sort_id', 'UF_UPDATED_AT');
   url.searchParams.set('sort_type', button.value);
   window.history.pushState({}, '', url);
   window.location.assign(

@@ -94,6 +94,7 @@ saveButton.addEventListener('click', () => savePolygon(warehouseID))
 export const initializeMap = async (id) => {
 
   const dataStores = await getStoresMap()
+
   storeId = dataStores.data.filter(x => x.id === id);
   // newPolygon=storeId[0]
   currentWarehouse = storeId[0]
@@ -123,10 +124,11 @@ export const initializeMap = async (id) => {
   });
 
 
-  dataStores.data.forEach((w) => {
+  for (let w of dataStores.data) {
     const marker = L.marker([w.latitude, w.longitude], {
       icon: customIcon,
-      warehouseId: w.id
+      warehouseId: w.id,
+      title: w.xml_id
     }).addTo(map);
 
     marker.on('click', () => {
@@ -137,7 +139,30 @@ export const initializeMap = async (id) => {
       }
 
     });
-  })
+    // marker.bindPopup(`${w.xml_id}`).openPopup();
+  }
+  console.log(currentWarehouse, 'currentWarehouse')
+  // const activeStore = L.marker([currentWarehouse.latitude, currentWarehouse.longitude], {icon: customIcon,
+  //   warehouseId: currentWarehouse.id}).addTo(map);
+  // activeStore.bindPopup(`${currentWarehouse.xml_id}`).openPopup();
+
+  // dataStores.data.forEach((w) => {
+  //   const marker = L.marker([w.latitude, w.longitude], {
+  //     icon: customIcon,
+  //     warehouseId: w.id,
+  //
+  //   }).addTo(map);
+  //
+  //   marker.on('click', () => {
+  //     try {
+  //       handleMarkerClick(marker, map, w);
+  //     } catch (e) {
+  //       console.log(e)
+  //     }
+  //
+  //   });
+  //   marker.bindPopup(`${w.xml_id}`).openPopup();
+  // })
 
 
   //===========рисуем радиус у выбранного магазина при инициализации карты
@@ -300,7 +325,7 @@ const handleMarkerClick = async (marker, map, warehouse) => {
   warehouseID = warehouse.id
   currentWarehouse = warehouse;
   mapFooterButtons.style.display = 'none';
-  isEditing=false
+  isEditing = false
 
 
   if (warehouse.polygon && warehouse.polygon.length > 0) {

@@ -1,9 +1,12 @@
 import {initializeMap, unInitializeMap} from "./map";
 
-const openMapModal = (modalWindow, bodyElementHTML, id) => {
+const openMapModal = async (modalWindow, bodyElementHTML, id) => {
   modalWindow.style.display = "block";
   bodyElementHTML.classList.add('active-modal')
-  initializeMap(id)
+  try {
+    await initializeMap(id)
+  } catch (e){}
+
 };
 
 const closeMapModal = (modalWindow, bodyElementHTML) => {
@@ -26,7 +29,10 @@ export const modalOpenMap = (button, modalWindow) => {
 
   modalClose.forEach((item) => {
     item.addEventListener("click", function () {
-      unInitializeMap()
+      try {
+        unInitializeMap()
+      } catch (e){}
+
       closeMapModal(modalWindow, bodyElementHTML);
     });
   })
@@ -34,8 +40,10 @@ export const modalOpenMap = (button, modalWindow) => {
 // закрытие модального окна на зону вне окна, т.е. на фон
   modalWindow.addEventListener("click", function (event) {
     if (event.target === modalWindow) {
-      unInitializeMap()
 
+      try {
+        unInitializeMap()
+      } catch (e){}
       modalWindow.style.display = "none";
       bodyElementHTML.classList.remove('active-modal')
     }

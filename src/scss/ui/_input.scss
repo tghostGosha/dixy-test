@@ -2,7 +2,8 @@ input {
   @include input-default;
 }
 
-input.is-invalid {
+input.is-invalid,
+textarea.is-invalid{
   border: 1px solid $error;
 }
 //input.is-valid {

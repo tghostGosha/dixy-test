@@ -6,6 +6,7 @@ export function serializeForm(formNode, request, id = undefined) {
   if (!data.has('active')) {
     data.set('active', '0')
   }
+
   if (data.has('delivery')) {
     data.set('delivery', 'true')
   }else {

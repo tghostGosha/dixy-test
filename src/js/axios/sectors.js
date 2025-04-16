@@ -21,7 +21,23 @@ export const getSectors = async () => {
   }).then((response) => {
     return response.data
   }).catch(function (error) {
-    console.log(error);
+  })
+
+}
+//===========Список всех секторов =================
+export const getSectorsByArea = async (areaId) => {
+  return await axios.get(`${url}/?area=${areaId}`, {
+    // headers: {
+    //   'Authorization': 'Basic Auth' + BASIC_AUTH
+    // },
+    auth: {
+      username: 'bitrix',
+      password: '2zwjc1h6yakt9wuo'
+    }
+
+  }).then((response) => {
+    return response.data
+  }).catch(function (error) {
   })
 
 }

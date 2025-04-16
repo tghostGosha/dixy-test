@@ -9,7 +9,8 @@ export const updateWarehouse = () => {
   const closeBtn = document.querySelector('[data-close="update-warehouse"]')
   const warehouseUpdateForm = document.querySelector("#warehouseUpdateForm");
   const cancelBtn = document.querySelector('[data-сancel="update-warehouse"]')
-  const warehouseID = document.querySelector('#id');
+  // const warehouseID = document.querySelector('#id');
+  const storeNumber = document.querySelector('#storeNumber');
   const ruleName = document.querySelector('#ruleSelect');
   const area = document.querySelector('#areaSelect');
   const sector = document.querySelector('#sectorSelect');
@@ -30,8 +31,8 @@ export const updateWarehouse = () => {
         e.preventDefault()
          getStoreDetail(id).then((response) => {
             if (response) {
-              console.log(response.data)
-              warehouseID.value =response.data.id
+
+              storeNumber.value =response.data.xml_id
               ruleName.value = response.data.rule
               area.value = response.data.region
               sector.value = response.data.sector

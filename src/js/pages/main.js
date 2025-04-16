@@ -1,18 +1,35 @@
 import {closeSuccessModal} from "../helpers/success-modal";
 import {createRule, deleteRule, downloadRule, getRules, updateRule} from "../axios/rules";
-import {RuleValidation} from "../utils/ruleValidation";
-import {searchInput, searchPage, sortType} from "../helpers/search";
+import {RuleUpdateValidation, RuleValidation} from "../utils/ruleValidation";
+import {searchInput, searchPage, sortType, resetSearch} from "../helpers/search";
 import rule from "../modules/updateRule";
 import {downloadFile} from "../axios/downloadFile";
+
+
 
 //======Поиск====///
 const search = document.querySelector('#search');
 const searchButton = document.querySelector('#search-button');
 const pageValue = document.querySelector('#pageNumber');
 
+
 searchInput(search, searchButton)
 searchPage(pageValue)
+//======Cброс query параметров поиска====///
+try {
+  const resetButton = document.querySelector('[data-reset="search"]');
+  resetSearch(resetButton)
+} catch (e) {
+}
+//======Отправка запроса на изменение активности правила///
+const switchData = document.querySelectorAll('[data-update="switch"]')
 
+switchData.forEach((item) => {
+  item.addEventListener('click', (e) => {
+    let id = e.target.parentNode.parentNode.parentNode.getAttribute("id")
+    updateRule({active: item.checked}, id.toString())
+  })
+})
 
 
 //======Валидация нового правила====///
@@ -26,10 +43,12 @@ if (window.location.pathname === '/') {
     document.addEventListener('click', function (e) {
       if (e.target.matches('[data-sort="sort"]')) {
         const sortDate = e.target
+
         sortType(sortDate)
       }
     })
-  } catch(e){}
+  } catch (e) {
+  }
   //======Скачать правила====///
   try {
     document.addEventListener('click', async function (e) {
@@ -39,36 +58,38 @@ if (window.location.pathname === '/') {
         downloadFile(data.data.path, data.data.name)
       }
     })
-  } catch(e){}
-}
+  } catch (e) {
+  }
 
+}
 
 
 //======Валидация нового правила====///
 if (ruleForm) {
-  RuleValidation(ruleForm, createRule, ruleCreate )
+  RuleValidation(ruleForm, createRule, ruleCreate)
 }
 
 //====== Валидация Редактирование правила====///
 if (ruleUpdateForm) {
-  RuleValidation(ruleUpdateForm, updateRule, ruleUpdate)
+  RuleUpdateValidation(ruleUpdateForm, updateRule, ruleUpdate)
 }
 
 //======Закрытие модалки успешной отправки формы====///
 const successEditRule = document.querySelector('[data-success="edit-rule"]')
 const successAddRule = document.querySelector('[data-success="add-rule"]');
 const successDeleteRule = document.querySelector('[data-success="delete-rule"]');
-const successClose =document.querySelectorAll('[data-success="close"]')
+const successClose = document.querySelectorAll('[data-success="close"]')
 
 try {
   closeSuccessModal(successClose, successEditRule)
-  closeSuccessModal(successClose,successAddRule);
-  closeSuccessModal(successClose,successDeleteRule);
-} catch (e) {}
+  closeSuccessModal(successClose, successAddRule);
+  closeSuccessModal(successClose, successDeleteRule);
+} catch (e) {
+}
 
 
 //======модалка удаления правила====///
-( function () {
+(function () {
   const deleteRuleButton = document.querySelector('[data-delete-rule="delete"]')
   const modalBackgroundDelete = document.querySelector('[data-modal-rule="delete"]');
   const bodyElementHTML = document.getElementsByTagName("body")[0];

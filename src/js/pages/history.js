@@ -1,4 +1,4 @@
-import {searchInput, searchPage, sortTypeHistory} from "../helpers/search";
+import {resetSearch, searchInput, searchPage, sortTypeHistory} from "../helpers/search";
 
 if (window.location.pathname.includes('history')) {
   //======Поиск====///
@@ -8,6 +8,12 @@ if (window.location.pathname.includes('history')) {
 
   searchInput(search, searchButton,  )
   searchPage(pageValue)
+
+  //======Cброс query параметров поиска====///
+  try {
+    const resetButton = document.querySelector('[data-reset="search"]');
+    resetSearch(resetButton)
+  } catch (e) {}
 
   //======Сортировка======///
   try {

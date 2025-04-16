@@ -1,6 +1,7 @@
 import axios from "axios";
 import {API_BASE_URL} from "./auth";
 import {openSuccessModal} from "../helpers/success-modal";
+import {errorModal} from "../modules/errorModal";
 
 const url = `${API_BASE_URL}/rules`;
 const successEditRule = document.querySelector('[data-success="edit-rule"]')
@@ -56,8 +57,8 @@ export const createRule = (data) => {
   }).then((response) => {
     openSuccessModal(successAddRule)
   }).catch(function (error) {
+    errorModal(error.response.data.errors[0].message)
 
-    console.log(error);
   })
 
 }
@@ -76,7 +77,7 @@ export const updateRule = (data, id) => {
     openSuccessModal(successEditRule)
   }).catch(function (error) {
 
-    console.log(error);
+    errorModal(error.response.data.errors[0].message)
   })
 
 }

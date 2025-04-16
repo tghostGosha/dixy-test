@@ -40,12 +40,12 @@ export const warehouseValidation = (form, request) => {
         errorMessage: 'Обязательное поле'
       },
     ])
-    .addField('#sectorSelect', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-    ])
+    // .addField('#sectorSelect', [
+    //   {
+    //     rule: 'required',
+    //     errorMessage: 'Обязательное поле'
+    //   },
+    // ])
     .onSuccess((ev) => {
       ev.preventDefault();
       serializeForm(form, request)

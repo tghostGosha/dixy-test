@@ -9,7 +9,7 @@ import {
 } from "../axios/sectors";
 import dataUpdate from '../modules/updateSector';
 import {SectorValidation} from "../utils/sectorValidation";
-import {searchInput, searchPage, sortType} from "../helpers/search";
+import {resetSearch, searchInput, searchPage, sortType} from "../helpers/search";
 import {downloadFile} from "../axios/downloadFile";
 
 //======Поиск====///
@@ -17,8 +17,14 @@ const search = document.querySelector('#search')
 const searchButton = document.querySelector('#search-button');
 const pageValue = document.querySelector('#pageNumber');
 
-searchInput(search, searchButton,  )
+searchInput(search, searchButton)
 searchPage(pageValue)
+
+//======Cброс query параметров поиска====///
+try {
+  const resetButton = document.querySelector('[data-reset="search"]');
+  resetSearch(resetButton)
+} catch (e) {}
 
 if (window.location.pathname.includes('sector')) {
   //======Сортировка======///
@@ -29,7 +35,8 @@ if (window.location.pathname.includes('sector')) {
         sortType(sortDate)
       }
     })
-  } catch(e){}
+  } catch (e) {
+  }
 
   //======Скачать сектора====///
   try {
@@ -40,7 +47,8 @@ if (window.location.pathname.includes('sector')) {
         downloadFile(data.data.path, data.data.name)
       }
     })
-  } catch(e){}
+  } catch (e) {
+  }
 }
 
 const sectorForm = document.querySelector('#sector-form');
@@ -49,8 +57,8 @@ const modalCreate = document.querySelector('[data-create="sector"]');
 const modalUpdate = document.querySelector('[data-update="sector"]');
 const successEdit = document.querySelector('[data-success="edit-sector"]')
 const successAdd = document.querySelector('[data-success="add-sector"]');
-const successClose =document.querySelectorAll('[data-success="close"]')
-const successDelete =document.querySelector('[data-success="delete-sector"]');
+const successClose = document.querySelectorAll('[data-success="close"]')
+const successDelete = document.querySelector('[data-success="delete-sector"]');
 
 //======Валидация нового сектора====///
 if (sectorForm) {
@@ -64,10 +72,10 @@ if (sectorUpdateForm) {
 //======Закрытие "успешных" модальных окон====///
 try {
   closeSuccessModal(successClose, successEdit)
-  closeSuccessModal(successClose,successAdd);
-  closeSuccessModal(successClose,successDelete);
-} catch (e) {}
-
+  closeSuccessModal(successClose, successAdd);
+  closeSuccessModal(successClose, successDelete);
+} catch (e) {
+}
 
 
 //======модалка удаления сектора====///
