@@ -1,35 +1,40 @@
-import {getSectorsByArea} from "../axios/sectors";
+import {getSectors} from "../axios/sectors";
+import {selectChoice} from "../modules/choiceSector";
+import "choices.js/public/assets/styles/choices.css";
+import Choices from "choices.js";
 
-export const checkDataRules = (sectorSelect, areaSelect, textarea) => {
+
+export const checkDataRules = async (sectorSelect, areaSelect, textarea, choice) => {
   let firstSelectEdited = false;
   let secondSelectEdited = false;
 
   if (textarea.value !== '') {
-    return [textarea.disabled = false, sectorSelect.disabled = true, areaSelect.disabled = true]
+    return [textarea.disabled = false,choice.disable(), sectorSelect.disabled = true, areaSelect.disabled = true]
 
-  }else if (textarea.value.trim() === "") {
+  }
+  if (textarea.value.trim() === "" && areaSelect.value !== '') {
+    areaSelect.disabled = false;
+    sectorSelect.disabled = false;
+    choice.enable()
     areaSelect.addEventListener('change', async function () {
-      firstSelectEdited = true;
-      areaSelect.disabled = false;
-      textarea.disabled = true;
+
+      if (choice) {
+        choice.destroy()
+      }
+
       for (let i = sectorSelect.options.length - 1; i >= 0; i--) {
         if (i !== 0) { // Skip the first option
           sectorSelect.remove(i);
         }
       }
+      let data = await getSectors(areaSelect.value)
 
-      const sectors = await getSectorsByArea(areaSelect.value)
+      let result = data.data.map(({id, name}) =>
+        ({value: id, label: name}));
+        choice = selectChoice(sectorSelect,result )
 
-      sectors.data.forEach(function (v) {
-        let option = document.createElement("option");
-        option.value = v.id;
-        option.innerHTML = v.name;
-        sectorSelect.appendChild(option);
 
-      })
-
-      sectorSelect.disabled = false;
-    });
+    })
 
     sectorSelect.addEventListener('change', function () {
       secondSelectEdited = true;
@@ -38,7 +43,14 @@ export const checkDataRules = (sectorSelect, areaSelect, textarea) => {
       }
     });
   }
-  return [ areaSelect.disabled = false,
-    textarea.disabled = true]
+  if(sectorSelect.value !== '' ) {
+    areaSelect.disabled = true;
+    sectorSelect.disabled = false;
+
+    choice.enable()
+  }
+return choice
+  // return [areaSelect.disabled = true,
+  //   textarea.disabled = true, choice]
 
 }

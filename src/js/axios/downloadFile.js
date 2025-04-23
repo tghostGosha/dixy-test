@@ -1,4 +1,5 @@
 import axios from "axios";
+import {basicAuth} from "./auth";
 
 export const downloadFile = (urlFile, name) => {
   axios.get(`${urlFile}`,{
@@ -7,8 +8,8 @@ export const downloadFile = (urlFile, name) => {
     },
     responseType: 'blob',
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     const href = URL.createObjectURL(response.data);

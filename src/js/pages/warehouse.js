@@ -13,7 +13,7 @@ import {getAreas} from "../axios/areas";
 import {downloadFile} from "../axios/downloadFile";
 
 if (window.location.pathname.includes('store') || window.location.pathname.includes('warehouse')) {
-  updateWarehouse()
+  await updateWarehouse()
 
 //======Скачать склады====///
   try {

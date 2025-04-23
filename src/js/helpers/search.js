@@ -1,18 +1,4 @@
-
-const historyState = () => {
-  if (window.history.replaceState) {
-    const url = window.location.protocol
-      + "//" + window.location.host
-      + window.location.pathname
-      + "?"
-      + paramsString.toString();
-
-    window.history.replaceState({
-      path: url
-    }, "", url)
-  }
-}
-
+import {onlyRusAndNumber} from "./onlyRusAndNumber";
 
 const url = new URL(window.location);
 
@@ -23,6 +9,7 @@ export const searchInput = (input, button) => {
       url.searchParams.delete('page');
       window.history.pushState({}, '', url);
       button.href = window.location.href
+      onlyRusAndNumber(input)
     });
     input.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
@@ -37,16 +24,21 @@ export const searchInput = (input, button) => {
 
 export const resetSearch = (button) => {
   button.addEventListener('click', (e) => {
-    url.searchParams.set('q', '');
+    url.searchParams.delete('q');
     window.history.pushState({}, '', url);
-    // button.href = window.location.href
+    if(url.searchParams.get('date')) {
+      url.searchParams.delete('date')
+      window.history.pushState({}, '', url);
+    }
   })
 
 }
 
 export const searchDate = (value) => {
+  const searchButton = document.querySelector('#search-button');
   url.searchParams.set('date', value);
   window.history.pushState({}, '', url);
+  searchButton.href = window.location.href;
 }
 
 export const sortType = (button) => {

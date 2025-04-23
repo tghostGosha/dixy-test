@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_BASE_URL} from "./auth";
+import {API_BASE_URL, basicAuth} from "./auth";
 
 
 const url = `${API_BASE_URL}/areas/`;
@@ -11,8 +11,8 @@ export const getAreas = async () => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     return response.data

@@ -2,7 +2,10 @@ import axios from "axios";
 export const API_BASE_URL = '/api';
 const url = `${API_BASE_URL}/auth/`;
 const authError = document.querySelector('[data-error="auth"]');
-
+export const basicAuth = {
+  name: 'bitrix' ,
+  password: '2zwjc1h6yakt9wuo'
+}
 //===========Авторизация =================
 export const sendLogin = (data) => {
   axios.post(`${url}login/`, data, {
@@ -10,8 +13,8 @@ export const sendLogin = (data) => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     window.location.href = '/';
@@ -28,8 +31,8 @@ export const logOut = () => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     window.location.href = '/auth/';

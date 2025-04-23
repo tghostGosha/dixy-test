@@ -1,9 +1,13 @@
 import {getRuleDetail} from "../axios/rules";
 import {closeModal} from "../helpers/closeModal";
 import {checkDataRules} from "../helpers/checkDataRules";
+import {onlyRusLetter} from "../helpers/onlyRusLetter";
+import {selectChoice} from "./choiceSector";
+import {getSectors} from "../axios/sectors";
 
 
 (function () {
+
   const ruleUpdate = document.querySelector('[data-update="rule"]')
   const closeButton = document.querySelector('[data-close="update-rule"]')
   const ruleUpdateForm = document.querySelector("#ruleUpdateForm")
@@ -19,13 +23,19 @@ import {checkDataRules} from "../helpers/checkDataRules";
   let ruleId = document.querySelector('#ruleId');
 
   try {
-    document.addEventListener('click', function (e) {
+    document.addEventListener('click',  function (e) {
       if (e.target.matches('[data-update="open"]')) {
+        let select = null
         const parent = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
         let id = parent.getAttribute("id");
-        e.preventDefault()
-        getRuleDetail(id).then((response) => {
-
+        // e.preventDefault()
+        getRuleDetail(id).then(async (response) => {
+          //======Очищаем все options у селекта сектора
+          for (let i = sector.options.length - 1; i >= 0; i--) {
+            if (i !== 0) { // Skip the first option
+              sector.remove(i);
+            }
+          }
           if (response) {
             ruleId.value = response.data.id
             ruleName.value = response.data.name
@@ -35,39 +45,55 @@ import {checkDataRules} from "../helpers/checkDataRules";
             } else {
               ruleArea.value = '0'
             }
-            if (response.data.sector) {
-              sector.value = response.data.sector
+            if (!response.data.sector) {
+              sector.value = ''
+
             } else {
-              sector.value = '0'
+              sector.value = response.data.sector
             }
-
-
-            if(!response.data.store) {
+            if (!response.data.store) {
               warehouseNumber.value = ''
             }
             warehouseNumber.value = response.data.store
             costDelivery.value = response.data.price
             freeDelivery.value = response.data.free_delivery_amount
             minCost.value = response.data.min_amount
-            if (response.data.active === true || response.data.active === '1') {
-              ruleActive.checked = true
-            } else {
-              ruleActive.checked = false
+            ruleActive.checked = response.data.active === true || response.data.active === '1';
+
+
+            //========заполняем Select Секторов===========
+            const dataSectors = await getSectors(response.data.area)
+            if (dataSectors) {
+
+              let result = dataSectors.data.map(({id, name}) =>
+                ({value: id, label: name}));
+
+              const toggle = (arr, id) => arr.map(n => n.value === id ? {...n, selected: !n.selected} : n);
+              const newArr = toggle(result, response.data.sector)
+              select = selectChoice(sector, newArr)
+              select.init()
+              checkDataRules(sector, ruleArea, warehouseNumber, select)
+
+              //====Разрешаем только русские буквы и пробелы
+              const input = document.querySelectorAll(".choices__input")
+              input.forEach(e => {
+                onlyRusLetter(e)
+              })
             }
-            checkDataRules(sector, ruleArea, warehouseNumber )
 
-
+            closeModal(cancelBtn, ruleUpdate, ruleUpdateForm, select)
+            closeModal(closeButton, ruleUpdate, ruleUpdateForm, select)
           }
         })
+
         ruleUpdate.classList.add('active');
 
       }
     })
-    closeModal(cancelBtn, ruleUpdate, ruleUpdateForm)
-    closeModal(closeButton, ruleUpdate, ruleUpdateForm)
+
 
   } catch (e) {
-    // console.log(e)
+
   }
 })();
 

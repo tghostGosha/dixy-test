@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_BASE_URL} from "./auth";
+import {API_BASE_URL, basicAuth} from "./auth";
 import {openSuccessModal} from "../helpers/success-modal";
 import {errorModal} from "../modules/errorModal";
 
@@ -15,8 +15,8 @@ export const getRules = async () => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     return response.data
@@ -32,8 +32,8 @@ export const getRuleDetail = async (id) => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     return response.data
@@ -51,8 +51,8 @@ export const createRule = (data) => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     openSuccessModal(successAddRule)
@@ -70,8 +70,8 @@ export const updateRule = (data, id) => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     openSuccessModal(successEditRule)
@@ -89,8 +89,8 @@ export const deleteRule = (id) => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     openSuccessModal(successDeleteRule)
@@ -108,8 +108,8 @@ export const downloadRule = async (format) => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     return response.data

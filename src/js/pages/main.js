@@ -1,10 +1,11 @@
 import {closeSuccessModal} from "../helpers/success-modal";
 import {createRule, deleteRule, downloadRule, getRules, updateRule} from "../axios/rules";
-import {RuleUpdateValidation, RuleValidation} from "../utils/ruleValidation";
+import {RuleValidation} from "../utils/ruleValidation";
+import {RuleUpdateValidation } from "../utils/ruleUpdateValidation";
 import {searchInput, searchPage, sortType, resetSearch} from "../helpers/search";
 import rule from "../modules/updateRule";
 import {downloadFile} from "../axios/downloadFile";
-
+import {selectChoice} from "../modules/choiceSector";
 
 
 //======Поиск====///

@@ -11,9 +11,15 @@ function clearValidationErrors(form) {
   });
 }
 
-export const closeModal = (button, modal, form) => {
+export const closeModal = (button, modal, form , select) => {
+
   button.addEventListener('click', (event) => {
     event.preventDefault()
+    //==отключаем инстанс Селекта====
+    if(select) {
+
+      select.destroy()
+    }
     form.reset();
     clearValidationErrors(form)
     modal.classList.remove('active');

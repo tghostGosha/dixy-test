@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_BASE_URL} from "./auth";
+import {API_BASE_URL, basicAuth} from "./auth";
 import {openSuccessModal} from "../helpers/success-modal";
 
 const url = `${API_BASE_URL}/stores`;
@@ -13,8 +13,8 @@ export const getStores = async () => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     return response.data
@@ -30,8 +30,8 @@ export const getStoreDetail = async (id) => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     return response.data
@@ -50,8 +50,8 @@ export const updateStore = (data, id ) => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     openSuccessModal(successAddSector)
@@ -69,8 +69,8 @@ export const getStoresMap = async () => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     return response.data
@@ -86,8 +86,8 @@ export const downloadStore = async (format) => {
       'Content-Type': 'application/json'
     },
     auth: {
-      username: 'bitrix',
-      password: '2zwjc1h6yakt9wuo'
+      username: basicAuth.name,
+      password: basicAuth.password
     }
   }).then((response) => {
     return response.data
