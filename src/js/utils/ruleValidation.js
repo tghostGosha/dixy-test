@@ -140,6 +140,8 @@ export const RuleValidation = (form, request, modal) => {
       serializeForm(form, request)
       form.reset()
       modal.classList.remove('active');
+      location.reload()
+
     })
     .onFail((fields) => {
       validate(form).refresh()
@@ -148,8 +150,8 @@ export const RuleValidation = (form, request, modal) => {
   const cancelBtn = document.querySelector('[data-сancel="cancel"]')
   const closeButton = document.querySelector('[data-close="close"]')
   cancelBtn.addEventListener('click', ()=> {
-    // validate(form).refresh()
-    // validate(form).destroy()
+    validate(form).refresh()
+    validate(form).destroy()
     areaSelect.disabled=false
     sectorSelect.disabled= false
     store.disabled=false
@@ -165,13 +167,8 @@ export const RuleValidation = (form, request, modal) => {
 
 
 const selectChanges = (selector1, selector2, input, choicesSector ) => {
-  // Add event listener to the first selector
-
   selector1.addEventListener('change', async () => {
-
-    // If a value is selected in the first selector
     if (selector1.value !== '') {
-      // Disable the second selector and input
       choicesSector.destroy()
       selector2.value = ''
       selector2.disabled = true;
@@ -187,16 +184,12 @@ const selectChanges = (selector1, selector2, input, choicesSector ) => {
       }
 
     } else {
-      // Enable the second selector and input
       selector2.disabled = false;
       input.disabled = false;
     }
   });
-// Add event listener to the first selector
   selector2.addEventListener('change', () => {
-    // If a value is selected in the first selector
     if (selector2.value !== '') {
-      // Disable the second selector and input
       selector1.disabled = true;
       selector1.classList.remove('is-invalid');
       if (selector1.nextElementSibling) {
@@ -208,27 +201,28 @@ const selectChanges = (selector1, selector2, input, choicesSector ) => {
         input.nextElementSibling.style.display='none'
       }
     } else {
-      // Enable the second selector and input
       selector1.disabled = false;
       input.disabled = false;
     }
   });
-
-// Add event listener to the input
   input.addEventListener('input', () => {
-    // If there is a value in the input and the second selector is disabled
     if (input.value !== '') {
-      // Enable the second selector
       selector2.disabled = true;
       selector2.classList.remove('is-invalid');
       if (selector2.nextElementSibling) {
         selector2.nextElementSibling.style.display='none'
       }
+      choicesSector.destroy()
       selector1.disabled = true;
       selector1.classList.remove('is-invalid');
       if (selector1.nextElementSibling) {
         selector1.nextElementSibling.style.display='none'
       }
+    } else {
+      choicesSector.init()
+      choicesSector.enable()
+      sectorSelect.disabled = false;
+      areaSelect.disabled = false;
     }
   });
 }

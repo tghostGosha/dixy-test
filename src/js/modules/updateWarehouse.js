@@ -4,7 +4,9 @@ import {getRules} from "../axios/rules";
 import {getSectors} from "../axios/sectors";
 import {selectChoice} from "./choiceSector";
 import {onlyRusLetter} from "../helpers/onlyRusLetter";
-import {addSectorsSelect} from "../helpers/addSectorsSelect";
+import Choices from "choices.js";
+import {getAreas} from "../axios/areas";
+
 
 
 export const updateWarehouse = () => {
@@ -15,7 +17,7 @@ export const updateWarehouse = () => {
   const storeNumber = document.querySelector('#storeNumber');
   const ruleName = document.querySelector('#ruleSelect');
   const area = document.querySelector('#areaSelect');
-  const sector = document.querySelector('#sectorSelect');
+  const sector = document.querySelector('#sectorStoreSelect');
   const warehouseNumber = document.querySelector('#warehouseNumber');
   const delivery = document.querySelector('#delivery');
   const pickup = document.querySelector('#pickup');
@@ -23,26 +25,42 @@ export const updateWarehouse = () => {
   const polygon = document.querySelector('#poligon');
   const schedule=document.querySelector('#schedule')
   let elementId = document.querySelector('#id');
-  let select = null
+  let choice
 
   try {
     document.addEventListener('click',  function (e) {
       if (e.target.matches('[data-update="open-warehouse"]')) {
-
+        // choice = null
         const parent = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
         let id = parent.getAttribute("id");
         elementId.value = id
 
-        // e.preventDefault()
+        e.preventDefault()
          getStoreDetail(id).then(async (response) => {
+           //======Очищаем все options у селекта сектора
+           for (let i = sector.options.length - 1; i >= 0; i--) {
+             if (i !== 0) { // Skip the first option
+               sector.remove(i);
+             }
+           }
+
             if (response) {
+              const areaData = await getAreas()
+              let areaByID = areaData.data.find(function(item) { return item.id === response.data.area; });
               storeNumber.value =response.data.xml_id
               ruleName.value = response.data.rule
-              area.value = response.data.region
+              area.value = areaByID.name
               warehouseNumber.value = response.data.store
               delivery.checked = response.data.delivery === true || response.data.delivery === '1';
               pickup.checked = response.data.pickup === true || response.data.pickup === '1';
               radius.value = response.data.radius
+              if (!response.data.sector) {
+                sector.value = ''
+
+              } else {
+                sector.value = response.data.sector
+              }
+
               if (response.data.polygon) {
                 polygon.value = 'задан'
               } else  {
@@ -58,17 +76,18 @@ export const updateWarehouse = () => {
 
                 const toggle = (arr, id) => arr.map(n => n.value === id ? { ...n, selected: !n.selected } : n);
                 const newArr = toggle(result, response.data.sector)
-                sector.value = response.data.sector
-                select = selectChoice(sector, newArr)
-                select.init()
+
+                const choice = selectChoice(sector, newArr)
+
                 //====Разрешаем только русские буквы и пробелы
                 const input =document.querySelectorAll(".choices__input")
                 input.forEach( e =>{
                   onlyRusLetter(e)
                 })
-
+                closeModal(cancelBtn,warehouseUpdate,warehouseUpdateForm, choice )
+                closeModal(closeBtn,warehouseUpdate,warehouseUpdateForm , choice )
               }
-              // await addSectorsSelect(response, sector, select)
+
               // closeModal(cancelBtn,warehouseUpdate,warehouseUpdateForm, select )
               // closeModal(closeBtn,warehouseUpdate,warehouseUpdateForm , select )
             }
@@ -77,8 +96,7 @@ export const updateWarehouse = () => {
       }
     })
 
-    closeModal(cancelBtn,warehouseUpdate,warehouseUpdateForm, select )
-    closeModal(closeBtn,warehouseUpdate,warehouseUpdateForm , select )
+
 
   } catch (e) {
     console.log(e)

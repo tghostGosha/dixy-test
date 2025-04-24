@@ -98,6 +98,7 @@ export const initializeMap = async (id) => {
   storeId = dataStores.data.filter(x => x.id === id);
   // newPolygon=storeId[0]
   currentWarehouse = storeId[0]
+  console.log(storeId[0], 'storeId[0]')
   warehouseID = currentWarehouse.id
   map = new L.Map('map', {
     editable: true,
@@ -125,20 +126,25 @@ export const initializeMap = async (id) => {
 
 
   for (let w of dataStores.data) {
-    const marker = L.marker([w.latitude, w.longitude], {
-      icon: customIcon,
-      warehouseId: w.id,
-      title: w.xml_id
-    }).addTo(map);
 
-    marker.on('click', () => {
-      try {
-        handleMarkerClick(marker, map, w);
-      } catch (e) {
-        console.log(e)
-      }
+    if(w.latitude && w.longitude) {
+      const marker = L.marker([w.latitude, w.longitude], {
+        icon: customIcon,
+        warehouseId: w.id,
+        title: w.xml_id
+      }).addTo(map);
 
-    });
+      marker.on('click', () => {
+        try {
+          handleMarkerClick(marker, map, w);
+        } catch (e) {
+
+        }
+
+      });
+    }
+
+
     // marker.bindPopup(`${w.xml_id}`).openPopup();
   }
   console.log(currentWarehouse, 'currentWarehouse')
@@ -173,6 +179,7 @@ export const initializeMap = async (id) => {
     currentPolygon.on('editable:vertex:new', e => handleNodeAdd(e));
 
   } else if (storeId[0].radius && !storeId[0].polygon) {
+
     const center = [storeId[0].latitude, storeId[0].longitude];
     const radiusInMeters = parseFloat(storeId[0].radius) * 1000; // Convert radius from km to meters
 

@@ -2,18 +2,16 @@ import resize from '../modules/rezizeRow';
 import {modalOpenMap} from "../modules/modal";
 // import {tippyOpen} from "../modules/dropdown";
 import dataOpen from '../modules/modal-page';
-import {downloadStore, getPeople, getStores, updateStore} from "../axios/warehouse";
+import {downloadStore, updateStore} from "../axios/warehouse";
 import {warehouseValidation} from "../utils/warehouseValidation";
 import {updateWarehouse} from '../modules/updateWarehouse';
 import {modalWarehouseRule} from "../modules/modalWarehouseRule";
 import {closeSuccessModal} from "../helpers/success-modal";
 import {resetSearch, searchInput, searchPage, sortType} from "../helpers/search";
-import {getSectors} from "../axios/sectors";
-import {getAreas} from "../axios/areas";
 import {downloadFile} from "../axios/downloadFile";
 
 if (window.location.pathname.includes('store') || window.location.pathname.includes('warehouse')) {
-  await updateWarehouse()
+  updateWarehouse()
 
 //======Скачать склады====///
   try {

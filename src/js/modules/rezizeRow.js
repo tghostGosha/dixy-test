@@ -17,7 +17,7 @@ interact('.resizable')
         y = (parseFloat(y) || 0) + event.deltaRect.top
 
         Object.assign(event.target.style, {
-          width: `${event.rect.width}px`,
+          // width: `${event.rect.width}px`,
           height: `${event.rect.height}px`,
           transform: `translate(${x}px, ${y}px)`,
           zIndex: 1

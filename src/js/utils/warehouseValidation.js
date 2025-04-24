@@ -6,21 +6,6 @@ const modal = document.querySelector('[data-modal="update-warehouse"]');
 //======Валидация склада====///
 export const warehouseValidation = (form, request) => {
   validate(form)
-
-    // .addField('#poligon', [
-    //   {
-    //     rule: 'required',
-    //     errorMessage: 'Обязательное поле'
-    //   },
-    //
-    //   {
-    //     validator: (value) => {
-    //       return value >= 0 && value < 100000
-    //     },
-    //     errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
-    //   },
-    //
-    // ])
     .addField('#radius', [
       {
         rule: 'required',
@@ -40,17 +25,14 @@ export const warehouseValidation = (form, request) => {
         errorMessage: 'Обязательное поле'
       },
     ])
-    // .addField('#sectorSelect', [
-    //   {
-    //     rule: 'required',
-    //     errorMessage: 'Обязательное поле'
-    //   },
-    // ])
+
     .onSuccess((ev) => {
       ev.preventDefault();
       serializeForm(form, request)
       form.reset()
       modal.classList.remove('active');
+      location.reload()
+
     })
     .onFail((fields) => {
 

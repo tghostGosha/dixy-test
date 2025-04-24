@@ -1,6 +1,9 @@
 import {validate} from "../modules/validate";
 import {serializeForm} from "../helpers/serializeForm";
 
+const areaSelect = document.querySelector('#updateAreaSelect');
+const sectorSelect = document.querySelector('#updateSectorSelect');
+const store = document.querySelector('#updateWarehouseNumber');
 export const RuleUpdateValidation = (form, request, modal) => {
 
   validate(form)
@@ -26,41 +29,41 @@ export const RuleUpdateValidation = (form, request, modal) => {
       //   errorMessage: 'Только русские буквы'
       // },
     ])
-    // .addField('#areaSelect', [
-    //   {
-    //     validator: () => {
-    //       return areaSelect.value !== '' || sectorSelect.value !== '' || store.value !== '';
-    //     },
-    //     errorMessage: 'Необходимо заполнить Область, либо Сектор, либо Склад'
-    //   }
-    // ])
-    // .addField('#sectorSelect', [
-    //   {
-    //     validator: (value) => {
-    //       return areaSelect.value !== '' || sectorSelect.value !== '' || store.value !== '';
-    //     },
-    //     errorMessage: 'Необходимо заполнить Область, либо Сектор, либо Склад'
-    //   }
-    // ])
-    // .addField('#warehouseNumberArray', [
-    //   {
-    //     validator: () => {
-    //       return areaSelect.value !== '' || sectorSelect.value !== '' || store.value !== '';
-    //     },
-    //     errorMessage: 'Необходимо заполнить Область, либо Сектор, либо Склад'
-    //   },
-    //   {
-    //     rule: 'minLength',
-    //     value: 0,
-    //     errorMessage: '0-9, разрешены запятая и пробел, Мин- 0'
-    //   },
-    //   {
-    //     rule: 'maxLength',
-    //     value: 100000,
-    //     errorMessage: '0-9, разрешены запятая и пробел, Макс -100 000'
-    //   },
-    //
-    // ])
+    .addField('#updateAreaSelect', [
+      {
+        validator: (value) => {
+          return value !== '' || sectorSelect.value !== '' || store.value !== '';
+        },
+        errorMessage: 'Необходимо заполнить Область, либо Сектор, либо Склад'
+      }
+    ])
+    .addField('#updateSectorSelect', [
+      {
+        validator: (value) => {
+          return   value !== '' || areaSelect.value !== '' || store.value !== '';
+        },
+        errorMessage: 'Необходимо заполнить Область, либо Сектор, либо Склад'
+      }
+    ])
+    .addField('#updateWarehouseNumber', [
+      {
+        validator: (value) => {
+          return areaSelect.value !== '' || sectorSelect.value !== '' || value !== '';
+        },
+        errorMessage: 'Необходимо заполнить Область, либо Сектор, либо Склад'
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: '0-9, разрешены запятая и пробел, Мин- 0'
+      },
+      {
+        rule: 'maxLength',
+        value: 100000,
+        errorMessage: '0-9, разрешены запятая и пробел, Макс -100 000'
+      },
+
+    ])
     .addField('[data-id="costDelivery"]', [
       {
         rule: 'required',
@@ -102,18 +105,26 @@ export const RuleUpdateValidation = (form, request, modal) => {
     ])
 
     .onSuccess((ev) => {
-      ev.preventDefault();
+      // ev.preventDefault();
       //===Создание нового правила===////
       serializeForm(form, request)
       form.reset()
       modal.classList.remove('active');
+      window.location.reload()
+
     })
     .onFail((fields) => {
       validate(form).refresh()
+
     });
 
   const cancelBtn = document.querySelector('[data-сancel="cancel"]')
-  cancelBtn.addEventListener('click', ()=> {
+  const closeButton = document.querySelector('[data-close="close"]')
+  cancelBtn.addEventListener('click', () => {
+    validate(form).refresh()
+    validate(form).destroy()
+  })
+  closeButton.addEventListener('click', () => {
     validate(form).refresh()
     validate(form).destroy()
   })

@@ -30,9 +30,17 @@
     max-width: 432px;
     margin: 0;
     padding: 8px 16px 7px 16px;
+    overflow: visible;
     //&.is-open {
     //  border: 1px solid $orange;
     //}
+    &:has(.choices__input.is-invalid) {
+      border: 1px solid #F56C6C;
+    }
+    .just-validate-error-label {
+      left: 0;
+      bottom: -21px;
+    }
   }
 
   .choices[data-type*=select-one] .choices__inner {

@@ -59,7 +59,7 @@ export const sortType = (button) => {
 }
 
 export const sortTypeHistory = (button) => {
-  url.searchParams.set('sort_id', 'UF_UPDATED_AT');
+  url.searchParams.set('sort_id', 'UF_DATE');
   url.searchParams.set('sort_type', button.value);
   window.history.pushState({}, '', url);
   window.location.assign(

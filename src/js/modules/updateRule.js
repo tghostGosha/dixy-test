@@ -6,7 +6,7 @@ import {selectChoice} from "./choiceSector";
 import {getSectors} from "../axios/sectors";
 
 
-(function () {
+export const updateRuleDetail = () => {
 
   const ruleUpdate = document.querySelector('[data-update="rule"]')
   const closeButton = document.querySelector('[data-close="update-rule"]')
@@ -23,12 +23,12 @@ import {getSectors} from "../axios/sectors";
   let ruleId = document.querySelector('#ruleId');
 
   try {
-    document.addEventListener('click',  function (e) {
+    document.addEventListener('click', function (e) {
       if (e.target.matches('[data-update="open"]')) {
-        let select = null
+
         const parent = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
         let id = parent.getAttribute("id");
-        // e.preventDefault()
+
         getRuleDetail(id).then(async (response) => {
           //======Очищаем все options у селекта сектора
           for (let i = sector.options.length - 1; i >= 0; i--) {
@@ -40,10 +40,10 @@ import {getSectors} from "../axios/sectors";
             ruleId.value = response.data.id
             ruleName.value = response.data.name
 
-            if (response.data.area) {
-              ruleArea.value = response.data.area
+            if (!response.data.area || response.data.area === '0') {
+              ruleArea.value = ''
             } else {
-              ruleArea.value = '0'
+              ruleArea.value = response.data.area
             }
             if (!response.data.sector) {
               sector.value = ''
@@ -62,27 +62,38 @@ import {getSectors} from "../axios/sectors";
 
 
             //========заполняем Select Секторов===========
-            const dataSectors = await getSectors(response.data.area)
-            if (dataSectors) {
+            let dataSectors
+            if (response.data.area === '0' || response.data.area === '1' || response.data.area === '') {
+              dataSectors = await getSectors()
+            } else {
+              dataSectors = await getSectors(response.data.area)
+            }
 
+            if (dataSectors) {
+              let select
+              if (select) {
+                select.destroy()
+              }
               let result = dataSectors.data.map(({id, name}) =>
                 ({value: id, label: name}));
 
               const toggle = (arr, id) => arr.map(n => n.value === id ? {...n, selected: !n.selected} : n);
               const newArr = toggle(result, response.data.sector)
+
               select = selectChoice(sector, newArr)
               select.init()
               checkDataRules(sector, ruleArea, warehouseNumber, select)
-
               //====Разрешаем только русские буквы и пробелы
               const input = document.querySelectorAll(".choices__input")
               input.forEach(e => {
                 onlyRusLetter(e)
               })
+
+              closeModal(cancelBtn, ruleUpdate, ruleUpdateForm, select)
+              closeModal(closeButton, ruleUpdate, ruleUpdateForm, select)
             }
 
-            closeModal(cancelBtn, ruleUpdate, ruleUpdateForm, select)
-            closeModal(closeButton, ruleUpdate, ruleUpdateForm, select)
+
           }
         })
 
@@ -93,7 +104,6 @@ import {getSectors} from "../axios/sectors";
 
 
   } catch (e) {
-
   }
-})();
+}
 

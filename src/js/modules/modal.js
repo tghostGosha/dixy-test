@@ -5,7 +5,9 @@ const openMapModal = async (modalWindow, bodyElementHTML, id) => {
   bodyElementHTML.classList.add('active-modal')
   try {
     await initializeMap(id)
-  } catch (e){}
+  } catch (e){
+    console.log(e)
+  }
 
 };
 
@@ -22,7 +24,6 @@ export const modalOpenMap = (button, modalWindow) => {
   button.forEach((item) => {
     item.addEventListener('click', (event) => {
       let idStore = event.target.parentNode.dataset.id
-
       openMapModal(modalWindow, bodyElementHTML, idStore);
     })
   })

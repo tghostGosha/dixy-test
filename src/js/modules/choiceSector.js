@@ -11,6 +11,7 @@ export const selectChoice = (item, selectArray) => {
       placeholder: true,
       allowHTML: true,
       choices: selectArray,
+      noResultsText: 'Сектор не найден'
 
     })
   }

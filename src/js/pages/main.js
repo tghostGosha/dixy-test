@@ -3,11 +3,13 @@ import {createRule, deleteRule, downloadRule, getRules, updateRule} from "../axi
 import {RuleValidation} from "../utils/ruleValidation";
 import {RuleUpdateValidation } from "../utils/ruleUpdateValidation";
 import {searchInput, searchPage, sortType, resetSearch} from "../helpers/search";
-import rule from "../modules/updateRule";
+import {updateRuleDetail} from "../modules/updateRule";
 import {downloadFile} from "../axios/downloadFile";
 import {selectChoice} from "../modules/choiceSector";
 
-
+window.onload = function(){
+  document.body.scrollTop = 0;
+}
 //======Поиск====///
 const search = document.querySelector('#search');
 const searchButton = document.querySelector('#search-button');
@@ -39,6 +41,8 @@ const ruleUpdateForm = document.querySelector('#ruleUpdateForm');
 const ruleCreate = document.querySelector('[data-create="rule"]');
 const ruleUpdate = document.querySelector('[data-update="rule"]');
 if (window.location.pathname === '/') {
+
+  updateRuleDetail()
   //======Сортировка======///
   try {
     document.addEventListener('click', function (e) {

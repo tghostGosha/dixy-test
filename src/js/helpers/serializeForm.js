@@ -21,9 +21,12 @@ export function serializeForm(formNode, request, id = undefined) {
   if (data.has('store')) {
     const arrayValue = data.get('store').match(/\b\w+?\b/g);
 
-    for (let i = 0; i < arrayValue.length; i++) {
-      data.append('store[]', arrayValue[i])
+    if (arrayValue) {
+      for (let i = 0; i < arrayValue.length; i++) {
+        data.append('store[]', arrayValue[i])
+      }
     }
+
 
     request(data, data.get('id'))
     return data

@@ -1,4 +1,3 @@
-
 function clearValidationErrors(form) {
   const errorElements = form.querySelectorAll('.just-validate-error-label');
   errorElements.forEach(element => {
@@ -11,17 +10,21 @@ function clearValidationErrors(form) {
   });
 }
 
-export const closeModal = (button, modal, form , select) => {
+export const closeModal = (button, modal, form, select) => {
 
   button.addEventListener('click', (event) => {
     event.preventDefault()
     //==отключаем инстанс Селекта====
-    if(select) {
-
-      select.destroy()
+    try {
+      if (select) {
+        select.destroy()
+      }
+      form.reset();
+      clearValidationErrors(form)
+    } catch (e) {
+      console.log(e)
     }
-    form.reset();
-    clearValidationErrors(form)
+
     modal.classList.remove('active');
   });
 }
