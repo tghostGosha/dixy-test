@@ -31,8 +31,7 @@ export const checkDataRules = (sectorSelect, areaSelect, textarea, choice) => {
   }
 
   areaSelect.addEventListener('change', async function () {
-    areaField.value = areaSelect.value
-
+    areaField.disabled = true
     if (areaSelect.value === '' && sectorSelect.value === '' && textarea.value === '') {
       areaSelect.disabled = false;
       sectorSelect.disabled = false;
@@ -81,9 +80,11 @@ export const checkDataRules = (sectorSelect, areaSelect, textarea, choice) => {
     if (sectorSelect.value !== '' && areaSelect.value !== '') {
       areaSelect.disabled = false;
       textarea.readonly = true;
+      areaField.disabled = true
 
     } else if (sectorSelect.value === '' || sectorSelect.label === 'Сектор доставки') {
       areaSelect.disabled = false;
+      areaField.disabled = true
     } else if (sectorSelect.value !== '' && areaSelect.value === '') {
       areaSelect.disabled = true;
       areaSelect.classList.remove('is-invalid');

@@ -40,7 +40,6 @@ export const SectorValidation = (form, request, modal) => {
       serializeForm(form, request)
       form.reset()
       modal.classList.remove('active');
-      location.reload()
 
     })
     .onFail((fields) => {

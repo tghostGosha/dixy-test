@@ -56,6 +56,7 @@ export const createRule = (data) => {
     }
   }).then((response) => {
     openSuccessModal(successAddRule)
+    setTimeout(() => { window.location.reload()}, 2000)
   }).catch(function (error) {
     errorModal(error.response.data.errors[0].message)
 
@@ -75,8 +76,28 @@ export const updateRule = (data, id) => {
     }
   }).then((response) => {
     openSuccessModal(successEditRule)
-  }).catch(function (error) {
 
+    setTimeout(() => { window.location.reload()}, 2000)
+
+  }).catch(function (error) {
+    errorModal(error.response.data.errors[0].message)
+  })
+
+}
+//===========Редактирование правила =================
+export const updateRuleActive = (data, id) => {
+  axios.post(`${url}/${id}/update/`, data, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    auth: {
+      username: basicAuth.name,
+      password: basicAuth.password
+    }
+  }).then((response) => {
+    // openSuccessModal(successEditRule)
+
+  }).catch(function (error) {
     errorModal(error.response.data.errors[0].message)
   })
 
@@ -94,6 +115,7 @@ export const deleteRule = (id) => {
     }
   }).then((response) => {
     openSuccessModal(successDeleteRule)
+    setTimeout(() => { window.location.reload()}, 2000)
   }).catch(function (error) {
 
     console.log(error);

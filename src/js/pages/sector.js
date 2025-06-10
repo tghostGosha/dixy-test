@@ -84,6 +84,8 @@ try {
   const bodyElementHTML = document.getElementsByTagName("body")[0];
   const cancelBtn = document.querySelector('[data-delete-sector="cancel"]');
   const confirmBtn = document.querySelector('[data-delete-sector="delete"]')
+  const closeButton = document.querySelector('[ data-delete-sector="close"]');
+
   let id
   try {
     document.addEventListener('click', function (e) {
@@ -94,10 +96,20 @@ try {
         id = parent.getAttribute("id");
       }
     })
+    closeButton.addEventListener('click', (event) => {
+      event.preventDefault()
+      modalBackgroundDelete.style.display = "none";
+
+    });
     cancelBtn.addEventListener('click', (e) => {
       e.preventDefault()
       modalBackgroundDelete.style.display = "none";
 
+    });
+    modalBackgroundDelete.addEventListener("click", function (event) {
+      if (event.target === modalBackgroundDelete) {
+        modalBackgroundDelete.style.display = "none";
+      }
     });
     confirmBtn.addEventListener('click', async (event) => {
       event.preventDefault()

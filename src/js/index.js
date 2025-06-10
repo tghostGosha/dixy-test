@@ -95,20 +95,20 @@ if (window.location.pathname === '/' || window.location.pathname.includes('store
       });
     })
   }
-//========заполняем Select правил===========
-  const dataRules = await getRules()
-
-  const rulesSelect = document.querySelectorAll('[data-id="rule-select"]');
-  if (dataRules) {
-    rulesSelect.forEach(select => {
-      dataRules.data.forEach(function (v) {
-        let option = document.createElement("option");
-        option.value = v.id;
-        option.innerHTML = v.name;
-        select.appendChild(option);
-      });
-    })
-  }
+// //========заполняем Select правил===========
+//   const dataRules = await getRules()
+//
+//   const rulesSelect = document.querySelectorAll('[data-id="rule-select"]');
+//   if (dataRules) {
+//     rulesSelect.forEach(select => {
+//       dataRules.data.forEach(function (v) {
+//         let option = document.createElement("option");
+//         option.value = v.id;
+//         option.innerHTML = v.name;
+//         select.appendChild(option);
+//       });
+//     })
+//   }
 
 
 //========разрешать только русские буквы, пробел, точку и тире===========

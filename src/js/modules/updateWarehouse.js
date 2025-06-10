@@ -30,7 +30,6 @@ export const updateWarehouse = () => {
   try {
     document.addEventListener('click',  function (e) {
       if (e.target.matches('[data-update="open-warehouse"]')) {
-        // choice = null
         const parent = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
         let id = parent.getAttribute("id");
         elementId.value = id
@@ -45,27 +44,32 @@ export const updateWarehouse = () => {
            }
 
             if (response) {
+
               const areaData = await getAreas()
               let areaByID = areaData.data.find(function(item) { return item.id === response.data.area; });
               storeNumber.value =response.data.xml_id
+
+              //========очищаем Select Правил===========
+              while (ruleName.options.length > 1) {
+                ruleName.remove(1);
+              }
+              //========заполняем Select Правил===========
+              if (response.data.rules) {
+                response.data.rules.forEach(rule => {
+                  const option = document.createElement('option');
+                  option.value = rule.id;
+                  option.textContent = rule.name;
+                  ruleName.appendChild(option);
+                });
+              }
               ruleName.value = response.data.rule
-              area.value = areaByID.name
+              areaByID ? area.value = areaByID.name : area.value = 'Область не задана'
               warehouseNumber.value = response.data.store
               delivery.checked = response.data.delivery === true || response.data.delivery === '1';
               pickup.checked = response.data.pickup === true || response.data.pickup === '1';
               radius.value = response.data.radius
-              if (!response.data.sector) {
-                sector.value = ''
-
-              } else {
-                sector.value = response.data.sector
-              }
-
-              if (response.data.polygon) {
-                polygon.value = 'задан'
-              } else  {
-                polygon.value = ' не задан'
-              }
+              response.data.sector ? sector.value = response.data.sector : sector.value = ''
+              response.data.polygon ? polygon.value = 'задан' : polygon.value = ' не задан'
               schedule.textContent = response.data.schedule
               //========заполняем Select Секторов===========
               const dataSectors = await getSectors(response.data.area)
@@ -87,19 +91,14 @@ export const updateWarehouse = () => {
                 closeModal(cancelBtn,warehouseUpdate,warehouseUpdateForm, choice )
                 closeModal(closeBtn,warehouseUpdate,warehouseUpdateForm , choice )
               }
-
-              // closeModal(cancelBtn,warehouseUpdate,warehouseUpdateForm, select )
-              // closeModal(closeBtn,warehouseUpdate,warehouseUpdateForm , select )
             }
           })
         warehouseUpdate.classList.add('active');
       }
     })
 
-
-
   } catch (e) {
-    console.log(e)
+
   }
 }
 

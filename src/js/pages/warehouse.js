@@ -1,7 +1,7 @@
 import resize from '../modules/rezizeRow';
 import {modalOpenMap} from "../modules/modal";
 // import {tippyOpen} from "../modules/dropdown";
-import dataOpen from '../modules/modal-page';
+
 import {downloadStore, updateStore} from "../axios/warehouse";
 import {warehouseValidation} from "../utils/warehouseValidation";
 import {updateWarehouse} from '../modules/updateWarehouse';

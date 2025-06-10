@@ -55,6 +55,7 @@ export const createSector = (data) => {
     }
   }).then((response) => {
     openSuccessModal(successAdd)
+    setTimeout(() => { window.location.reload()}, 2000)
   }).catch(function (error) {
     console.log(error);
   })
@@ -73,6 +74,7 @@ export const updateSector = ( data, id ) => {
     }
   }).then((response) => {
     openSuccessModal(successEdit)
+    setTimeout(() => { window.location.reload()}, 2000)
   }).catch(function (error) {
     console.log(error);
   })
@@ -91,6 +93,7 @@ export const deleteSector = (id) => {
     }
   }).then((response) => {
     openSuccessModal(successDelete)
+    setTimeout(() => { window.location.reload()}, 2000)
   }).catch(function (error) {
     console.log(error);
   })

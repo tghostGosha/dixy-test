@@ -3,6 +3,10 @@
   .tippy-box {
     width: 200px;
   }
+  .dropdown {
+    display: flex;
+   justify-content: flex-end;
+  }
   .dropdown .transparent__button {
     place-self: flex-end;
     padding: 9px 12px;
@@ -20,7 +24,7 @@
     background-color: $grey_7FA;
     border-bottom: 1px solid $grey_EF5;
     display: grid;
-    grid-template-columns: 5% 9% 14% 6% 14% 16% 9% 9% 9% 9%;
+    grid-template-columns: 5% 9% 14% 6% 10% 16% 8% 8% 8% 8% 8%;
 
     & div {
       padding: 9px 7px 9px 0;

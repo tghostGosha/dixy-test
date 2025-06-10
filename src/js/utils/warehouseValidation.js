@@ -31,7 +31,6 @@ export const warehouseValidation = (form, request) => {
       serializeForm(form, request)
       form.reset()
       modal.classList.remove('active');
-      location.reload()
 
     })
     .onFail((fields) => {

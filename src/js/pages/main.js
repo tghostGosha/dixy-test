@@ -1,13 +1,13 @@
 import {closeSuccessModal} from "../helpers/success-modal";
-import {createRule, deleteRule, downloadRule, getRules, updateRule} from "../axios/rules";
+import {createRule, deleteRule, downloadRule, getRules, updateRule, updateRuleActive} from "../axios/rules";
 import {RuleValidation} from "../utils/ruleValidation";
-import {RuleUpdateValidation } from "../utils/ruleUpdateValidation";
+import {RuleUpdateValidation} from "../utils/ruleUpdateValidation";
 import {searchInput, searchPage, sortType, resetSearch} from "../helpers/search";
 import {updateRuleDetail} from "../modules/updateRule";
 import {downloadFile} from "../axios/downloadFile";
 import {selectChoice} from "../modules/choiceSector";
-
-window.onload = function(){
+import dataOpen from '../modules/modal-page';
+window.onload = function () {
   document.body.scrollTop = 0;
 }
 //======Поиск====///
@@ -30,7 +30,7 @@ const switchData = document.querySelectorAll('[data-update="switch"]')
 switchData.forEach((item) => {
   item.addEventListener('click', (e) => {
     let id = e.target.parentNode.parentNode.parentNode.getAttribute("id")
-    updateRule({active: item.checked}, id.toString())
+    updateRuleActive({active: item.checked}, id.toString())
   })
 })
 
@@ -40,7 +40,7 @@ const ruleForm = document.querySelector('#rule-form');
 const ruleUpdateForm = document.querySelector('#ruleUpdateForm');
 const ruleCreate = document.querySelector('[data-create="rule"]');
 const ruleUpdate = document.querySelector('[data-update="rule"]');
-if (window.location.pathname === '/') {
+if (window.location.pathname === '/' || window.location.pathname === '/main.html') {
 
   updateRuleDetail()
   //======Сортировка======///
@@ -98,7 +98,9 @@ try {
   const deleteRuleButton = document.querySelector('[data-delete-rule="delete"]')
   const modalBackgroundDelete = document.querySelector('[data-modal-rule="delete"]');
   const bodyElementHTML = document.getElementsByTagName("body")[0];
-  const closeButton = document.querySelector('[ data-delete-rule="cancel"]');
+  const closeButton = document.querySelector('[ data-delete-rule="close"]');
+  const cancelButton = document.querySelector('[ data-delete-rule="cancel"]');
+
   let id
   try {
     document.addEventListener('click', function (e) {
@@ -114,6 +116,16 @@ try {
       event.preventDefault()
       modalBackgroundDelete.style.display = "none";
 
+    });
+    cancelButton.addEventListener('click', (event) => {
+      event.preventDefault()
+      modalBackgroundDelete.style.display = "none";
+
+    });
+    modalBackgroundDelete.addEventListener("click", function (event) {
+      if (event.target === modalBackgroundDelete) {
+        modalBackgroundDelete.style.display = "none";
+      }
     });
     deleteRuleButton.addEventListener('click', async (event) => {
       event.preventDefault()

@@ -55,6 +55,7 @@ export const updateStore = (data, id ) => {
     }
   }).then((response) => {
     openSuccessModal(successAddSector)
+    setTimeout(() => { window.location.reload()}, 2000)
   }).catch(function (error) {
 
     console.log(error);

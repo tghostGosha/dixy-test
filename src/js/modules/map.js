@@ -98,7 +98,7 @@ export const initializeMap = async (id) => {
   storeId = dataStores.data.filter(x => x.id === id);
   // newPolygon=storeId[0]
   currentWarehouse = storeId[0]
-  console.log(storeId[0], 'storeId[0]')
+
   warehouseID = currentWarehouse.id
   map = new L.Map('map', {
     editable: true,
@@ -147,7 +147,7 @@ export const initializeMap = async (id) => {
 
     // marker.bindPopup(`${w.xml_id}`).openPopup();
   }
-  console.log(currentWarehouse, 'currentWarehouse')
+
   // const activeStore = L.marker([currentWarehouse.latitude, currentWarehouse.longitude], {icon: customIcon,
   //   warehouseId: currentWarehouse.id}).addTo(map);
   // activeStore.bindPopup(`${currentWarehouse.xml_id}`).openPopup();

@@ -64,11 +64,20 @@
 	width: -webkit-fill-available;
 	width: -moz-available;
 	height: 19px;
+	cursor: pointer;
 	&>span:hover {
 		overflow: visible;
 		background: inherit;
 		position: absolute;
+		top: 0;
+		left: 0;
 		z-index: 10;
+		background-color: white;
+		padding: 7px 10px;
+		-webkit-box-shadow: 0 0 18px 5px rgba(34, 60, 80, 0.2);
+		-moz-box-shadow: 0 0 18px 5px rgba(34, 60, 80, 0.2);
+		box-shadow: 0 0 18px 5px rgba(34, 60, 80, 0.2);
+		white-space: normal;
 		//white-space: wrap;
 	}
 }

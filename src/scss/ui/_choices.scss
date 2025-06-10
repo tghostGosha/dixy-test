@@ -5,7 +5,7 @@
 .page__form-field {
   & .choices__inner {
     border: 0;
-    border-radius: 40px;
+    border-radius: 0;
     width: 100%;
     max-width: 286px;
     background-color: var(--white);
@@ -121,7 +121,7 @@
     font-size: 14px;
   }
   .is-open .choices__inner {
-    border-radius: 30px;
+    border-radius: 0;
   }
 
   .choices__list--dropdown .choices__item--selectable::after,

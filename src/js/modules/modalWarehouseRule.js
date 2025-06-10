@@ -13,6 +13,7 @@ export const modalWarehouseRule = (button, modalWindow) => {
   const costDelivery = document.querySelector('#costDelivery')
   const freeDelivery = document.querySelector('#freeDelivery')
   const minCost = document.querySelector('#minCost')
+  const minCostSelf = document.querySelector('#minCostSelfRule')
 
   button.forEach((item) => {
     item.addEventListener('click', (e) => {
@@ -26,7 +27,7 @@ export const modalWarehouseRule = (button, modalWindow) => {
           costDelivery.value = response.data.price
           freeDelivery.value = response.data.free_delivery_amount
           minCost.value = response.data.min_amount
-          console.log(response.data, 'response data rule')
+          minCostSelf.value = response.data.min_amount_for_self_delivery
           activeSwitch.checked = response.data.active === true || response.data.active === '1';
         }
       })

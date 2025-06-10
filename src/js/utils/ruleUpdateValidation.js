@@ -77,19 +77,19 @@ export const RuleUpdateValidation = (form, request, modal) => {
       },
 
     ])
-    .addField('[data-id="freeDelivery"]', [
-      {
-        rule: 'required',
-        errorMessage: 'Обязательное поле'
-      },
-      {
-        validator: (value) => {
-          return value >= 0 && value < 100000
-        },
-        errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
-      },
-
-    ])
+    // .addField('[data-id="freeDelivery"]', [
+    //   {
+    //     rule: 'required',
+    //     errorMessage: 'Обязательное поле'
+    //   },
+    //   {
+    //     validator: (value) => {
+    //       return value >= 0 && value < 100000
+    //     },
+    //     errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
+    //   },
+    //
+    // ])
     .addField('[data-id="minCost"]', [
       {
         rule: 'required',
@@ -103,6 +103,19 @@ export const RuleUpdateValidation = (form, request, modal) => {
       },
 
     ])
+    // .addField('[data-id="minCostSelf"]', [
+    //   {
+    //     rule: 'required',
+    //     errorMessage: 'Обязательное поле'
+    //   },
+    //   {
+    //     validator: (value) => {
+    //       return value >= 0 && value < 100000
+    //     },
+    //     errorMessage: '0-9, спецсимволы запрещены.Мин- 0, Макс -100 000'
+    //   },
+    //
+    // ])
 
     .onSuccess((ev) => {
       // ev.preventDefault();
@@ -110,7 +123,7 @@ export const RuleUpdateValidation = (form, request, modal) => {
       serializeForm(form, request)
       form.reset()
       modal.classList.remove('active');
-      window.location.reload()
+
 
     })
     .onFail((fields) => {

@@ -20,7 +20,9 @@ import {closeModal} from "../helpers/closeModal";
 
     editButton.addEventListener('click', toggleEditPolygon)
     saveButton.addEventListener('click', savePolygon)
-  } catch (e) {
 
+
+  } catch (e) {
+    // console.log(e)
   }
 })();

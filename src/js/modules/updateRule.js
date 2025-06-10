@@ -19,6 +19,7 @@ export const updateRuleDetail = () => {
   const warehouseNumber = document.querySelector('#updateWarehouseNumber');
   const costDelivery = document.querySelector('#updateCostDelivery');
   const freeDelivery = document.querySelector('#updateFreeDelivery');
+  const minCostSelf = document.querySelector('#updateMinCostSelf');
   const minCost = document.querySelector('#updateMinCost');
   let ruleId = document.querySelector('#ruleId');
 
@@ -54,10 +55,12 @@ export const updateRuleDetail = () => {
             if (!response.data.store) {
               warehouseNumber.value = ''
             }
+
             warehouseNumber.value = response.data.store
             costDelivery.value = response.data.price
             freeDelivery.value = response.data.free_delivery_amount
             minCost.value = response.data.min_amount
+            minCostSelf.value = response.data.min_amount_for_self_delivery
             ruleActive.checked = response.data.active === true || response.data.active === '1';
 
 
@@ -100,10 +103,12 @@ export const updateRuleDetail = () => {
         ruleUpdate.classList.add('active');
 
       }
+
     })
 
 
   } catch (e) {
+
   }
 }
 
